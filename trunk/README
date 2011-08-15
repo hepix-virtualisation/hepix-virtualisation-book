@@ -1,0 +1,6 @@
+To install the build dependacies on SL6 you may need the epel repo.
+
+The following command worked for me to install suitable versions 
+of all the books build dependacies.
+
+yum install libxslt fop docbook-style-xsl

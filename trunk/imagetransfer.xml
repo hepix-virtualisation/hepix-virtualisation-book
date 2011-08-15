@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE part PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                      "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<part id="imagetransfer" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <?dbhtml dir="imagetransfer"?>
+
+  <title>Image transfer</title>
+
+  <partintro>
+    <para>
+      This part is to cover image transfer issues.
+    </para>
+  </partintro>
+  <xi:include href="imagetransfer-plan.xml"/>
+  <xi:include href="imagetransfer-usecases.xml"/>
+  <xi:include href="imagetransfer-software.xml"/>
+  <xi:include href="imagetransfer-imagelist.xml"/>
+</part>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                 "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<book id="dCacheBook"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <title>HEPIX Virtualisation Working Group</title>
+  <subtitle>2011-08-12</subtitle>
+  <titleabbrev>HEPIX VWG</titleabbrev>
+
+  <bookinfo>
+    <abstract>
+      <para>
+	
+      </para>
+    </abstract>
+
+    <date>2011-08-11</date>
+    <author>
+      <firstname>Virtualisation Working Group</firstname>
+      <surname>HEPiX</surname>
+    </author>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+    <author>
+      <firstname>Ulrich</firstname>
+      <surname>Schwickerath</surname>
+    </author>
+    <author>
+      <firstname>Romain</firstname>
+      <surname>Wartel</surname>
+    </author>
+    <author>
+      <firstname>Tony</firstname>
+      <surname>Cass</surname>
+    </author>
+    <author>
+      <firstname>Andrea</firstname>
+      <surname>Chierici</surname>
+    </author>
+    <author>
+      <firstname>Ian</firstname>
+      <surname>Gable</surname>
+    </author>
+    <author>
+      <firstname>David</firstname>
+      <surname>Kelsey</surname>
+    </author>
+    <author>
+      <firstname>Ian</firstname>
+      <surname>Collier</surname>
+    </author>
+    <author>
+      <firstname>Martin</firstname>
+      <surname>Bly</surname>
+    </author>
+    <author>
+      <firstname>Michel</firstname>
+      <surname>Jouvin</surname>
+    </author>
+    <author>
+      <firstname>Sebastien</firstname>
+      <surname>Goasguen</surname>
+    </author>
+    <author>
+      <firstname>Keith</firstname>
+      <surname>Chadwick</surname>
+    </author>    
+    <author>
+      <firstname>Thomas</firstname>
+      <surname>Finnern</surname>
+    </author>
+    <author>
+      <firstname>Mattieu</firstname>
+      <surname>Puel</surname>
+    </author>
+    <author>
+      <firstname>Sander</firstname>
+      <surname>Klous</surname>
+    </author>
+    <author>
+      <firstname>John</firstname>
+      <surname>Gordon</surname>
+    </author>
+    <author>
+      <firstname>Ewan</firstname>
+      <surname>MacMahon</surname>
+    </author>
+    <author>
+      <firstname>Jie</firstname>
+      <surname>Tao</surname>
+    </author>
+  </bookinfo>
+
+  <preface>
+    <title>Preface</title>
+
+    <para>&hepix; is a twice yearly conference made up from sites providing compute and 
+    storage services for &hep;. &hepix; focusses on the compute, network and storage 
+    infrastucture required for high energy physics sites.
+    </para>
+    <section>
+      <title>&vwg; Observations</title>
+      <para>
+        The spring 2009 &hepix; conference made the following observations:
+        <itemizedlist>
+          <listitem>&hep; will want consistent images across sites.</listitem>
+          <listitem>The Grid is a homogeneous OS environment so requiring &hep; to coordinate OS upgrades across multiple experiments.</listitem>
+          <listitem>The Grid will need to be shared with non &hep; community.</listitem>
+          <listitem>&hep; experiments are very coupled to OS.</listitem>
+          <listitem>Hardware is coupled to OS version.</listitem>          
+          <listitem>Sites believe &vmi;'s are going to be the execution environment for &hep; jobs in the future.</listitem>
+          <listitem>&chroot;, and &xen; based &vee; where already present at &hepix; sites.</listitem>  
+        </itemizedlist>
+        With these observations the &vwg; was formed.
+      </para>
+      <para>
+        A new generation of &vee; such as &opennebular; and &nimbus; where already being developed.
+      </para>
+    </section>
+    <section>
+      <title>&vwg; Objectives</title>
+      <para>
+        <itemizedlist>
+          <listitem>Produce a framework to securly run &vmi;'s across multiple sites supporting &hep;.</listitem>
+          <listitem>Sites need control over &vmi; selection.</listitem>
+        </itemizedlist>
+      </para>
+      <para>
+        With these objectives the &vwg; was created with Tony Cass as its leader.
+      </para>
+    </section>
+  </preface>
+  <toc/>
+  <xi:include href="organsiation.xml"/>
+  <xi:include href="imagetrust.xml"/>
+  <xi:include href="imagecreation.xml"/>
+  <xi:include href="imagetransfer.xml"/>
+  <xi:include href="contextulisation.xml"/>
+</book>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE part PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                      "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<part id="imagetrust" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <?dbhtml dir="imagetrust"?>
+
+  <title>Image Trust</title>
+
+  <partintro>
+    <para>This part of the document covers secuirty requirements.</para>
+  </partintro>
+  <xi:include href="imagetrust-policy.xml"/>
+  
+</part>

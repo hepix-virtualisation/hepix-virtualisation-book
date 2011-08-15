@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<chapter id="contextulisation-principles">
+  <info>
+    <author>
+      <firstname>Sebastien</firstname>
+      <surname>Goasguen</surname>
+    </author>
+    <author>
+      <firstname>Ruben</firstname>
+      <surname>Montero</surname>
+    </author>
+    <author>
+      <firstname>Ulrich</firstname>
+      <surname>Schwickerath</surname>
+    </author>
+    
+  </info>
+  <title>Contextualization principles for HEPiX</title>
+  
+  <para>Certainly it does not represent all possible solutions to the problem but 
+    shows an end to end mechanism for a VM produced at INFN to start at CERN.</para>
+
+  <para>We can add the VMIC checks to bridge the two properly.</para>
+  <section id="contextulisation-principles-definition">
+    <title>Definition</title>
+    <para>Contextualization is defined as the process by which a virtual machine instance
+is configured based on virtual machine master image. In general, contextualization consists
+in passing arbitrary data to the virtual machine at boot time. The goal of this process is to
+configure generic installations of system services (e.g. sshd) and it is the basis to implement a
+"install once deploy many" strategy. It was first introduced by Kate Keahey of Argonne National
+lab (http://www.nimbusproject.org/ )</para>
+  </section>
+  <section id="contextulisation-principles-virtual-applicances">
+    <title>Virtual Appliances</title>
+    <para>A Virtual Appliance is a virtual machine image with a set of pre-installed software packages
+designed to run on a given hypervisor. A successful contextualization strategy starts at
+the Virtual Appliance creation, by defining a set a conventions and pre-configurations that
+will allow the Virtual Appliance (also refer as master image) to be specialized at boot time.</para>
+    <para> wo aspects of the contextualization process were introduced and discussed within the context
+of running virtual machines from the OSG VO: STAR. (Ref: https://twiki.grid.iu.edu/bin/view/
+CampusGrids/DeployingTheSTARVM); and can be refered to as image level contextualization
+and instance level contextualization.</para>
+  </section>
+  <section id="contextulisation-principles-image-level">
+    <title>Image Level Contextualization</title>
+    <para>Image level contextualization applies to the Virtual Appliance building process and includes:</para>
+    <itemizedlist>
+      <listitem>Image Format, the representation of the disk's data within the image file (e.g. raw,
+qcow2...). The image format may be hypervisor specific.</listitem>
+      <listitem>Image Layout, refers to how the various partitions are placed on the disk and to what
+other disk structures are present (e.g. swap FS).</listitem>
+      <listitem>Software appliance, the software packages installed in the image and its preparation for integration with other site
+services. For example, shared file system support or batch scheduler software.</listitem>
+    </itemizedlist>
+  </section>
+  <section id="contextulisation-principles-instance-level">
+    <title>Instance Level Contextualization</title>
+    <para>Whereas image-level contextualization can be performed manually by a systems administrator,
+instance-level contextualization occurs once per VM instantiation and as such must be
+automated. Note that certain resources must be leased from the physical site. These resources
+include network addresses, disk space, and scheduler slots.</para>
+    <para>Basic instance level contextualization is based on the availability of data not contained in the
+base image but thereforth available in the instance. In its most basic form it is achieved via the
+use of a CDrom device, or attached disk. The CD-ROM content is dynamically created and
+mounted within the instance. This basic process is compliant with OVF standards defined at
+( Ref: http://www.dmtf.org/standards/published_documents/DSP0243_1.0.0.pdf , pp 38 ), this
+process is used in OpenNebula (Ref: http://www.opennebula.org/documentation:rel2.0:cong )</para>
+    <para>While these basic mechanisms work for single instances, a more involved contextualization
+may be needed when multiple instances need to contextualize themselves with respect to each
+other. There are two approaches:</para>
+    <itemizedlist>
+      <listitem>This may be better achieved by a context broker such as the one defined in Nimbus
+(Ref: http://www.nimbusproject.org/docs/2.2/faq.html#ctxbroker). In practice, the context
+broker is a server that the instance contact to get their configuration parameters. This
+maybe a mechanisms that the VO could use for post instantiation configuration. As long
+as it complies with the HEPiX security policies.</listitem>
+      <listitem>Use of VM orchestration utilities, this approach could be more flexible as it also allows
+complete management of the VM group and it can include synchronization points
+between VMs. These utilities implements typical DAG dependencies, so for example
+NFS clients are booted after the NFS server. An example of such VM orchestrator for
+OpenNebula can be found at (Ref: http://dev.opennebula.org/projects/oneservice).</listitem>
+    </itemizedlist>
+  </section>
+  <section id="contextulisation-principles-cloud">
+    <title>Contextualization for Cloud Computing</title>
+    <para>Cloud computing represents the on-demand instantiation of virtual machines per user request.
+In that mode of operation the contextualization is achieved when the user passes data to the
+cloud API, data that is then made available within the instance. As an example, the following
+strategies are available in commercial providers:</para>
+    <itemizedlist>
+      <listitem>Image layout conventions (e.g. do not include swap partitions or user data FS should be
+availble under /dev/sde).</listitem>
+      <listitem>Valid Image Formats.</listitem>
+      <listitem>Recommend software packages (e.g. ssh)</listitem>
+      <listitem>Virtual Appliance Metadata (e.g. name of maintainer, version and date of creation,
+contents...)</listitem>
+      <listitem>Support for the HEPiX instance level contextualization process.</listitem>
+    </itemizedlist>
+    <para>Therefore the scope of the HEPiX contextualization \u201cpolicy\u201d is defined as instance level
+contextualization of a third party trusted VM image when the image needs to share services with
+the local site infrastructure. In the following, we assume that the context data is made available
+to the VM in the form of a context CD-ROM. We see different contextualization strategies in
+terms of the flexibility offered to the user of the Virtual Appliance.</para>
+    <itemizedlist>
+      <listitem>Variables. A set of predefined variables are recognized. The Virtual Applianceis prepared in such a way that variables are read and the corresponding
+services configured. Examples may include, SSH_PUB_KEY NFS_SERVER_IP,
+TCP_IN_PORTS...</listitem>
+      <listitem>Files. The contents of predefined files are made available at boot time. The Virtual
+  Appliance is built to read the context of these files and place them in their target
+  locations at a very early stage of the boot process.</listitem>
+      <listitem>Scripts. The VM is supplied with custom scripts to be executed at a given point of
+  the booting process or/and the shutdown process. The scripts can be predefined to
+  hook in specific points of the booting process (e.g. prologue.script, epilogue.script, or
+  rc2.script ...).
+      </listitem>
+    </itemizedlist>
+    <para>Note that the previous strategies can be combined as needed. Also note that the context
+service would need to be present in the image, this service would be run at a very early stage
+of the boot process and check whether the context disk is present or not according to the Image
+layout conventions (see above).</para>
+    <para>The previous contextualization processes requires that the users made available the context
+data to the remote site. There are three basic procedures:</para>
+    <itemizedlist>
+      <listitem>The user is able to upload files and contents to the site. This implies a file storage
+service to be available in the sites and is not recommended.</listitem>
+      <listitem>The user made available the contents of variables, files or scripts in the form of an URL.</listitem>
+      <listitem>The user embed the contents of variables, files or scripts in the VM creation request
+(e.g. as part of an XML request using base64 encoding). Given the nature of the content
+data (i.e. very limited size) this would be the preferred method.</listitem>
+    </itemizedlist>
+  </section>
+  <section id="contextulisation-principles-cern-status">
+    <title>CERN current site contextualization</title>
+    <para>The VM contains two init scripts in /etc/init.d, vmcontext.prologue and vmcontext.epilogue</para>
+    <para>vmcontext.prologue is:</para>
+    <programlisting>#!/bin/bash
+# vmcontext       Bring up/down contextualization
+#
+# chkconfig: 2345 2 91
+# description: HEPiX compliant contextualisation epilog
+#
+### BEGIN INIT INFO
+# Provides: $vmcontext_prolog
+### END INIT INFO
+#
+# Changelog:
+#             $Log: vmcontext,v $
+#             Revision 1.2 2010/08/06 19:10:36 uschwick
+#             add support for KVM
+#
+#             Revision 1.1 2009/12/03 08:15:59 uschwick
+#             import initial version of vmcontext from SG
+#
+#
+# Source function library
+. /etc/init.d/functions
+start() {
+    if [ -e /dev/xvdb ] ; then
+         disk="/dev/xvdb"
+    elif [ -e /dev/vdb ] ; then
+         disk="/dev/vdb"
+    elif [ -e /dev/hdb ]; then
+         disk="/dev/hdb"
+    elif [ -e /dev/sdb ]; then
+         disk="/dev/sdb"
+    else
+         echo $"No context disk found."
+         exit 0;
+    fi
+    echo -n $"Trying to mount context disk $disk: "
+    mount -t iso9660 $disk /mnt
+    RETVAL=$?
+    if [ 0 -eq $RETVAL ] ; then
+         echo -n "Performing contextualization initial steps"
+         if [ -e /mnt/prolog.sh ]; then
+              . /mnt/prolog.sh
+         else
+              . /mnt/init.sh
+         fi
+         RETVAL=$?
+         if [ 0 -eq $RETVAL ]; then
+              echo " DONE"
+         else
+              echo " FAILED"
+         fi
+         umount /mnt
+         return $RETVAL
+    else
+         umount /mnt
+         return $RETVAL
+    fi
+}
+stop() {
+    echo -n $"Unmouting context disk: "
+    umount /mnt
+    RETVAL=$?
+    echo
+    return $RETVAL
+}
+case "$1" in
+    start)
+#                 [ $running -eq 0 ] &amp;&amp; exit 0
+                  start
+                  RETVAL=$?
+                  ;;
+    stop)
+#                [ $running -eq 0 ] || exit 0
+                 stop
+                 RETVAL=$?
+                 ;;
+        *)
+        echo $"Usage: $0 {start|stop}"
+        RETVAL=2
+esac
+exit $RETVAL</programlisting>
+    <para>And the vmcontext.epilogue is (very similar):</para>
+    <programlisting>#!/bin/bash
+# vmcontext epilog     contextualization - final steps after boot
+#
+# chkconfig: 2345 99 2
+# description: HEPiX compliant contextualisation epilog
+#
+### BEGIN INIT INFO
+# Provides: $vmcontext_epilog
+### END INIT INFO
+#
+# Changelog:
+#              $Log: vmcontext,v $
+#              Revision 1.2 2010/08/06 19:10:36 uschwick
+#              add support for KVM
+#
+#              Revision 1.1 2009/12/03 08:15:59 uschwick
+#              import initial version of vmcontext from SG
+#
+#
+# Source function library
+. /etc/init.d/functions
+start() {
+    if [ -e /dev/xvdb ] ; then
+         disk="/dev/xvdb"
+    elif [ -e /dev/vdb ] ; then
+         disk="/dev/vdb"
+    elif [ -e /dev/hdb ]; then
+         disk="/dev/hdb"
+    elif [ -e /dev/sdb ]; then
+         disk="/dev/sdb"
+    else
+         echo $"No context disk found."
+         exit 0;
+    fi
+    echo -n $"Trying to mount context disk $disk: "
+     mount -t iso9660 $disk /mnt
+     RETVAL=$?
+     if [ 0 -eq $RETVAL ] ; then
+          if [ -e /mnt/epilog.sh ]; then
+              echo -n "Completing contextualization"
+              . /mnt/epilog.sh
+              RETVAL=$?
+              if [ 0 -eq $RETVAL ]; then
+                   echo " DONE"
+              else
+                   echo " FAILED"
+              fi
+              umount /mnt
+              return $RETVAL
+          fi
+     else
+          umount /mnt
+          return $RETVAL
+     fi
+}
+stop() {
+     echo -n $"Unmouting context disk: "
+     umount /mnt
+     RETVAL=$?
+     echo
+     return $RETVAL
+}
+case "$1" in
+     start)
+#                  [ $running -eq 0 ] &amp;&amp; exit 0
+                   start
+                   RETVAL=$?
+                   ;;
+     stop)
+#                  [ $running -eq 0 ] || exit 0
+                   stop
+                   RETVAL=$?
+                   ;;
+          *)
+          echo $"Usage: $0 {start|stop}"
+          RETVAL=2
+esac
+exit $RETVAL</programlisting>
+    <para>These scripts try to mount the contextualization CDrom and then run scripts that are in the disk,
+namely prolog.sh and epilog.sh .</para>
+       <para> The VM template in OpenNebula defines what is in the context disk using the following:.</para>
+    <programlisting>CONTEXT = [
+vmid        = "$VMID",
+#TTL         = "12",
+TTL         = "2",
+AFS         = "off",
+files       = "/opt/vmimage/init.sh /opt/vmimage/etchosts /opt/vmimage/
+etcsysconfigifcfg /opt/vmimage/id_rsa.pub /opt/vmimage/lsfcontext.c
+onf /opt/vmimage/etcsysconfignetwork",
+target      = "vdb"
+]</programlisting>
+  </section>
+
+</chapter>
+ 

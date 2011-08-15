@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE part PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+ "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<part id="organsiation" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <?dbhtml dir="organsiation"?>
+
+  <title>&vwg; Organisation</title>
+
+  <partintro>
+    <para>
+      This part of the book sumarises the organsiation of the &vwg;.
+    </para>
+    <para>The &hepix; is an organsiation and gathering of large predominatly High Energy Physics site 
+      administrators with the objective of sharing information and benifiting from each others experiances.</para>
+    <para>The &vwg; was set up by &hepix; to investigate the implications usecases and requirements of sites
+      that where at the time expected to come from the relativly new technology of &vm; techechnology. The 
+      group is charied by Tony Cass and has met regularly and maintains a mailing list 
+      <email>hepix-virtualisation@cern.ch</email> where the majority of the content of theis document is extracted from.</para>
+      
+  </partintro>
+  <xi:include href="organsiation-intro.xml" />
+</part>

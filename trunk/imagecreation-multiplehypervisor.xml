@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<chapter id="imagecreation-multiplehypervisor">
+  <info>
+    <author>
+      <firstname>Andrea</firstname>
+      <surname>Chierici</surname>
+    </author>
+  </info>
+  <title>Multiple hypervisor support</title>
+  
+  <para>In this short report I will describe the possibility to configure a VM to be run "almost" unchaged under xen
+(both para and hvm) and kvm. No other hv has been considered at this stage.</para>
+  <para>This report is rather technical and will describe the operations a sysadmin has to perform in order to
+achieve the same result.</para>
+  <para>Some assumptions have been taken for this guide:</para>
+  <itemizedlist>
+    <listitem>a dhcp is present on the net and configured with mac addresses of the VMs</listitem>
+    <listitem>VMs get ip via dhcp</listitem>
+    <listitem>VMs IPs are not NATted by hypervisors</listitem>
+    <listitem>VMs use disk-on-a-file approach</listitem>
+    <listitem>VMs disk format is raw</listitem>
+    <listitem>VMs use virtio drivers</listitem>
+  </itemizedlist>
+  <section>
+    <title>Testbed</title>
+    <para>The testbed I used is composed by two identica dual socket machines, configured in this way:</para>
+    <itemizedlist>
+      <listitem>2x e5420 processors</listitem>
+      <listitem>16GB RAM</listitem>
+      <listitem>2x sas disk</listitem>
+      <listitem>gigabit ethernet</listitem>
+    </itemizedlist>
+    <para>The operating system running on the hosts is SL5.4, kernel version 2.6.18-164.11.1.el5. Node 1 shares a
+partition via nfs (mounted by node 2), in order to simplify image distribution between the 2. The
+dom0/kvm_guest are configured following the standard documentation provided by redhat:</para>
+    <programlisting>http://www.redhat.it/docs/en-US/Red_Hat_Enterprise_Linux/5.5/html/Virtualization_Guide/index.html</programlisting>
+    <para>Since in my configuration all the VMs have public IP I configured network like this:</para>
+    <programlisting>http://www.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/5.5/html/Virtualization_Guide/sect-Virtualization-Network_Configuration-Bridged_networking_with_libvirt.html</programlisting>
+  </section>
+  <section>
+    <title>&vm; Setup</title>
+    <para>The initial installation of the VM is done on a KVM host. Anyway it's rather 
+      easy to do the same starting from xen (not documented).</para>
+    <para>The command to install the machine with kvm is the following:</para>
+    <programlisting>virt-install \
+ --connect qemu:///system \
+ --name wn-test-01 \
+ --accelerate \
+ --ram 2048 \
+ --disk path=/virtual_shared/wn-test-01_disk,size=25 \
+ --network bridge:br0 \
+ --mac 00:16:3e:00:00:1f \
+ --arch x86_64 \
+ --location http://os-server.cnaf.infn.it/distro/SL/54/x86_64/ \
+ --vnc \
+ --os-type=linux \
+ --os-variant=virtio26</programlisting>
+
+    <para>This command creates a node called "wn-test-01" with 2GB of ram, 25GB of hard disk (raw) stored in
+/virtual_shared, uses network bridge br0 to connect to the network, emulates a 64bit machine with virtio
+drivers, both for net and disk; SL54 is installed via network.</para>
+    <para>Please consider that --disk path requires an existing path on your host server and that --location requires a
+mirror of the opeating system you want to install.</para>
+    <para>Optionally it's possible to add a kickstart file with the line:</para>
+    <programlisting>--extra-args ks=http://(url where to get a ks)</programlisting>
+    <para>See appendix for a sample ks file.</para>
+    <para>If not specifically required, I suggest not to use LVM for disk partitions. After installation is complete, we
+can reboot the node and begin customizing it for multiple HV support.</para>
+    <para>firstboot is executed when a machine is rebooted and I suggest to do the following customizations using
+this tool:</para>
+    <itemizedlist>
+      <listitem>selinux disabled</listitem>
+      <listitem>firewall disabled</listitem>
+      <listitem>bluetooth,cups,firstboot,gpm,ip6tables,isdn,kudzu,pcscd services disabled</listitem>
+    </itemizedlist>
+    <para>After completing this step, reboot (selinux requires this).</para>
+  </section>
+  <section>
+    <title>Multiple HV customization</title>
+    <section>
+      <title>kvm -> xen-hvm</title>
+      <para>On the running VM, after having disabled kudzu (chkconfig kudzu off) you need to modify the conf file
+/etc/sysconfig/network-scripts/ifcfg-eth0 in this way:</para>
+      <para>Original file:</para>
+      <programlisting>DEVICE=eth0
+BOOTPROTO=dhcp
+HWADDR=00:16:3E:00:00:1F
+ONBOOT=yes</programlisting>
+      <para>Modified file:</para>
+      <programlisting>DEVICE=eth0
+BOOTPROTO=dhcp
+ONBOOT=yes</programlisting>
+      <para>That is, basically, to remove the HWADDR line. In this way when the VM is started 
+        on a different HV, the different network card is detected and flawlessly configured. 
+        All the other devices *should* be automatically detected and the VM should boot 
+        regularly.</para>
+      <para>Edit /etc/modprobe.conf and remove the entry on eth0.</para>
+      <para>To boost performances we will create an initrd.img file that supports 
+      para-virtualized drivers for both xen and kvm.</para>
+      <para>To do so, issue these commands on the VM:</para>
+      <programlisting>cd /boot
+mkinitrd -f -v --with=xen-balloon --with=xen-vbd --with=xen-vnif --with=xen-platform-pci
+initrd-paravirt.img `uname -r`</programlisting>
+      <para>Now edit grub.conf and change the default kernel initrd with the one just created.</para>
+      <para>In order to support paravirt disk on xen-hvm you need to add "ide0 noprobe ide1 noprobe" to the kernel.</para>
+      <para>A sample of the resulting grub entry is the following:</para>
+      <programlisting>title Scientific Linux SL (2.6.18-194.3.1.el5)
+        root (hd0,1)
+        kernel /vmlinuz-2.6.18-194.3.1.el5 ro root=LABEL=/ ide0=noprobe ide1=noprobe
+        initrd /initrd-paravirt.img</programlisting>
+      <para>Now we can shut down our VM and prepare the xen template.</para>
+      <para>On the dom0 node, you need to add the config for the xen-hvm machine.</para>
+      <para>cd to /etc/xen and add a file with these settings:</para>
+      <programlisting>kernel = "/usr/lib/xen/boot/hvmloader"
+builder = 'hvm'
+memory = "2048"
+name = 'wn-test-01'
+disk = ['tap:aio:/virtual_shared/wn-test-01_disk,xvda,w']
+vif = [ 'type=netfront, mac=00:16:3e:00:00:1f' ]
+device_model = '/usr/lib64/xen/bin/qemu-dm'
+vcpus = '1'
+vnc=1
+serial = "pty"
+vnclisten="0.0.0.0"
+vncconsole=1
+boot='c'
+pae='1'</programlisting>
+      <para>Change name and mac address according to your configuration. Now try starting the VM with "xm create
+wn-test-01".</para>
+      <para>Everything should work fine and you are ready now to add support for xen-para.</para>
+    </section>
+    <section>
+      <title>kvm-> xen-para</title>
+      <para>Switching from kvm to xen-para is just a little bit more complicated. First of all it's necessary to install a
+kernel-xen on the VM with:</para>
+      <programlisting>yum -y install kernel-xen</programlisting>
+      <para>then, since xen-para uses para-virtualized disk devices, you need to create 
+        a custom initrd in this way:</para>
+      <programlisting>cd /boot
+mkinitrd -f -v --preload=xenblk --with=xennet --builtin=virtio_pci --builtin=virtio --
+builtin=virtio_blk --builtin=xen_vbd initrd-xen-para.img 2.6.18-194.3.1.el5xen</programlisting>
+      <para>The version of the kernel may differ, depending on the one that was installed with yum command.</para>
+      <para>Now you should change the grub.conf and add the new initrd to the kernel-xen using a different syntax
+        than the one used by default by xen:</para>
+      <programlisting>title Scientific Linux SL (2.6.18-194.3.1.el5xen)
+        root (hd0,0)
+        kernel /vmlinuz-2.6.18-194.3.1.el5xen ro root=LABEL=/
+        initrd /initrd-xen-para.img</programlisting>
+      <para>I highly recommend configuring this kernel as the second one, leaving the vanilla kernel as the default
+        (default=0): to do so move the kernel-xen stanza in second place.</para>
+      <para>To support the serial console, you should edit /etc/inittab in this way:</para>
+      <para>After:</para>
+      <programlisting># Run gettys in standard runlevels</programlisting>
+      <para>add this line</para>
+      <programlisting>co:2345:respawn:/sbin/agetty xvc0 9600 vt100-nav</programlisting>
+      <para>and comment out</para>
+      <programlisting>2:2345:respawn:/sbin/mingetty tty1</programlisting>
+      
+      <para>and the following...</para>
+      <para>A sample of the configuration file for the dom0 to run this node is the following:</para>
+      <programlisting>memory = "2048"
+name = 'wn-test-01'
+disk = ['file:/virtual_shared/wn-test-01_disk,xvda,w']
+vcpus = '1'
+vif = [ 'mac=00:16:3e:00:00:1f' ]
+bootloader="/usr/bin/pygrub"
+bootargs="--entry=1"
+on_reboot = 'restart'
+on_crash = 'restart'
+</programlisting>
+      <para>Notice that bootargs contains the entry of the kernel-xen in the grub.conf file, and so it must reflect 
+        exactly the entry you used in the conf file. If you followed my guide, 1 is ok.</para>
+    </section>
+  </section>
+  <section>
+    <para># Kickstart file automatically generated by anaconda.</para>
+    <programlisting>Install
+url --url http://os-server.cnaf.infn.it/distro/SL/54/x86_64/
+lang en_US.UTF-8
+keyboard us
+network --device eth0 --bootproto dhcp
+rootpw --iscrypted $1$RBWTG48f$5Hcoi3Kh9hQeRb.S/r6vL/
+firewall --enabled --port=22:tcp
+authconfig --enableshadow --enablemd5
+selinux \u2013enforcing
+timezone --utc Europe/Rome
+bootloader --location=mbr --driveorder=vda
+# The following is the partition information you requested
+# Note that any partitions you deleted are not expressed
+# here so unless you clear all partitions first, this is
+# not guaranteed to work
+#clearpart \u2013linux
+#part /boot --fstype ext3 --size=100
+#part swap --size=4000
+#part / --fstype ext3 --size=100 --grow --asprimary
+%packages
+@base
+@core
+@dialup
+@editors
+@java
+@misc-sl
+@text-internet
+fipscheck
+device-mapper-multipath
+sgpio
+alpine
+</programlisting>
+  </section>
+</chapter> 
+
+
+
+

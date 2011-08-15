@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<!--
+This file contains entities.  These representing commonly typed
+text and provide a simple method of expanding to the
+underlying DocBook vocabulary.
+
+You use them by inserting the entity reference, like this:
+  &dcache; for the dCache entity.
+
+Rules / Guidelines / Suggestions for adding new entities:
+  0.  Check if it's already defined.
+  1.  Try to group similar defns, with common prefix (e.g. cell-nnn)
+  2.  All entities should be lowercase, by convention.
+  3.  Use "correct" DocBook markup: if it doesn't look right, adjust the XSLT.
+  4.  Go through whole document and switch existing usage to new entity.
+-->
+
+<!-- "Products" or high-level services -->
+<!ENTITY hepix        "<productname>HEPIX</productname>">
+<!ENTITY vwg          "<productname>HEPIX Virtulisation Working Group</productname>">
+<!ENTITY opennebular  "<productname>Open Nebular</productname>">
+<!ENTITY xen          "<productname>Xen</productname>">
+<!ENTITY chroot       "<productname>Change Root</productname>">
+<!ENTITY nimbus       "<productname>Nimbus</productname>">
+<!ENTITY hep          "High Energy Physics">
+<!ENTITY rhel         "<productname>Redhat Enterprise Linux</productname>">
+<!ENTITY debian       "<productname>Debian Linux</productname>">
+
+
+
+<!-- Various literals -->
+<!ENTITY vm           "<literal>Virtual Machine</literal>">
+<!ENTITY vmi          "<literal>Virtual Machine Image</literal>">
+<!ENTITY vmil         "<literal>Virtual Machine Image List</literal>">
+
+<!ENTITY vee          "<literal>Virtualised Execution Environments</literal>">
+
+
+<!-- When defining attributes, default values, etc. -->
+<!ENTITY true         "<emphasis>True</emphasis>">
+<!ENTITY false        "<emphasis>False</emphasis>">
+<!ENTITY no-default   "<emphasis>Not set</emphasis>">
+
+<!-- Shell prompts -->
+<!ENTITY prompt-user  "<prompt>[user] $</prompt>">
+<!ENTITY prompt-root  "<prompt>[root] #</prompt>">
+<!ENTITY prompt-one   "<prompt>[one] #</prompt>">
+
+
+
+<!-- Misc -->
+<!-- <!ENTITY ndash "&#x2013;"> -->

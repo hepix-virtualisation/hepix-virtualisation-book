@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+    "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+<chapter id="organisation-intro">
+  <info>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+  </info>
+  <title>Organisation Introduction</title>
+  <section id="organisation-intro-intro">
+    <title>Introduction</title>
+    <para>HEPIX generated documentation includes many details on:</para>
+    <itemizedlist>
+      <listitem>How to make virtual machines images platform neutral.</listitem>
+      <listitem>How to deploy site neutral images and contextualise them to a site such as batch queue integration.</listitem>
+      <listitem>Meta data (and structure) required to describe an image for HEPIX needs, developed from multiple virtual
+        machine management software.</listitem>
+      <listitem>Software to mange images at a site.</listitem>
+      <listitem>Requirements for image distribution across sites.</listitem>
+    </itemizedlist>
+  </section>
+</chapter>

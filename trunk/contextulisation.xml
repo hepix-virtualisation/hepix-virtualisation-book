@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE part PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                      "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<part id="contextulisation" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <?dbhtml dir="start"?>
+
+  <title>Contextulisation</title>
+
+  <partintro>
+    <para>
+      Contextulisation is teh process of making a &vmi; run at a site.
+    </para>
+  </partintro>
+  <xi:include href="contextulisation-recipe.xml"/>
+  <xi:include href="contextulisation-proposal.xml"/>
+  
+</part>

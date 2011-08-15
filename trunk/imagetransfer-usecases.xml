@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<chapter id="imagetransfer-usecase">
+  <info>
+    <author>
+      <firstname>Ulrich</firstname>
+      <surname>Schwickerath</surname>
+    </author>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+  </info>
+  <title>Image transfer Use Cases</title>
+  <section id="imagetransfer-usecase-usecase">
+    <title>Use Cases</title>
+    <section>
+      <title>1: Endorser handling</title>
+      <itemizedlist>
+        <title>Each endorser runs his own VMIC.</title>
+        <listitem>Endorsers can be associated to a site (side endorser)</listitem>
+        <listitem>Endorsers can be associated to a VO (VO endorser)</listitem>
+      </itemizedlist>
+      <section>
+        <title>1.1: A new Endorser for VO XYZ enters</title>
+        <itemizedlist>
+          <listitem>The endorser sets up his VMIC</listitem>
+          <listitem>The endorser VMIC gets listed in the VOs list of endorsers</listitem>
+        </itemizedlist>
+        <section>
+          <title>1.1.1:</title>
+          <itemizedlist>
+            <listitem>The change gets announced to the sites supporting this VO</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>1.1.2:</title>
+          <itemizedlist>
+            <listitem>The sites decide to update their local list of endorsers or not</listitem>
+            <listitem>The sites get the list of images of this new endorser from the endorsers VMIC</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>1.1.3:</title>
+          <itemizedlist>
+            <listitem>The sites start the local approval procedure for the images of this endorser</listitem>
+          </itemizedlist>
+        </section>
+      </section>
+      <section>
+        <title>1.2: An Endorser leaves VO XYZ and is not replaced</title>
+        <section>
+          <title>1.2.1: The VO desides to revoke all his images</title>
+          <itemizedlist>
+            <listitem>The endorser is removed from the VOs list of endorsers</listitem>
+            <listitem>The endorsers VMIC is destroyed</listitem>
+            <listitem>The sites supporting this VOs are informed of the change by the VO</listitem>
+            <listitem>The sites update their local list of endorsers</listitem>
+            <listitem>The sites ensure that local copies of all affected images are revoked</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>1.2.2: The VO wants the sites to keep running  his images</title>
+          <itemizedlist>
+            <listitem>in this case the VO must provide a new endorser who re-endorses the images, case 1.3</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>1.2.3: As the endorsers VMIC has been destroyed, no new images can be released by this person</title>
+          <itemizedlist>
+            <listitem></listitem>
+          </itemizedlist>
+        </section>
+      </section>  
+      <section>
+        <title>1.3: An Endorser E1 of VO XYZ is replaced by Endorser E2</title>
+        <itemizedlist>
+          <listitem>The VO follows step 1.1 to support the new endorser, and  then 1.2 to revoke the old one</listitem>
+        </itemizedlist>
+      </section>
+      <section>
+        <title>1.4: VO A elects a new Endorsers E1. Site S1 supports VO A. Site S2 does not support VO A  </title>
+        <section>
+          <title>1.4.1/2:</title>
+          <itemizedlist>
+            <listitem>implicitly fulfilled as the VO only contacts those sites which support it</listitem>
+          </itemizedlist>
+        </section>
+      </section>
+    </section>
+    <section>
+      <title>2: Endorser actions</title>
+      <section>
+        <title>2.1: A new image is released. Endorser A blesses it for publication</title>
+        <itemizedlist>
+          <listitem>The endorser adds the image to his VMIC</listitem>
+        </itemizedlist>
+        <orderedlist numeration="loweralpha">
+          <listitem>sites regularly poll the VMICs of all endorsers in their local endorser list for updates</listitem>
+          <listitem>VOs can ask sites to perform this check outside the normal intervals</listitem>
+        </orderedlist>
+        <itemizedlist>
+          <listitem>sites start the local approval procedure to make the image available</listitem>
+        </itemizedlist>
+        <section>
+          <title>2.1.1/2: Fulfilled by construction</title>
+        </section>
+      </section>  
+      <section>
+        <title>2.2: Endorser A revokes a previously blessed images, eg because a bug has been found, without replacing it</title>
+        <itemizedlist>
+          <listitem>The endorser removes these images from his VMIC</listitem>
+          <listitem>sites regularly poll the VMICs in their local endorser list</listitem>
+          <listitem>VOs can ask sites to poll outside the regular interval </listitem>
+          <listitem> sites remove all images which are no longer in the VMICs from their local list of approved images</listitem>          
+        </itemizedlist>
+      </section>  
+      <section>
+        <title>2.3: Endorser A wants to update an existing image</title>
+        <itemizedlist>
+          <listitem>The endorser adds the new image to his VMIC</listitem>
+          <listitem>The endorser removes the old image from his VMIC</listitem>
+          <listitem>sites regularly poll the VMICs in their local endorser list, and revoke support for all images which may have disappeared from the VMICs</listitem>
+          <listitem>VOs can ask sites to poll outside the regular interval </listitem>
+          <listitem>sites decide on the approval of the updated image, and add the image to their list of approved images</listitem>
+          <listitem>sites remove all images which are no longer in the VMICs from their local list of approved images</listitem>
+        </itemizedlist>
+      </section>
+    </section>
+    <section>
+      <title>3: Site actions</title>
+      <section>
+        <title>3.1: A site B wants to use a site specific image for local users</title>
+        <itemizedlist>
+          <listitem>the site's local endorser endorsed the image</listitem>
+          <listitem>the site approves it's own image</listitem>
+          <listitem>the image is added to the sites list of approved images</listitem>
+        </itemizedlist>
+        <section>
+          <title>3.2: Site B has created an image which is useful for other sites and wants to share it</title>
+          <itemizedlist>
+            <listitem>the site's endorser adds the image to his VMIC</listitem>
+            <listitem>remote sites supporting this endorser will pick up the image during regular update checks</listitem>
+            <listitem>the remote sites launch their local approval procedure</listitem>
+            <listitem>the remote sites add the new image to their local list of approved images (or not)</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>3.3: A site is asked to run an image from a trusted endorsers, and the site policies allow this</title>
+          <itemizedlist>
+            <listitem>implicitely handled</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>3.4: A site is asked to run an image from a trusted endorser, but site policies forbid them to run it</title>
+          <itemizedlist>
+            <listitem>implicietely handled. The site does not approve the image and does not add it to it's local list of approved images</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>3.5: A site needs to stop running images for type XYZ because of some reason (security, bug, wrong software,changed site policies)</title>
+          <itemizedlist>
+            <listitem>the site gets notified by an external instance of the problem</listitem>
+            <listitem>the site checks the meta data information of the images in their local list of approved images</listitem>
+            <listitem>the site flags image for removal based on their meta data</listitem>
+            <listitem>the site removes the affected images from their local list of approved images</listitem>
+            <listitem>in case of a VO, the affected VO is informed</listitem>
+            <listitem>the VO proceeds as described above for the revokation of the image</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>3.6: A site needs to stop running all images of Endorser XYZ, which were previously trusted and used</title>
+          <itemizedlist>
+            <listitem>The endorser wil have disappeared from the list of trusted endorsers</listitem>
+            <listitem>images of this endorser get removed from the local list of approved images</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>3.7: A site needs to make a new image available to their users</title>
+          <itemizedlist>
+            <listitem>The image has been added upstream and appears in one of the VMICs </listitem>
+            <listitem>At the next poll, or on request of the VO, the approval procedure is started</listitem>
+            <listitem>the image is added or not to the local list of approved images</listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>3.8: Endorser A is replaced by Endorser B. Images of A are no longer trusted, Images of Endorser B are trusted.</title>
+          <itemizedlist>
+            <listitem>see 1.3</listitem>
+          </itemizedlist>
+        </section>
+      </section>
+      
+      
+    </section>
+    
+
+  </section>
+</chapter> 
+

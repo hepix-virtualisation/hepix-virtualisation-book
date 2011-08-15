@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE part PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                      "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<part id="start" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <?dbhtml dir="start"?>
+
+  <title>Getting started</title>
+
+  <partintro>
+    <para>
+      This part is intended for people who are new.
+    </para>
+  </partintro>
+
+</part>

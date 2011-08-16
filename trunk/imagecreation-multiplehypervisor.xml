@@ -14,7 +14,7 @@
   </info>
   <title>Multiple hypervisor support</title>
   
-  <para>In this short report I will describe the possibility to configure a VM to be run "almost" unchaged under xen
+  <para>In this short report I will describe the possibility to configure a VM to be run "almost" unchanged under xen
 (both para and hvm) and kvm. No other hv has been considered at this stage.</para>
   <para>This report is rather technical and will describe the operations a sysadmin has to perform in order to
 achieve the same result.</para>

@@ -17,10 +17,11 @@ Rules / Guidelines / Suggestions for adding new entities:
 -->
 
 <!-- "Products" or high-level services -->
-<!ENTITY hepix        "<productname>HEPIX</productname>">
+<!ENTITY hepix        "<productname>HEPiX</productname>">
 <!ENTITY vwg          "<productname>HEPIX Virtulisation Working Group</productname>">
 <!ENTITY opennebular  "<productname>Open Nebular</productname>">
 <!ENTITY xen          "<productname>Xen</productname>">
+<!ENTITY kvm          "<productname>KVM</productname>">
 <!ENTITY chroot       "<productname>Change Root</productname>">
 <!ENTITY nimbus       "<productname>Nimbus</productname>">
 <!ENTITY hep          "High Energy Physics">

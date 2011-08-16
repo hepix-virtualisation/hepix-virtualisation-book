@@ -14,8 +14,8 @@
   </info>
   <title>Multiple hypervisor support</title>
   
-  <para>In this short report I will describe the possibility to configure a VM to be run "almost" unchanged under xen
-(both para and hvm) and kvm. No other hv has been considered at this stage.</para>
+  <para>In this short report I will describe the possibility to configure a VM to be run "almost" unchanged under &xen;
+(both para and hvm) and &kvm;. No other hv has been considered at this stage.</para>
   <para>This report is rather technical and will describe the operations a sysadmin has to perform in order to
 achieve the same result.</para>
   <para>Some assumptions have been taken for this guide:</para>
@@ -45,9 +45,9 @@ dom0/kvm_guest are configured following the standard documentation provided by r
   </section>
   <section>
     <title>&vm; Setup</title>
-    <para>The initial installation of the VM is done on a KVM host. Anyway it's rather 
-      easy to do the same starting from xen (not documented).</para>
-    <para>The command to install the machine with kvm is the following:</para>
+    <para>The initial installation of the VM is done on a &kvm; host. Anyway it's rather 
+      easy to do the same starting from &xen; (not documented).</para>
+    <para>The command to install the machine with &kvm; is the following:</para>
     <programlisting>virt-install \
  --connect qemu:///system \
  --name wn-test-01 \
@@ -84,7 +84,7 @@ this tool:</para>
   <section>
     <title>Multiple HV customization</title>
     <section>
-      <title>kvm -> xen-hvm</title>
+      <title>&kvm; -> xen-hvm</title>
       <para>On the running VM, after having disabled kudzu (chkconfig kudzu off) you need to modify the conf file
 /etc/sysconfig/network-scripts/ifcfg-eth0 in this way:</para>
       <para>Original file:</para>
@@ -102,7 +102,7 @@ ONBOOT=yes</programlisting>
         regularly.</para>
       <para>Edit /etc/modprobe.conf and remove the entry on eth0.</para>
       <para>To boost performances we will create an initrd.img file that supports 
-      para-virtualized drivers for both xen and kvm.</para>
+      para-virtualized drivers for both &xen; and &kvm;.</para>
       <para>To do so, issue these commands on the VM:</para>
       <programlisting>cd /boot
 mkinitrd -f -v --with=xen-balloon --with=xen-vbd --with=xen-vnif --with=xen-platform-pci
@@ -114,7 +114,7 @@ initrd-paravirt.img `uname -r`</programlisting>
         root (hd0,1)
         kernel /vmlinuz-2.6.18-194.3.1.el5 ro root=LABEL=/ ide0=noprobe ide1=noprobe
         initrd /initrd-paravirt.img</programlisting>
-      <para>Now we can shut down our VM and prepare the xen template.</para>
+      <para>Now we can shut down our VM and prepare the &xen; template.</para>
       <para>On the dom0 node, you need to add the config for the xen-hvm machine.</para>
       <para>cd to /etc/xen and add a file with these settings:</para>
       <programlisting>kernel = "/usr/lib/xen/boot/hvmloader"
@@ -136,8 +136,8 @@ wn-test-01".</para>
       <para>Everything should work fine and you are ready now to add support for xen-para.</para>
     </section>
     <section>
-      <title>kvm-> xen-para</title>
-      <para>Switching from kvm to xen-para is just a little bit more complicated. First of all it's necessary to install a
+      <title>&kvm;-> xen-para</title>
+      <para>Switching from &kvm; to xen-para is just a little bit more complicated. First of all it's necessary to install a
 kernel-xen on the VM with:</para>
       <programlisting>yum -y install kernel-xen</programlisting>
       <para>then, since xen-para uses para-virtualized disk devices, you need to create 
@@ -147,7 +147,7 @@ mkinitrd -f -v --preload=xenblk --with=xennet --builtin=virtio_pci --builtin=vir
 builtin=virtio_blk --builtin=xen_vbd initrd-xen-para.img 2.6.18-194.3.1.el5xen</programlisting>
       <para>The version of the kernel may differ, depending on the one that was installed with yum command.</para>
       <para>Now you should change the grub.conf and add the new initrd to the kernel-xen using a different syntax
-        than the one used by default by xen:</para>
+        than the one used by default by &xen;:</para>
       <programlisting>title Scientific Linux SL (2.6.18-194.3.1.el5xen)
         root (hd0,0)
         kernel /vmlinuz-2.6.18-194.3.1.el5xen ro root=LABEL=/

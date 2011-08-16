@@ -21,7 +21,7 @@
     </author>
     
   </info>
-  <title>Contextualization principles for HEPiX</title>
+  <title>Contextualization principles for &vwg;</title>
   
   <para>Certainly it does not represent all possible solutions to the problem but 
     shows an end to end mechanism for a VM produced at INFN to start at CERN.</para>
@@ -29,21 +29,21 @@
   <para>We can add the VMIC checks to bridge the two properly.</para>
   <section id="contextualisation-principles-definition">
     <title>Definition</title>
-    <para>Contextualization is defined as the process by which a virtual machine instance
-is configured based on virtual machine master image. In general, contextualization consists
-in passing arbitrary data to the virtual machine at boot time. The goal of this process is to
+    <para>Contextualization is defined as the process by which a &vm; instance
+is configured based on a master &vmi;. In general, contextualization consists
+in passing arbitrary data to the &vm; at boot time. The goal of this process is to
 configure generic installations of system services (e.g. sshd) and it is the basis to implement a
 "install once deploy many" strategy. It was first introduced by Kate Keahey of Argonne National
 lab (http://www.nimbusproject.org/ )</para>
   </section>
   <section id="contextualisation-principles-virtual-applicances">
     <title>Virtual Appliances</title>
-    <para>A Virtual Appliance is a virtual machine image with a set of pre-installed software packages
+    <para>A Virtual Appliance is a &vmi; with a set of pre-installed software packages
 designed to run on a given hypervisor. A successful contextualization strategy starts at
 the Virtual Appliance creation, by defining a set a conventions and pre-configurations that
 will allow the Virtual Appliance (also refer as master image) to be specialized at boot time.</para>
     <para> wo aspects of the contextualization process were introduced and discussed within the context
-of running virtual machines from the OSG VO: STAR. (Ref: https://twiki.grid.iu.edu/bin/view/
+of running a &vm; from the OSG VO: STAR. (Ref: https://twiki.grid.iu.edu/bin/view/
 CampusGrids/DeployingTheSTARVM); and can be refered to as image level contextualization
 and instance level contextualization.</para>
   </section>
@@ -75,11 +75,11 @@ process is used in OpenNebula (Ref: http://www.opennebula.org/documentation:rel2
 may be needed when multiple instances need to contextualize themselves with respect to each
 other. There are two approaches:</para>
     <itemizedlist>
-      <listitem>This may be better achieved by a context broker such as the one defined in Nimbus
+      <listitem>This may be better achieved by a context broker such as the one defined in &nimbus;
 (Ref: http://www.nimbusproject.org/docs/2.2/faq.html#ctxbroker). In practice, the context
 broker is a server that the instance contact to get their configuration parameters. This
 maybe a mechanisms that the VO could use for post instantiation configuration. As long
-as it complies with the HEPiX security policies.</listitem>
+as it complies with the &hepix; security policies.</listitem>
       <listitem>Use of VM orchestration utilities, this approach could be more flexible as it also allows
 complete management of the VM group and it can include synchronization points
 between VMs. These utilities implements typical DAG dependencies, so for example
@@ -89,7 +89,7 @@ OpenNebula can be found at (Ref: http://dev.opennebula.org/projects/oneservice).
   </section>
   <section id="contextualisation-principles-cloud">
     <title>Contextualization for Cloud Computing</title>
-    <para>Cloud computing represents the on-demand instantiation of virtual machines per user request.
+    <para>Cloud computing represents the on-demand instantiation of &vm;s per user request.
 In that mode of operation the contextualization is achieved when the user passes data to the
 cloud API, data that is then made available within the instance. As an example, the following
 strategies are available in commercial providers:</para>
@@ -100,9 +100,9 @@ availble under /dev/sde).</listitem>
       <listitem>Recommend software packages (e.g. ssh)</listitem>
       <listitem>Virtual Appliance Metadata (e.g. name of maintainer, version and date of creation,
 contents...)</listitem>
-      <listitem>Support for the HEPiX instance level contextualization process.</listitem>
+      <listitem>Support for the &hepix; instance level contextualization process.</listitem>
     </itemizedlist>
-    <para>Therefore the scope of the HEPiX contextualization \u201cpolicy\u201d is defined as instance level
+    <para>Therefore the scope of the &hepix; contextualization \u201cpolicy\u201d is defined as instance level
 contextualization of a third party trusted VM image when the image needs to share services with
 the local site infrastructure. In the following, we assume that the context data is made available
 to the VM in the form of a context CD-ROM. We see different contextualization strategies in

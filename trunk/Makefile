@@ -89,7 +89,7 @@ XSLTPROC ?= xsltproc
 .PHONY: info
 info:
 	@echo
-	@echo "  The dCache Book"
+	@echo "  The HEPIX VWG Book"
 	@echo "  ---------------"
 	@echo
 	@echo "Available main build targets:"

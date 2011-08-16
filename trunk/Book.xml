@@ -5,7 +5,7 @@
 %sharedents;
 ]>
 
-<book id="dCacheBook"
+<book id="HEPIXvwgBook"
       xmlns:xi="http://www.w3.org/2001/XInclude">
 
   <title>HEPIX Virtualisation Working Group</title>
@@ -103,7 +103,7 @@
 
     <para>&hepix; is a twice yearly conference made up from sites providing compute and 
     storage services for &hep;. &hepix; focusses on the compute, network and storage 
-    infrastucture required for high energy physics sites.
+    infrastucture required for &hep; sites.
     </para>
     <section id="observations">
       <title>&vwg; Observations</title>

@@ -12,14 +12,14 @@
       <surname>Kelsey</surname>
     </author>
   </info>
-  <title>Policy on the Endorsement of Virtual Machine Images</title>
+  <title>Policy on the Endorsement of a &vmi;</title>
   <para>The master copy of this document can be found here https://edms.cern.ch/document/1080777</para>
   <para>This copy of the document was taken from Draft v1.4b writern on 21 May 2010</para>
   <section id="imagetrust-policy-intro">
     <title>Introduction</title>
 
-    <para>This document describes the security-related policy requirements for the generation and endorsement of
-      trusted virtual machine (VM) images for use on the Grid.</para>
+    <para>This document describes the security-related policy requirements for the generation and endorsement of a
+      trusted &vmi; for use on the Grid.</para>
     <para>The aim is to enable Grid Sites to trust and instantiate endorsed VM images that have been generated
       elsewhere.</para>
     <para>The virtualisation model addressed here is the use of virtual Grid worker nodes that act in a similar way
@@ -142,7 +142,7 @@
         </listitem>
         <listitem>
           <para>You recognise that the Grid, the Sites, and/or the VOs reserve the right to block any endorsed
-            image or terminate any instance of a virtual machine and associated user workload for
+            image or terminate any instance of a &vm; and associated user workload for
             administrative, operational or security reasons.</para>
         </listitem>
         <listitem>

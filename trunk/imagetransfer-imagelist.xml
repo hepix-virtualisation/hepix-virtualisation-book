@@ -223,7 +223,7 @@ hv:imagelist/hv:images/hv:image/sl:comments
 
 hv:imagelist/hv:images/hv:image/hv:hypervisor
   comment)
-    Typically set to reflect the Virtualization technology values such as "xen", "kvm".
+    Typically set to reflect the Virtualization technology values such as &xen;, &kvm;.
   xml example)
     &lt;hv:hypervisor&gt;&lt;/hv:hypervisor&gt;
     </programlisting>

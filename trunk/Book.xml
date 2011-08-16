@@ -142,6 +142,6 @@
   <xi:include href="imagetrust.xml"/>
   <xi:include href="imagecreation.xml"/>
   <xi:include href="imagetransfer.xml"/>
-  <xi:include href="contextulisation.xml"/>
+  <xi:include href="contextualisation.xml"/>
 </book>
 

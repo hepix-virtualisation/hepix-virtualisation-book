@@ -5,17 +5,17 @@
 %sharedents;
 ]>
 
-<part id="contextulisation" xmlns:xi="http://www.w3.org/2001/XInclude">
+<part id="contextualisation" xmlns:xi="http://www.w3.org/2001/XInclude">
   <?dbhtml dir="start"?>
 
-  <title>Contextulisation</title>
+  <title>Contextualisation</title>
 
   <partintro>
     <para>
-      Contextulisation is teh process of making a &vmi; run at a site.
+      Contextualisation is the process of making a &vmi; run at a site.
     </para>
   </partintro>
-  <xi:include href="contextulisation-recipe.xml"/>
-  <xi:include href="contextulisation-proposal.xml"/>
+  <xi:include href="contextualisation-recipe.xml"/>
+  <xi:include href="contextualisation-proposal.xml"/>
   
 </part>

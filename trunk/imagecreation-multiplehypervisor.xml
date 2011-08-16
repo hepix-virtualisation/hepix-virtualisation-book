@@ -20,12 +20,12 @@
 achieve the same result.</para>
   <para>Some assumptions have been taken for this guide:</para>
   <itemizedlist>
-    <listitem>a dhcp is present on the net and configured with mac addresses of the VMs</listitem>
-    <listitem>VMs get ip via dhcp</listitem>
-    <listitem>VMs IPs are not NATted by hypervisors</listitem>
-    <listitem>VMs use disk-on-a-file approach</listitem>
-    <listitem>VMs disk format is raw</listitem>
-    <listitem>VMs use virtio drivers</listitem>
+    <listitem>a dhcp is present on the net and configured with mac addresses of the &vm;</listitem>
+    <listitem>&vm; get ip via dhcp</listitem>
+    <listitem>&vm; IPs are not NATted by hypervisors</listitem>
+    <listitem>&vm; use disk-on-a-file approach</listitem>
+    <listitem>&vm; disk format is raw</listitem>
+    <listitem>&vm; use virtio drivers</listitem>
   </itemizedlist>
   <section>
     <title>Testbed</title>
@@ -40,7 +40,7 @@ achieve the same result.</para>
 partition via nfs (mounted by node 2), in order to simplify image distribution between the 2. The
 dom0/kvm_guest are configured following the standard documentation provided by redhat:</para>
     <programlisting>http://www.redhat.it/docs/en-US/Red_Hat_Enterprise_Linux/5.5/html/Virtualization_Guide/index.html</programlisting>
-    <para>Since in my configuration all the VMs have public IP I configured network like this:</para>
+    <para>Since in my configuration all the &vm;'s have public IP I configured network like this:</para>
     <programlisting>http://www.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/5.5/html/Virtualization_Guide/sect-Virtualization-Network_Configuration-Bridged_networking_with_libvirt.html</programlisting>
   </section>
   <section>

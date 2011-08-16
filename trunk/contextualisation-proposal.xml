@@ -70,7 +70,7 @@ base image but thereforth available in the instance. In its most basic form it i
 use of a CDrom device, or attached disk. The CD-ROM content is dynamically created and
 mounted within the instance. This basic process is compliant with OVF standards defined at
 ( Ref: http://www.dmtf.org/standards/published_documents/DSP0243_1.0.0.pdf , pp 38 ), this
-process is used in OpenNebula (Ref: http://www.opennebula.org/documentation:rel2.0:cong )</para>
+process is used in &opennebula; (Ref: http://www.opennebula.org/documentation:rel2.0:cong )</para>
     <para>While these basic mechanisms work for single instances, a more involved contextualization
 may be needed when multiple instances need to contextualize themselves with respect to each
 other. There are two approaches:</para>
@@ -84,7 +84,7 @@ as it complies with the &hepix; security policies.</listitem>
 complete management of the VM group and it can include synchronization points
 between VMs. These utilities implements typical DAG dependencies, so for example
 NFS clients are booted after the NFS server. An example of such VM orchestrator for
-OpenNebula can be found at (Ref: http://dev.opennebula.org/projects/oneservice).</listitem>
+&opennebula; can be found at (Ref: http://dev.opennebula.org/projects/oneservice).</listitem>
     </itemizedlist>
   </section>
   <section id="contextualisation-principles-cloud">
@@ -300,7 +300,7 @@ esac
 exit $RETVAL</programlisting>
     <para>These scripts try to mount the contextualization CDrom and then run scripts that are in the disk,
 namely prolog.sh and epilog.sh .</para>
-       <para> The VM template in OpenNebula defines what is in the context disk using the following:.</para>
+       <para> The VM template in &opennebula; defines what is in the context disk using the following:.</para>
     <programlisting>CONTEXT = [
 vmid        = "$VMID",
 #TTL         = "12",

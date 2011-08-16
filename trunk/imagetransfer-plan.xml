@@ -64,7 +64,7 @@ or revoked images are refused.</para>
     <title>Distribution</title>
     <para>The Image List is provided on a host that can be authenticated to prevent man-in-the-middle 
     attacks blocking update notices. An image may be distributed to Sites by any suitable means including 
-    the existing software distribution mechanism, via a URI referance in the metadata. The transfer can be 
+    the existing software distribution mechanism, via a URI reference in the metadata. The transfer can be 
     validated using a secure hash which is expected to be sha512.</para>
     <para>While any check on the authenticity of the host, would safely prevent man in the middle 
     attacks it may be easier to use X509 authentication for this function.</para>

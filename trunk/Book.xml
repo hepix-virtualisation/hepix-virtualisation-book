@@ -128,7 +128,7 @@
       <title>&vwg; Objectives</title>
       <para>
         <itemizedlist>
-          <listitem>Produce a framework to securly run &vmi;'s across multiple sites supporting &hep;.</listitem>
+          <listitem>Produce a framework to securely run &vmi;'s across multiple sites supporting &hep;.</listitem>
           <listitem>Sites need control over &vmi; selection.</listitem>
         </itemizedlist>
       </para>

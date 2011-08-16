@@ -16,7 +16,7 @@
   <para>This chapter describes the software components that have
   been and need to be developed to complete cross site image
   transfer.</para>
-  <para>The software and implementation is only one of many posible solutions that could be 
+  <para>The software and implementation is only one of many possible solutions that could be 
     produced to solve the objectives of the &vwg;.</para>
   <section id="imagetransfer-software-inter-site">
     <title>Inter Site Image Transfer</title>
@@ -139,7 +139,7 @@
           <title>Features</title>
           <itemizedlist>
             <listitem>Single web interface to manage image deployment as a site.</listitem>
-            <listitem>Uses X509 signed image list to comunicate with worker nodes.</listitem>
+            <listitem>Uses X509 signed image list to communicate with worker nodes.</listitem>
             <listitem>Allows multiple admins to manage site deployment.</listitem>
             <listitem>Provides the sites signed list of approved images to worker nodes.</listitem>
             <listitem>In production since October 2010 at CERN.</listitem>

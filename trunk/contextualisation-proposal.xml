@@ -5,7 +5,7 @@
 %sharedents;
 ]>
 
-<chapter id="contextulisation-principles">
+<chapter id="contextualisation-principles">
   <info>
     <author>
       <firstname>Sebastien</firstname>
@@ -27,7 +27,7 @@
     shows an end to end mechanism for a VM produced at INFN to start at CERN.</para>
 
   <para>We can add the VMIC checks to bridge the two properly.</para>
-  <section id="contextulisation-principles-definition">
+  <section id="contextualisation-principles-definition">
     <title>Definition</title>
     <para>Contextualization is defined as the process by which a virtual machine instance
 is configured based on virtual machine master image. In general, contextualization consists
@@ -36,7 +36,7 @@ configure generic installations of system services (e.g. sshd) and it is the bas
 "install once deploy many" strategy. It was first introduced by Kate Keahey of Argonne National
 lab (http://www.nimbusproject.org/ )</para>
   </section>
-  <section id="contextulisation-principles-virtual-applicances">
+  <section id="contextualisation-principles-virtual-applicances">
     <title>Virtual Appliances</title>
     <para>A Virtual Appliance is a virtual machine image with a set of pre-installed software packages
 designed to run on a given hypervisor. A successful contextualization strategy starts at
@@ -47,7 +47,7 @@ of running virtual machines from the OSG VO: STAR. (Ref: https://twiki.grid.iu.e
 CampusGrids/DeployingTheSTARVM); and can be refered to as image level contextualization
 and instance level contextualization.</para>
   </section>
-  <section id="contextulisation-principles-image-level">
+  <section id="contextualisation-principles-image-level">
     <title>Image Level Contextualization</title>
     <para>Image level contextualization applies to the Virtual Appliance building process and includes:</para>
     <itemizedlist>
@@ -59,7 +59,7 @@ other disk structures are present (e.g. swap FS).</listitem>
 services. For example, shared file system support or batch scheduler software.</listitem>
     </itemizedlist>
   </section>
-  <section id="contextulisation-principles-instance-level">
+  <section id="contextualisation-principles-instance-level">
     <title>Instance Level Contextualization</title>
     <para>Whereas image-level contextualization can be performed manually by a systems administrator,
 instance-level contextualization occurs once per VM instantiation and as such must be
@@ -87,7 +87,7 @@ NFS clients are booted after the NFS server. An example of such VM orchestrator 
 OpenNebula can be found at (Ref: http://dev.opennebula.org/projects/oneservice).</listitem>
     </itemizedlist>
   </section>
-  <section id="contextulisation-principles-cloud">
+  <section id="contextualisation-principles-cloud">
     <title>Contextualization for Cloud Computing</title>
     <para>Cloud computing represents the on-demand instantiation of virtual machines per user request.
 In that mode of operation the contextualization is achieved when the user passes data to the
@@ -135,7 +135,7 @@ service to be available in the sites and is not recommended.</listitem>
 data (i.e. very limited size) this would be the preferred method.</listitem>
     </itemizedlist>
   </section>
-  <section id="contextulisation-principles-cern-status">
+  <section id="contextualisation-principles-cern-status">
     <title>CERN current site contextualization</title>
     <para>The VM contains two init scripts in /etc/init.d, vmcontext.prologue and vmcontext.epilogue</para>
     <para>vmcontext.prologue is:</para>

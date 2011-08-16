@@ -5,24 +5,24 @@
 %sharedents;
 ]>
 
-<chapter id="contextulisation-recipe">
+<chapter id="contextualisation-recipe">
   <info>
     <author>
       <firstname>Sebastien</firstname>
       <surname>Goasguen</surname>
     </author>
   </info>
-  <title>Contextulisation-recipe</title>
+  <title>contextualisation-recipe</title>
   
   <para>Certainly it does not represent all possible solutions to the problem but 
     shows an end to end mechanism for a VM produced at INFN to start at CERN.</para>
 
   <para>We can add the VMIC checks to bridge the two properly.</para>
-  <section id="contextulisation-recipe-in parts">
-  <title>Contextulisation recipe in 2 parts</title>
-    <section id="contextulisation-recipe-part1">
+  <section id="contextualisation-recipe-in parts">
+  <title>contextualisation recipe in 2 parts</title>
+    <section id="contextualisation-recipe-part1">
       <title>Download image from Andrea</title>
-      <section id="contextulisation-recipe-part1_1">
+      <section id="contextualisation-recipe-part1_1">
         <title>Part 1</title>
         <para>Download image from Andrea</para>
         <programlisting>&prompt-root;wget http://www.cnaf.infn.it/~chierici/repo/test-seba.img.bz2
@@ -38,7 +38,7 @@ Saving to: `test-seba.img.bz2'
 2010-07-06 15:56:12 (5.91 MB/s) - `test-seba.img.bz2' saved [531888187/531888187]
         </programlisting>
       </section>
-      <section id="contextulisation-recipe-part1_2">
+      <section id="contextualisation-recipe-part1_2">
         <title>Handling the Image</title>
         <programlisting>
 &prompt-root;ls -l
@@ -55,9 +55,9 @@ drwx------ 2 root root       16384 Apr  1 17:22 lost+found
 -rw-r--r-- 1 root root 10485760000 Jul  6 15:19 test-seba.img
         </programlisting>
       </section>
-      <section id="contextulisation-recipe-part1_3">
+      <section id="contextualisation-recipe-part1_3">
         <title>Inspection</title>
-        <section id="contextulisation-recipe-part1_3_1">
+        <section id="contextualisation-recipe-part1_3_1">
           <title>Partitions</title>
           <para>Start Inspection steps</para>
           <programlisting>
@@ -70,7 +70,7 @@ brw-r----- 1 root disk 253, 27 Jul  6 16:12 loop0p2
 brw-r----- 1 root disk 253, 28 Jul  6 16:12 loop0p3
           </programlisting>
         </section>
-        <section id="contextulisation-recipe-part1_3_2">
+        <section id="contextualisation-recipe-part1_3_2">
           <title>Check partition 1</title>
           <para>Check first partition....See the kernels</para>
           <programlisting>
@@ -83,7 +83,7 @@ grub                           initrd-xen-para.img               System.map-2.6.
 initrd-2.6.18-164.2.1.el5.img  lost+found                        System.map-2.6.18-194.8.1.el5xen  xen-syms-2.6.18-194.8.1.el5
           </programlisting>
         </section>
-        <section id="contextulisation-recipe-part1_3_3">
+        <section id="contextualisation-recipe-part1_3_3">
           <title>Check Grub Config</title>
           <para>Checking the Grub config has One kernel for KVM, one kernel for paravirtualized Xen</para>
           <programlisting>&prompt-root;cd grub
@@ -111,7 +111,7 @@ title Scientific Linux SL (2.6.18-194.8.1.el5xen)
         initrd /initrd-xen-para.img
           </programlisting>
         </section>
-        <section id="contextulisation-recipe-part1_3_4">
+        <section id="contextualisation-recipe-part1_3_4">
           <title>Check Other Partitions</title>
           <programlisting>&prompt-root;umount /mnt
 &prompt-root;mount /dev/mapper/loop0p2 /mnt
@@ -125,14 +125,14 @@ boot  etc  lib   lost+found  misc   opt  proc      sbin  srv      tmp  var
 &prompt-root;
           </programlisting>
         </section>
-        <section id="contextulisation-recipe-part1_3_5">
+        <section id="contextualisation-recipe-part1_3_5">
           <title>Unmounting Partitions</title>
           <para>umount and delete device map</para>
           <programlisting>&prompt-root;umount /mnt
 &prompt-root;kpartx -d test-seba.img</programlisting>
         </section>
       </section>
-      <section id="contextulisation-recipe-part1_4">
+      <section id="contextualisation-recipe-part1_4">
         <title>Prepare volume for disk image</title>
         <para>Could use the file directly if you wanted to</para>
         <programlisting>&prompt-root;lvcreate -L25G -n andrea xen_vg
@@ -143,7 +143,7 @@ boot  etc  lib   lost+found  misc   opt  proc      sbin  srv      tmp  var
 2500+0 records out
 10485760000 bytes (10 GB) copied, 142.881 seconds, 73.4 MB/s</programlisting>
       </section>
-      <section id="contextulisation-recipe-part1_5">
+      <section id="contextualisation-recipe-part1_5">
         <title>Handling the Image</title>
         <para>Create Xen config file....or libvirt xml description</para>
         <programlisting>&prompt-root;more /etc/xen/andrea 
@@ -159,7 +159,7 @@ disk   = ["phy:/dev/mapper/xen_vg-andrea,xvda,w"]
 vif    = ["mac=&lt;PUT SOMETHING VALID AT YOUR SITE HERE&gt;,bridge=xenbr0,script=vif-bridge"]
         </programlisting>
       </section>
-      <section id="contextulisation-recipe-part1_6">
+      <section id="contextualisation-recipe-part1_6">
         <title>Handling the Image</title>
         <para>Start VM</para>
         <programlisting>&prompt-root;xm create andrea
@@ -202,7 +202,7 @@ Kernel 2.6.18-194.8.1.el5xen on an x86_64
 localhost.localdomain login: 
         </programlisting>
       </section>
-      <section id="contextulisation-recipe-part1_7">
+      <section id="contextualisation-recipe-part1_7">
         <title>Handling the Image</title>
         <para>In CERN's case we would then make an opennebula template for this VM</para>
         <para>Something like the following</para>
@@ -246,7 +246,7 @@ RANK = FREEMEM
         </programlisting>
       </section>
     </section>
-    <section id="contextulisation-recipe-part2">
+    <section id="contextualisation-recipe-part2">
       <title>Part 2</title>
       <para>I got Andrea's VM to start in both Xen paravirt and KVM. For the KVM one I even used opennebula.</para>
       <para>I attach a terse transcript of the commands and configuration files used.</para>
@@ -265,7 +265,7 @@ on_crash = "restart"
 disk   = ["phy:/dev/mapper/xen_vg-andrea,xvda,w"]
 vif    = ["mac=00:16:3E:00:03:49,bridge=xenbr0,script=vif-bridge"]
       </programlisting>
-      <section id="contextulisation-recipe-part2-xen">
+      <section id="contextualisation-recipe-part2-xen">
         <title>Let's start it with Xen</title>
         <programlisting>&prompt-root;xm create andrea
 Using config file "./andrea".
@@ -273,7 +273,7 @@ Started domain andrea
         </programlisting>
         <para>Using virsh you can get a libvirt xml description file</para>
       </section>
-      <section id="contextulisation-recipe-part2-xen-cfg">
+      <section id="contextualisation-recipe-part2-xen-cfg">
         <title>basic xen cfg file</title>
         <para>It is Probably easier to start with a basic xen cfg file</para>
         <programlisting>&prompt-root;virsh dumpxml andrea
@@ -315,7 +315,7 @@ Started domain andrea
 &lt;/domain&gt;
         </programlisting>
       </section>
-      <section id="contextulisation-recipe-part2-ont">
+      <section id="contextualisation-recipe-part2-ont">
         <title>Opennebula Template</title>
         <para>In Opennebula the VM template for a KVM host is</para>
         <programlisting>
@@ -344,7 +344,7 @@ MEMORY = 512
 RANK = FREEMEM</programlisting>
         <para>End of the Opennebula template</para>
       </section>
-      <section id="contextulisation-recipe-part2-opennebula">
+      <section id="contextualisation-recipe-part2-opennebula">
         <title>Starting the VM in OpenNebula</title>
         <programlisting>&prompt-one;onevm create andrea.test</programlisting>
         <programlisting>&prompt-one;onevm list | grep Andrea
@@ -382,7 +382,7 @@ RANK = FREEMEM</programlisting>
         &lt;/features&gt;
 &lt;/domain&gt;</programlisting>
       </section>
-      <section id="contextulisation-recipe-part2-kvm">
+      <section id="contextualisation-recipe-part2-kvm">
         <title>Checking the KVM processes</title>
         <note>You could have started these VMs without virsh or Opennebula</note>
         <programlisting>

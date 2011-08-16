@@ -55,7 +55,7 @@
       <section>
         <title>1.2: An Endorser leaves VO XYZ and is not replaced</title>
         <section>
-          <title>1.2.1: The VO desides to revoke all his images</title>
+          <title>1.2.1: The VO decides to revoke all his images</title>
           <itemizedlist>
             <listitem>The endorser is removed from the VOs list of endorsers</listitem>
             <listitem>The endorsers VMIC is destroyed</listitem>
@@ -170,7 +170,7 @@
             <listitem>the site flags image for removal based on their meta data</listitem>
             <listitem>the site removes the affected images from their local list of approved images</listitem>
             <listitem>in case of a VO, the affected VO is informed</listitem>
-            <listitem>the VO proceeds as described above for the revokation of the image</listitem>
+            <listitem>the VO proceeds as described above for the revocation of the image</listitem>
           </itemizedlist>
         </section>
         <section>

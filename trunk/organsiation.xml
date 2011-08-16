@@ -13,14 +13,14 @@
 
   <partintro>
     <para>
-      This part of the book sumarises the organsiation of the &vwg;.
+      This part of the book summarises the organisation of the &vwg;.
     </para>
-    <para>The &hepix; is an organsiation and gathering of large predominatly High Energy Physics site 
-      administrators with the objective of sharing information and benifiting from each others experiances.</para>
-    <para>The &vwg; was set up by &hepix; to investigate the implications usecases and requirements of sites
-      that where at the time expected to come from the relativly new technology of &vm; techechnology. The 
-      group is charied by Tony Cass and has met regularly and maintains a mailing list 
-      <email>hepix-virtualisation@cern.ch</email> where the majority of the content of theis document is extracted from.</para>
+    <para>The &hepix; is an organisation and gathering of large predominately High Energy Physics site 
+      administrators with the objective of sharing information and benefiting from each others experiences.</para>
+    <para>The &vwg; was set up by &hepix; to investigate the implications use-cases and requirements of sites
+      that where at the time expected to come from the relatively new technology of &vm; technology. The 
+      group is chaired by Tony Cass and has met regularly and maintains a mailing list 
+      <email>hepix-virtualisation@cern.ch</email> where the majority of the content of this document is extracted from.</para>
       
   </partintro>
   <xi:include href="organsiation-intro.xml" />

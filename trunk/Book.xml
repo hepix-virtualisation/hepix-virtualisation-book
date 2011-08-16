@@ -98,7 +98,7 @@
     </author>
   </bookinfo>
 
-  <preface>
+  <preface id="preface">
     <title>Preface</title>
 
     <para>&hepix; is a twice yearly conference made up from sites providing compute and 

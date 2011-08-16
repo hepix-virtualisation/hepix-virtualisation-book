@@ -59,12 +59,12 @@
         <para>This software is available at:</para>
         <code>https://github.com/hepix-virtualisation/hepixvmilsubscriber</code>
         <para>The software is based upon a simple database that stores subscriptions to image lists,
-          who can sign the image list, and which images belong to which susbctiptions. It allows 
+          who can sign the image list, and which images belong to which subscriptions. It allows 
           images to selected for subscription.</para>
         <para>Subscribed images can be downloaded verified and cached. Cached images can be verified,
           and if invalid or expired they are moved to an expiry directory.</para>
         <para>This program will not provide an interface for admins to manage which images will be 
-          approved by the site as this functionality is provided by the VMIC. Thsi software is rather 
+          approved by the site as this functionality is provided by the VMIC. This software is rather 
           a mechanism upon which tools such as the VMIC may select locally cached images for the 
           perposes of running on the local farm.</para>
         <section id="magetransfer-software-imagelist-consumer-status-features">
@@ -74,7 +74,7 @@
             <listitem>Update subscriptions checking authenticity of the message useng x509 based signatures.</listitem>
             <listitem>Automation as a cron script.</listitem>
             <listitem>Subscribe and unsubscribe to images from Imagelists.</listitem>
-            <listitem>Download verifiy images into a local cache.</listitem>
+            <listitem>Download verify images into a local cache.</listitem>
             <listitem>Expire images to an archive when no longer endorsed or corrupt.</listitem>
           </itemizedlist>
         </section>
@@ -84,9 +84,9 @@
             <listitem>Only message authenticity is checked, does not yet check authenticity of transport.</listitem>
           </itemizedlist>
           <para>While it does check the authenticity of the message using X509, at the moment the 
-            authenticity of the host is unchecked. Programatically it would be far simpler to 
+            authenticity of the host is unchecked. For the programmability it would be far simpler to 
             use x509 certificates to check the host server. In terms of deployment it would be far 
-            easyer just to check any host key mechanism, as this is sufficent.</para>
+            easier just to check any host key mechanism, as this is sufficient.</para>
         </section>
       </section>
     </section>
@@ -114,7 +114,7 @@
       <title>Image list tools deployment.</title>
       <para>The intra site tools are tested on every release for &rhel; 5 and 6 and are developed 
         on the &debian; platform. They are available as src and binary RPM packages in the following 
-        repository suporting.</para>
+        repository sporting.</para>
       <itemizedlist>
         <listitem>http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/</listitem>
         <listitem>http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/</listitem>

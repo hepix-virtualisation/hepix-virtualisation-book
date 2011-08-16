@@ -132,7 +132,7 @@
       <section id="imagetransfer-software-VMIC-status">
         <title>Status</title>
         <para>This software is available at:</para>
-        <code>svn co svn+ssh://svn.cern.ch/reps/batchinter/trunk/virtualization/vmic/</code>
+        <code>svn co svn+ssh://svn.cern.ch/reps/CloudServices/trunk/virtualization/</code>
         <para>This software has been deployed at CERN for some months and is currently used to manage 
         worker node deployment.</para>
         <section id="imagetransfer-software-VMIC-status-features">

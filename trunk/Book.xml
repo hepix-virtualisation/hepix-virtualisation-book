@@ -105,7 +105,7 @@
     storage services for &hep;. &hepix; focusses on the compute, network and storage 
     infrastucture required for high energy physics sites.
     </para>
-    <section>
+    <section id="observations">
       <title>&vwg; Observations</title>
       <para>
         The spring 2009 &hepix; conference made the following observations:
@@ -124,7 +124,7 @@
         A new generation of &vee; such as &opennebular; and &nimbus; where already being developed.
       </para>
     </section>
-    <section>
+    <section id="objectives">
       <title>&vwg; Objectives</title>
       <para>
         <itemizedlist>

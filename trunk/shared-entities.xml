@@ -19,7 +19,7 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!-- "Products" or high-level services -->
 <!ENTITY hepix        "<productname>HEPiX</productname>">
 <!ENTITY vwg          "<productname>HEPiX Virtulisation Working Group</productname>">
-<!ENTITY opennebular  "<productname>Open Nebular</productname>">
+<!ENTITY opennebula   "<productname>Open Nebula</productname>">
 <!ENTITY xen          "<productname>Xen</productname>">
 <!ENTITY kvm          "<productname>KVM</productname>">
 <!ENTITY chroot       "<productname>Change Root</productname>">

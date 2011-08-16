@@ -384,7 +384,7 @@ RANK = FREEMEM</programlisting>
       </section>
       <section id="contextualisation-recipe-part2-kvm">
         <title>Checking the &kvm; processes</title>
-        <note>You could have started these &vm;'s without virsh or &opennebular;</note>
+        <note>You could have started these &vm;'s without virsh or &opennebula;</note>
         <programlisting>
 &prompt-root;ps -ef | grep kvm
 root      2396     1  0 10:25 ?        00:00:27 /usr/bin/kvm -S -M rhel5.4.0 -m 512 

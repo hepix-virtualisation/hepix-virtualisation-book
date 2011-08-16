@@ -11,7 +11,7 @@
   <title>Image Trust</title>
 
   <partintro>
-    <para>This part of the document covers secuirty requirements.</para>
+    <para>This part of the document covers security requirements.</para>
   </partintro>
   <xi:include href="imagetrust-policy.xml"/>
   

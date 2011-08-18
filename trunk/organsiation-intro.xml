@@ -31,29 +31,54 @@
     from other user groups, while retaining a quota of CPU usage proportional to their budget, so called 
     &fss;. It was noted that &hep; users on Clouds typically installed batch queues to maximise their job 
     efficiency but since resources where tied to a single customer it is not possible to use &fss;.</para>
-    
   </section>
   <section id="organisation-intro-scope">
     <title>Scope</title>
-    <para>The &vwg; main focus is to provide sites a way to control and mange &vmi;es provided by 
+    <para>The &vwg; main focus is to provide sites a way to control and mange &vmi;'s provided by 
     experiments, and run them in trusted environments with in the current computing environment provided 
     under Grid computing.</para>
     <para>With such a diversity of cloud solutions all under going very active development it is 
     impossible for a group such as &vwg; to only support a single cloud implementation, as we would not be 
-    serving the needs to our community.</para>
+    serving the needs of the &hepix; site community.</para>
     <para>Since &hep; is very concerned with job efficiency and has been well served by the batch queue model 
     of computing it was seen that the &vwg; cannot limit their effort to only working with cloud based solutions 
     and our work scope should be equally applicable to Cloud and &vee; on a batch queue compute node.</para>
     <para>One of the side effects of &hep; having pioneered Grid computing, is that the community have already 
     learnt about the diversity of sites, and considerable effort has been put into minimising the differences 
-    between sites from a customer perspective. The &hep; community and sites serving them have come to understand 
+    between sites from a experiments perspective. The &hep; community and sites serving them have come to understand 
     that some areas of site management are not practical to unify. In areas where tools and practices are 
-    developing quickly innovating is potentially hindered by enforcing standardisation. This is also true of 
-    areas where considerable effort has been invested, and change would be detrimental, a good example of this 
-    is in site deployment and configuration. The &vwg; decided very early on that we where not going to look 
-    into areas that would effect sites local deployment and configuration. The rational was that many sites 
-    already had virtulisation strategies, and sites that did not, should not be prevented from working with newer 
-    tools and cloud infrastructures.</para>
-  </section> 
-    
+    developing quickly innovation is potentially hindered by enforcing standardisation. This is also true that 
+    site management requires considerable effort which has already been invested, and change would be detrimental, 
+    a good example of this is in site deployment and configuration. The &vwg; decided very early on that we 
+    where not going to look into areas that would effect sites local deployment and configuration. The rational 
+    was that many sites already had virtulisation strategies, and sites that did not, should not be prevented 
+    from working with newer tools and cloud infrastructures.</para>
+  </section>
+  <section id="organisation-intro-usecases">
+    <title>Usecases</title>
+    <para>Due to the scope defined for the &vwg; the following use cases have been highlighted for investigation 
+    from the perspective of the site.</para>
+    <itemizedlist>
+      <listitem>Auditability of &vee; to and equivalent or higher degree than they could a batch queue job.</listitem>
+      <listitem>The ability for sites to store old &vee; for forensic purposes.</listitem>
+      <listitem>Knowledge of which people and which groups are allowed to run &vee; in their trusted parts of their network.</listitem>
+    </itemizedlist> 
+    <para>Due to the scope defined for the &vwg; the following use cases have been highlighted for investigation 
+    from the perspective of the experiment.</para>
+    <itemizedlist>
+      <listitem>Experiments having the benefits of running the same &vee; at many sites.</listitem>
+      <listitem>Experiments having the ability to update &vee; without having to contact each site.</listitem>
+    </itemizedlist>
+  </section>
+  <section id="organisation-intro-vwg-scope">
+    <title>&vwg; Scope</title>  
+    <para>From these basic use cases the &vwg; decided to focuses on four main areas of investigation.</para>
+    <itemizedlist>
+      <listitem>A security policy for manging &vee;.</listitem>
+      <listitem>A recipe to make site neutral &vee;.</listitem>
+      <listitem>A mechanism to distribute &vee; consistent with the requirements and use cases of &hepix; sites.</listitem>
+      <listitem>A mechanism to make site neutral &vee; interact with the site batch queue.</listitem>
+    </itemizedlist>
+    <para>These four areas of investigation have led to the sections which make up the remainder of this document.</para>
+  </section>    
 </chapter>

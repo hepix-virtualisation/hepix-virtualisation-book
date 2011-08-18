@@ -27,16 +27,15 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY hep          "High Energy Physics">
 <!ENTITY rhel         "<productname>Redhat Enterprise Linux</productname>">
 <!ENTITY debian       "<productname>Debian Linux</productname>">
-
-
-
+<!ENTITY openstack    "<productname>OpenStack</productname>">
+<!ENTITY eucalyptus    "<productname>Eucalyptus</productname>">
 <!-- Various literals -->
 <!ENTITY vm           "<literal>Virtual Machine</literal>">
 <!ENTITY vmi          "<literal>Virtual Machine Image</literal>">
 <!ENTITY vmil         "<literal>Virtual Machine Image List</literal>">
 
 <!ENTITY vee          "<literal>Virtualised Execution Environments</literal>">
-
+<!ENTITY fss         "<emphasis>Fair Share Scheduling</emphasis>">
 
 <!-- When defining attributes, default values, etc. -->
 <!ENTITY true         "<emphasis>True</emphasis>">

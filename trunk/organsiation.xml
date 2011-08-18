@@ -21,7 +21,15 @@
       that where at the time expected to come from the relatively new technology of &vm; technology. The 
       group is chaired by Tony Cass and has met regularly and maintains a mailing list 
       <email>hepix-virtualisation@cern.ch</email> where the majority of the content of this document is extracted from.</para>
-      
+    <para>&vwg; generated documentation includes many details on:</para>
+    <itemizedlist>
+      <listitem>How to make &vmi; platform neutral.</listitem>
+      <listitem>How to deploy site neutral images and contextualise them to a site such as batch queue integration.</listitem>
+      <listitem>Meta data (and structure) required to describe an image for &hepix; needs, developed from multiple virtual
+        machine management software.</listitem>
+      <listitem>Software to mange images at a site.</listitem>
+      <listitem>Requirements for image distribution across sites.</listitem>
+    </itemizedlist>      
   </partintro>
   <xi:include href="organsiation-intro.xml" />
 </part>

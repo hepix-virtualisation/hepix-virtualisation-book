@@ -15,34 +15,45 @@
   <title>Organisation Introduction</title>
   <section id="organisation-intro-intro">
     <title>Introduction</title>
-    <para>Several &hep; pilot projects had already shown that CPU intensive tasks could easily run on a cloud 
-    infrastructure. Members of the group use &opennebula;, &nimbus;, &eucalyptus; and some are evaluating 
-    &openstack;. With such a diversity of cloud solutions all under going very active development it is 
-    impossible for a group such as &vwg; to only support a single cloud implementation, as we would not be 
-    serving the needs to our community.</para>
+    <para>Virtaulisation can potentially allow experiments to deploy the same &vee; across multiple sites, 
+    which will greatly benefit experiments in a consistent run time environment. This brings new 
+    challenges as sites have always been responsible for all security issues relating to their computing 
+    resources but with the introduction &vee; being presented to experiments site security can no longer be 
+    the sole responsibility of the site running a job.</para>
+
+    <para>Several &hep; pilot projects have already shown that CPU intensive tasks could easily run on a cloud 
+    infrastructure. Sites within the &vwg; use &opennebula;, &nimbus;, &eucalyptus; and some are evaluating 
+    &openstack;.</para>
+    
     <para>The &hep; community have long used batch computing models to maximise computing efficiency, this 
     allows jobs to be queued so that each compute node is always occupied. &hep; sites have typically 
     optimised their batch queues so that different user communities can benefit from under utilised resources 
     from other user groups, while retaining a quota of CPU usage proportional to their budget, so called 
     &fss;. It was noted that &hep; users on Clouds typically installed batch queues to maximise their job 
     efficiency but since resources where tied to a single customer it is not possible to use &fss;.</para>
+    
   </section>
   <section id="organisation-intro-scope">
     <title>Scope</title>
-    <para>Since &hep; is very conserned with job effciency and has been well served by the batch queue model 
-    of computing it was seen that the &vwg; cannot limit thier effort to only working with cloud based solutions 
+    <para>The &vwg; main focus is to provide sites a way to control and mange &vmi;es provided by 
+    experiments, and run them in trusted environments with in the current computing environment provided 
+    under Grid computing.</para>
+    <para>With such a diversity of cloud solutions all under going very active development it is 
+    impossible for a group such as &vwg; to only support a single cloud implementation, as we would not be 
+    serving the needs to our community.</para>
+    <para>Since &hep; is very concerned with job efficiency and has been well served by the batch queue model 
+    of computing it was seen that the &vwg; cannot limit their effort to only working with cloud based solutions 
     and our work scope should be equally applicable to Cloud and &vee; on a batch queue compute node.</para>
-    <para>One of the side effects of &hep; having pioneared Grid computing, is that the comunity have already 
-    learnt about the diversity of sites, and considerable effort has been put into minimising the diffeerances 
-    between sites from a customer perspective. The &hep; comunity and sites serving them have come to understand 
+    <para>One of the side effects of &hep; having pioneered Grid computing, is that the community have already 
+    learnt about the diversity of sites, and considerable effort has been put into minimising the differences 
+    between sites from a customer perspective. The &hep; community and sites serving them have come to understand 
     that some areas of site management are not practical to unify. In areas where tools and practices are 
-    developing quickly inovation is potentially hindered by enforsing standardisation. This is also true of 
-    areas where considerable effort has been invested, and change woudl be detrimental, a good example of this 
+    developing quickly innovating is potentially hindered by enforcing standardisation. This is also true of 
+    areas where considerable effort has been invested, and change would be detrimental, a good example of this 
     is in site deployment and configuration. The &vwg; decided very early on that we where not going to look 
     into areas that would effect sites local deployment and configuration. The rational was that many sites 
-    already had virtulisation stratgies, and sites that did not, should not be prevented from working with newer 
-    tools and clound infrastructures.</para>
-    
+    already had virtulisation strategies, and sites that did not, should not be prevented from working with newer 
+    tools and cloud infrastructures.</para>
   </section> 
     
 </chapter>

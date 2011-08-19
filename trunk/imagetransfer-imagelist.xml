@@ -66,22 +66,22 @@ hv:imagelist
     <section>
       <title>hv:imagelist/dc:date:created</title>
       <para>date in format year-month-dayTHour:Minute:SecondTimezone</para>
-      <note>Recomended to use the Zulu time zone.</note>
       <itemizedlist>
-      <listitem>
-        <para>XML Rendering:</para><programlisting>&lt;dc:date type="created"&gt;2011-04-07T17:09:12Z&lt;/dc:date&gt;</programlisting>
-      </listitem>
+        <listitem>
+          <para>XML Rendering:</para><programlisting>&lt;dc:date type="created"&gt;2011-04-07T17:09:12Z&lt;/dc:date&gt;</programlisting>
+        </listitem>
       <listitem><para>JSON Rendering:</para><programlisting>{ "dc:date:created": "2011-03-10T17:09:12Z" }</programlisting></listitem>
       </itemizedlist>
+      <note>Recomended to use the Zulu time zone.</note>
     </section>
     <section>
       <title>hv:imagelist/dc:date:expires</title>
       <para>date in format year-month-day when imagelist will no longer be trusted</para>
-      <note>Recomended to use the Zulu time zone.</note>
       <itemizedlist>
         <listitem><para>XML Rendering:</para><programlisting>&lt;dc:date type="created"&gt;2011-05-07T17:09:12Z&lt;/dc:date&gt;</programlisting></listitem>
         <listitem><para>JSON Rendering:</para><programlisting>{ "dc:date:expires": "2011-04-07T17:09:12Z" }</programlisting></listitem>
       </itemizedlist>
+      <note>Recomended to use the Zulu time zone.</note>
     </section>
     <section>
       <title>hv:imagelist/hv:endorser</title>
@@ -98,6 +98,7 @@ hv:imagelist
           <listitem><para>XML Rendering:</para><programlisting>&lt;hv:ca&gt;/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services&lt;/hv:ca&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "hv:ca": "/C=DE/O=GermanGrid/CN=GridKa-CA" }</programlisting></listitem>
         </itemizedlist>
+        <note>Message signers CA must equal this value to be valid.</note>
       </section>
       <section>
         <title>hv:imagelist/hv:endorser/hv:dn_x509</title>
@@ -106,6 +107,7 @@ hv:imagelist
           <listitem><para>XML Rendering:</para><programlisting>&lt;hv:dn_x509&gt;/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge&lt;/hv:dn_x509&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "hv:dn": "/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge" }</programlisting></listitem>
         </itemizedlist>
+        <note>Message signers DN must equal this value to be valid.</note>
       </section>
       <section>
         <title>hv:imagelist/hv:endorser/hv:email</title>
@@ -131,6 +133,7 @@ hv:imagelist
         <listitem><para>XML Rendering:</para><programlisting>&lt;dc:identifier&gt;9ac60a74-c67f-457f-bd80-04c8ff6ecf3d&lt;/dc:identifier&gt;</programlisting></listitem>
         <listitem><para>JSON Rendering:</para><programlisting>{ "dc:identifier": "488dcdc4-9ab1-4fc8-a7ba-b7a5428ecb3d" }</programlisting></listitem>
       </itemizedlist>
+      <note>This UUID remains constant for a subscription, messages with different UUID's will be ignored.</note>
     </section>
     <section>
       <title>hv:imagelist/dc:description</title>
@@ -194,15 +197,13 @@ hv:imagelist
         <para>sha512 checksum of images.</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;sl:checksum type="sha512"&gt;8b4c269a60da1061b434b696c4a89293bea847b66bd8ba486a914d4209df651193ee8d454f8231840b7500fab6740620c7111d9a17d08b743133dc393ba2c0d4&lt;/sl:checksum&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "sl:checksum:sha512":
-"8b4c269a60da1061b434b696c4a89293bea847b66bd8ba486a914d4209df651193ee8d454f8231840b7500fab6740620c7111d9a17d08b7" }
-                   "
-</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "sl:checksum:sha512": "8b4c269a60da1061b434b696c4a89293bea847b66bd8ba486a914d4209df651193ee8d454f8231840b7500fab6740620c7111d9a17d08b7" }</programlisting></listitem>
         </itemizedlist>
+        <note>Images that dont match the sha512 hash will not be accepted.</note>
       </section>
       <section>
         <title>hv:imagelist/hv:images/hv:image/sl:arch</title>
-        <para>architecture of the image typically 'i386' or 'amd64'</para>
+        <para>architecture of the image typically 'i386' or 'x86_64'</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;sl:arch&gt;x86_64&lt;/sl:checksum&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "sl:arch": "x86_64" }</programlisting></listitem>
@@ -215,6 +216,7 @@ hv:imagelist
           <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;https://example.org/image.gz&lt;/hv:uri&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "hv:uri": "http://example.org/example-image.img" }</programlisting></listitem>
         </itemizedlist>
+        <note>Subscriber software will use this URI to download the image.</note>
       </section>
       <section>
         <title>hv:imagelist/hv:images/hv:image/dc:identifier</title>
@@ -223,6 +225,7 @@ hv:imagelist
           <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;185c9f57-f838-4ac6-8246-85ccd6d6d3f4&lt;/hv:uri&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "dc:identifier": "488dcdc4-9ab1-4fc8-a7ba-b7a5428ecb3d" }</programlisting></listitem>
         </itemizedlist>
+        <note>This UUID remains constant for a subscription to an image, messages with different UUID's will be ignored.</note>
       </section>
       <section>
         <title>hv:imagelist/hv:images/hv:image/sl:os</title>
@@ -295,10 +298,8 @@ hv:imagelist
   </section>
   <section id="imagelist-example">
     <title>Example metadata files</title>
-    <para>A typical image list looks like such</para>
-    <programlisting>
-$cat imagelist.json 
-{
+    <para>A typical image JSON &vmil; looks like such:</para>
+    <programlisting>{
    "hv:imagelist" : {
         "dc:date:created": "2011-03-10T17:09:12Z", 
         "dc:date:expires": "2011-04-07T17:09:12Z", 
@@ -338,10 +339,9 @@ $cat imagelist.json
 }
     </programlisting>
     <para>
-and when signed like this.
+and when signed using SMIME like this:
     </para>
-    <programlisting>
-MIME-Version: 1.0
+    <programlisting>MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha1"; boundary="----EAE3006C97F670EE450F46AC8DF4C070"
 
 This is an S/MIME signed message

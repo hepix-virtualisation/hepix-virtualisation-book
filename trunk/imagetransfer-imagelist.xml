@@ -336,8 +336,7 @@ hv:imagelist
         "hv:uri": "http://example.org/example-image-list.image_list", 
         "hv:version": "1"
     }
-}
-    </programlisting>
+}</programlisting>
     <para>
 and when signed using SMIME like this:
     </para>
@@ -432,6 +431,6 @@ WXwlRhZBUoD9zfiEM/jFvOvkuxLkQeiEcSzlLAGHXsHJ3anPMX9sobJFbJI0wYdN
 sUOInHRhksokh2ow68KZK4vXLI173v5yZE7FZZ1Gl9T+YpkmOIW4iQ==
 
 ------EAE3006C97F670EE450F46AC8DF4C070--
-    </programlisting>
+</programlisting>
   </section>
 </chapter>

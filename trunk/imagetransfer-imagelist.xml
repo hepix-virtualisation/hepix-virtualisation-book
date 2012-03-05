@@ -302,7 +302,7 @@ hv:imagelist
       <title>Optional Imagelist Fields</title>
       <section>
         <title>hv:imagelist/hv:images/hv:image/hv:core_minimum</title>
-        <para>Minimum number of virtual cores required to run the virtual maschine image expressed as an integer.</para>
+        <para>Minimum number of virtual cores required to run the virtual machine image expressed as an integer.</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;hv:core_minimum&gt;2&lt;/hv:core_minimum&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "hv:core_minimum": 2 }</programlisting></listitem>
@@ -310,7 +310,7 @@ hv:imagelist
       </section>
       <section>
         <title>hv:imagelist/hv:images/hv:image/hv:ram_minimum</title>
-        <para>Minimum number of RAM required to run the virtual maschine image expressed as an integer in bytes.</para>
+        <para>Minimum number of RAM required to run the virtual machine image expressed as an integer in bytes.</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;hv:ram_minimum&gt;2&lt;/hv:ram_minimum&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "hv:ram_minimum": 2 }</programlisting></listitem>

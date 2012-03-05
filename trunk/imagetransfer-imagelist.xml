@@ -55,246 +55,269 @@ hv:imagelist
   <section id="imagelist-fields">
     <title>Imagelist Fields</title>
     <section>
-      <title>hv:imagelist</title>
-      <para>container for metadata</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;hv:imagelist&gt;...
-&lt;/hv:imagelist&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>{ "hv:imagelist" : { ... } }</programlisting></listitem>
-      </itemizedlist>
-    </section>
-    <section>
-      <title>hv:imagelist/dc:date:created</title>
-      <para>date in format year-month-dayTHour:Minute:SecondTimezone</para>
-      <itemizedlist>
-        <listitem>
-          <para>XML Rendering:</para><programlisting>&lt;dc:date type="created"&gt;2011-04-07T17:09:12Z&lt;/dc:date&gt;</programlisting>
-        </listitem>
-      <listitem><para>JSON Rendering:</para><programlisting>{ "dc:date:created": "2011-03-10T17:09:12Z" }</programlisting></listitem>
-      </itemizedlist>
-      <note>Recomended to use the Zulu time zone.</note>
-    </section>
-    <section>
-      <title>hv:imagelist/dc:date:expires</title>
-      <para>date in format year-month-day when imagelist will no longer be trusted</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;dc:date type="created"&gt;2011-05-07T17:09:12Z&lt;/dc:date&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>{ "dc:date:expires": "2011-04-07T17:09:12Z" }</programlisting></listitem>
-      </itemizedlist>
-      <note>Recomended to use the Zulu time zone.</note>
-    </section>
-    <section>
-      <title>hv:imagelist/hv:endorser</title>
-      <para>container for endorser metadata</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;hv:endorser&gt;...
-&lt;/hv:endorser&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>{ "hv:endorser": { "hv:x509": { ... } }</programlisting></listitem>
-      </itemizedlist>
+      <title>Required Imagelist Fields</title>
       <section>
-        <title>hv:imagelist/hv:endorser/hv:ca</title>
-        <para>standard hash id for the CA, corresponds with the CA directory files.</para>
+        <title>hv:imagelist</title>
+        <para>container for metadata</para>
         <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:ca&gt;/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services&lt;/hv:ca&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:ca": "/C=DE/O=GermanGrid/CN=GridKa-CA" }</programlisting></listitem>
-        </itemizedlist>
-        <note>Message signers CA must equal this value to be valid.</note>
-      </section>
-      <section>
-        <title>hv:imagelist/hv:endorser/hv:dn_x509</title>
-        <para>x509 DN of the endorser</para>
-        <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:dn_x509&gt;/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge&lt;/hv:dn_x509&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:dn": "/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge" }</programlisting></listitem>
-        </itemizedlist>
-        <note>Message signers DN must equal this value to be valid.</note>
-      </section>
-      <section>
-        <title>hv:imagelist/hv:endorser/hv:email</title>
-        <para>email address of the endorser</para>
-        <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:email&gt;owen.synge@desy.de&lt;/hv:email&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:email": "owen.synge@desy.de" }</programlisting></listitem>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:imagelist&gt;...
+  &lt;/hv:imagelist&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:imagelist" : { ... } }</programlisting></listitem>
         </itemizedlist>
       </section>
       <section>
-        <title>hv:imagelist/hv:endorser/dc:creator</title>
-        <para>Name of the endorser</para>
+        <title>hv:imagelist/dc:date:created</title>
+        <para>date in format year-month-dayTHour:Minute:SecondTimezone</para>
         <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:email&gt;Owen Synge&lt;/hv:email&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:email": "owen.synge@desy.de" }</programlisting></listitem>
+          <listitem>
+            <para>XML Rendering:</para><programlisting>&lt;dc:date type="created"&gt;2011-04-07T17:09:12Z&lt;/dc:date&gt;</programlisting>
+          </listitem>
+        <listitem><para>JSON Rendering:</para><programlisting>{ "dc:date:created": "2011-03-10T17:09:12Z" }</programlisting></listitem>
         </itemizedlist>
-      </section>
-    </section>
-    <section>
-      <title>hv:imagelist/dc:identifier</title>
-      <para>RFC 4122 UUID for imagelist this allows updating the list, and uniqueness.</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;dc:identifier&gt;9ac60a74-c67f-457f-bd80-04c8ff6ecf3d&lt;/dc:identifier&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>{ "dc:identifier": "488dcdc4-9ab1-4fc8-a7ba-b7a5428ecb3d" }</programlisting></listitem>
-      </itemizedlist>
-      <note>This UUID remains constant for a subscription, messages with different UUID's will be ignored.</note>
-    </section>
-    <section>
-      <title>hv:imagelist/dc:description</title>
-      <para>description of the image list</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;dc:description&gt;Owens list of images from DESY quattor.&lt;/dc:description&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>{ "dc:description": "a README example of an image list" }</programlisting></listitem>
-      </itemizedlist>
-    </section>
-    <section>
-      <title>hv:imagelist/dc:title</title>
-      <para>title of image list</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;dc:description&gt;DISH service&lt;/dc:description&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>"dc:title": "README example",</programlisting></listitem>
-      </itemizedlist>
-    </section>
-    <section>
-      <title>hv:images</title>
-      <para>container for images metadata</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;hv:images&gt;...
-&lt;/hv:images&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>{ "hv:images": [ {...} ] }</programlisting></listitem>
-      </itemizedlist>
-      <section>
-        <title>hv:image</title>
-        <para>container for image metadata</para>
-        <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:image&gt;...
-&lt;/hv:image&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:image": { ... } }</programlisting></listitem>
-        </itemizedlist>
+        <note>Recomended to use the Zulu time zone.</note>
       </section>
       <section>
-        <title>hv:imagelist/hv:images/hv:image/dc:title</title>
-        <para>Title of image</para>
+        <title>hv:imagelist/dc:date:expires</title>
+        <para>date in format year-month-day when imagelist will no longer be trusted</para>
         <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;dc:title&gt;generic:sl5&lt;/dc:title&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "dc:title": "README example VM" }</programlisting></listitem>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;dc:date type="created"&gt;2011-05-07T17:09:12Z&lt;/dc:date&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "dc:date:expires": "2011-04-07T17:09:12Z" }</programlisting></listitem>
         </itemizedlist>
+        <note>Recomended to use the Zulu time zone.</note>
       </section>
       <section>
-        <title>hv:imagelist/hv:images/hv:image/dc:description</title>
-        <para>Free text describing the image</para>
+        <title>hv:imagelist/hv:endorser</title>
+        <para>container for endorser metadata</para>
         <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;dc:description&gt;Desy generated generic sl5 image&lt;/dc:description&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "dc:description": "This is an README example VM" }</programlisting></listitem>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:endorser&gt;...
+  &lt;/hv:endorser&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:endorser": { "hv:x509": { ... } }</programlisting></listitem>
         </itemizedlist>
+        <section>
+          <title>hv:imagelist/hv:endorser/hv:ca</title>
+          <para>standard hash id for the CA, corresponds with the CA directory files.</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:ca&gt;/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services&lt;/hv:ca&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:ca": "/C=DE/O=GermanGrid/CN=GridKa-CA" }</programlisting></listitem>
+          </itemizedlist>
+          <note>Message signers CA must equal this value to be valid.</note>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:endorser/hv:dn_x509</title>
+          <para>x509 DN of the endorser</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:dn_x509&gt;/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge&lt;/hv:dn_x509&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:dn": "/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge" }</programlisting></listitem>
+          </itemizedlist>
+          <note>Message signers DN must equal this value to be valid.</note>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:endorser/hv:email</title>
+          <para>email address of the endorser</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:email&gt;owen.synge@desy.de&lt;/hv:email&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:email": "owen.synge@desy.de" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:endorser/dc:creator</title>
+          <para>Name of the endorser</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:email&gt;Owen Synge&lt;/hv:email&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:email": "owen.synge@desy.de" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
       </section>
       <section>
-        <title>hv:imagelist/hv:images/hv:image/hv:size</title>
-        <para>size of the image in bytes</para>
+        <title>hv:imagelist/dc:identifier</title>
+        <para>RFC 4122 UUID for imagelist this allows updating the list, and uniqueness.</para>
         <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:size&gt;4619442176&lt;/hv:size&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:size": 2147483648 }</programlisting></listitem>
-        </itemizedlist>
-      </section>
-      <section>
-        <title>hv:imagelist/hv:images/hv:image/sl:checksum:sha512</title>
-        <para>sha512 checksum of images.</para>
-        <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;sl:checksum type="sha512"&gt;8b4c269a60da1061b434b696c4a89293bea847b66bd8ba486a914d4209df651193ee8d454f8231840b7500fab6740620c7111d9a17d08b743133dc393ba2c0d4&lt;/sl:checksum&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "sl:checksum:sha512": "8b4c269a60da1061b434b696c4a89293bea847b66bd8ba486a914d4209df651193ee8d454f8231840b7500fab6740620c7111d9a17d08b7" }</programlisting></listitem>
-        </itemizedlist>
-        <note>Images that dont match the sha512 hash will not be accepted.</note>
-      </section>
-      <section>
-        <title>hv:imagelist/hv:images/hv:image/sl:arch</title>
-        <para>architecture of the image typically 'i386' or 'x86_64'</para>
-        <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;sl:arch&gt;x86_64&lt;/sl:checksum&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "sl:arch": "x86_64" }</programlisting></listitem>
-        </itemizedlist>
-      </section>
-      <section>
-        <title>hv:imagelist/hv:images/hv:image/hv:uri</title>
-        <para>URI pointing to the latest version of this image.</para>
-        <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;https://example.org/image.gz&lt;/hv:uri&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:uri": "http://example.org/example-image.img" }</programlisting></listitem>
-        </itemizedlist>
-        <note>Subscriber software will use this URI to download the image.</note>
-      </section>
-      <section>
-        <title>hv:imagelist/hv:images/hv:image/dc:identifier</title>
-        <para>RFC 4122 UUID for image this allows updating the image, and uniqueness.</para>
-        <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;185c9f57-f838-4ac6-8246-85ccd6d6d3f4&lt;/hv:uri&gt;</programlisting></listitem>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;dc:identifier&gt;9ac60a74-c67f-457f-bd80-04c8ff6ecf3d&lt;/dc:identifier&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "dc:identifier": "488dcdc4-9ab1-4fc8-a7ba-b7a5428ecb3d" }</programlisting></listitem>
         </itemizedlist>
-        <note>This UUID remains constant for a subscription to an image, messages with different UUID's will be ignored.</note>
+        <note>This UUID remains constant for a subscription, messages with different UUID's will be ignored.</note>
       </section>
       <section>
-        <title>hv:imagelist/hv:images/hv:image/sl:os</title>
-        <para>The operating system the image runs, examples include "Linux" "BSD" "FreeBSD"</para>
+        <title>hv:imagelist/dc:description</title>
+        <para>description of the image list</para>
         <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;sl:os&gt;Linux&lt;/sl:os&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "sl:os": "Linux" }</programlisting></listitem>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;dc:description&gt;Owens list of images from DESY quattor.&lt;/dc:description&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "dc:description": "a README example of an image list" }</programlisting></listitem>
         </itemizedlist>
       </section>
       <section>
-        <title>hv:imagelist/hv:images/hv:image/sl:osversion</title>
-        <para>The operating system version the image runs, examples include "SL_6.0", maybe this
-    tag should be further broken downs so easier to process for computers.</para>
+        <title>hv:imagelist/dc:title</title>
+        <para>title of image list</para>
         <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;sl:osversion&gt;SL_5.5&lt;/sl:osversion&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "sl:osversion": "SL 5.5" }</programlisting></listitem>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;dc:description&gt;DISH service&lt;/dc:description&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>"dc:title": "README example",</programlisting></listitem>
         </itemizedlist>
       </section>
       <section>
-        <title>hv:imagelist/hv:images/hv:image/sl:comments</title>
-        <para>Stratus lab suggest comments on how the image is to be deployed.</para>
+        <title>hv:images</title>
+        <para>container for images metadata</para>
         <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;sl:comments&gt;&lt;/sl:comments&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "sl:comments": "Vanila install with contextulization scripts" }</programlisting></listitem>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:images&gt;...
+  &lt;/hv:images&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:images": [ {...} ] }</programlisting></listitem>
+        </itemizedlist>
+        <section>
+          <title>hv:image</title>
+          <para>container for image metadata</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:image&gt;...
+  &lt;/hv:image&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:image": { ... } }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/dc:title</title>
+          <para>Title of image</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;dc:title&gt;generic:sl5&lt;/dc:title&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "dc:title": "README example VM" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/dc:description</title>
+          <para>Free text describing the image</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;dc:description&gt;Desy generated generic sl5 image&lt;/dc:description&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "dc:description": "This is an README example VM" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/hv:size</title>
+          <para>size of the image in bytes</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:size&gt;4619442176&lt;/hv:size&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:size": 2147483648 }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/sl:checksum:sha512</title>
+          <para>sha512 checksum of images.</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;sl:checksum type="sha512"&gt;8b4c269a60da1061b434b696c4a89293bea847b66bd8ba486a914d4209df651193ee8d454f8231840b7500fab6740620c7111d9a17d08b743133dc393ba2c0d4&lt;/sl:checksum&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "sl:checksum:sha512": "8b4c269a60da1061b434b696c4a89293bea847b66bd8ba486a914d4209df651193ee8d454f8231840b7500fab6740620c7111d9a17d08b7" }</programlisting></listitem>
+          </itemizedlist>
+          <note>Images that dont match the sha512 hash will not be accepted.</note>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/sl:arch</title>
+          <para>architecture of the image typically 'i386' or 'x86_64'</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;sl:arch&gt;x86_64&lt;/sl:checksum&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "sl:arch": "x86_64" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/hv:uri</title>
+          <para>URI pointing to the latest version of this image.</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;https://example.org/image.gz&lt;/hv:uri&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:uri": "http://example.org/example-image.img" }</programlisting></listitem>
+          </itemizedlist>
+          <note>Subscriber software will use this URI to download the image.</note>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/dc:identifier</title>
+          <para>RFC 4122 UUID for image this allows updating the image, and uniqueness.</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;185c9f57-f838-4ac6-8246-85ccd6d6d3f4&lt;/hv:uri&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "dc:identifier": "488dcdc4-9ab1-4fc8-a7ba-b7a5428ecb3d" }</programlisting></listitem>
+          </itemizedlist>
+          <note>This UUID remains constant for a subscription to an image, messages with different UUID's will be ignored.</note>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/sl:os</title>
+          <para>The operating system the image runs, examples include "Linux" "BSD" "FreeBSD"</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;sl:os&gt;Linux&lt;/sl:os&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "sl:os": "Linux" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/sl:osversion</title>
+          <para>The operating system version the image runs, examples include "SL_6.0", maybe this
+      tag should be further broken downs so easier to process for computers.</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;sl:osversion&gt;SL_5.5&lt;/sl:osversion&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "sl:osversion": "SL 5.5" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/sl:comments</title>
+          <para>Stratus lab suggest comments on how the image is to be deployed.</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;sl:comments&gt;&lt;/sl:comments&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "sl:comments": "Vanila install with contextulization scripts" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/hv:hypervisor</title>
+          <para>Typically set to reflect the Virtualization technology values such as &xen;, &kvm;.</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:hypervisor&gt;&lt;/hv:hypervisor&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:hypervisor": "kvm" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/hv:version</title>
+          <para>The version of the image, so that updates can share the same metadata
+      (with exception of dc:identifier) in case of update. Typically a numeric value.</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:version&gt;&lt;/hv:version&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:version": "1" }</programlisting></listitem>
+          </itemizedlist>
+        </section>
+      </section>
+      <section>
+        <title>hv:imagelist/dc:source</title>
+        <para>The URI where the latest version of this file can be found.</para>
+        <itemizedlist>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;dc:source type="uri"&gt;http://example.org/example.img.gz&lt;/dc:source&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:uri": "http://example.org/example.img.gz" }</programlisting></listitem>
         </itemizedlist>
       </section>
       <section>
-        <title>hv:imagelist/hv:images/hv:image/hv:hypervisor</title>
-        <para>Typically set to reflect the Virtualization technology values such as &xen;, &kvm;.</para>
+        <title>hv:imagelist/hv:version</title>
+        <para>The version of the imagelist, so that updates can share the same metadata
+      (with exception of dc:identifier) in case of update. Typically a numeric value.</para>
         <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:hypervisor&gt;&lt;/hv:hypervisor&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:hypervisor": "kvm" }</programlisting></listitem>
-        </itemizedlist>
-      </section>
-      <section>
-        <title>hv:imagelist/hv:images/hv:image/hv:version</title>
-        <para>The version of the image, so that updates can share the same metadata
-    (with exception of dc:identifier) in case of update. Typically a numeric value.</para>
-        <itemizedlist>
-          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:version&gt;&lt;/hv:version&gt;</programlisting></listitem>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:version&gt;4&lt;/hv:version&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "hv:version": "1" }</programlisting></listitem>
         </itemizedlist>
       </section>
+      <section>
+        <title>hv:imagelist/hv:uri</title>
+        <para>The uri to retrive new versions of the imagelist, that updates can be retrived.</para>
+        <itemizedlist>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;https://example.org/imagelist.xml&lt;/hv:uri&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:uri": "http://example.org/example-image-list.image_list" }</programlisting></listitem>
+        </itemizedlist>
+      </section>
     </section>
     <section>
-      <title>hv:imagelist/dc:source</title>
-      <para>The URI where the latest version of this file can be found.</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;dc:source type="uri"&gt;http://example.org/example.img.gz&lt;/dc:source&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>{ "hv:uri": "http://example.org/example.img.gz" }</programlisting></listitem>
-      </itemizedlist>
+      <title>Optional Imagelist Fields</title>
+      <section>
+        <title>hv:imagelist/hv:images/hv:image/hv:core_minimum</title>
+        <para>Minimum number of virtual cores required to run the virtual maschine image expressed as an integer.</para>
+        <itemizedlist>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:core_minimum&gt;2&lt;/hv:core_minimum&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:core_minimum": 2 }</programlisting></listitem>
+        </itemizedlist>
+      </section>
+      <section>
+        <title>hv:imagelist/hv:images/hv:image/hv:ram_minimum</title>
+        <para>Minimum number of RAM required to run the virtual maschine image expressed as an integer in bytes.</para>
+        <itemizedlist>
+          <listitem><para>XML Rendering:</para><programlisting>&lt;hv:ram_minimum&gt;2&lt;/hv:ram_minimum&gt;</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "hv:ram_minimum": 2 }</programlisting></listitem>
+        </itemizedlist>
+      </section>
     </section>
-    <section>
-      <title>hv:imagelist/hv:version</title>
-      <para>The version of the imagelist, so that updates can share the same metadata
-    (with exception of dc:identifier) in case of update. Typically a numeric value.</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;hv:version&gt;4&lt;/hv:version&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>{ "hv:version": "1" }</programlisting></listitem>
-      </itemizedlist>
-    </section>
-    <section>
-      <title>hv:imagelist/hv:uri</title>
-      <para>The uri to retrive new versions of the imagelist, that updates can be retrived.</para>
-      <itemizedlist>
-        <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;https://example.org/imagelist.xml&lt;/hv:uri&gt;</programlisting></listitem>
-        <listitem><para>JSON Rendering:</para><programlisting>{ "hv:uri": "http://example.org/example-image-list.image_list" }</programlisting></listitem>
-      </itemizedlist>
-    </section>
+    
   </section>
   <section id="imagelist-example">
     <title>Example metadata files</title>

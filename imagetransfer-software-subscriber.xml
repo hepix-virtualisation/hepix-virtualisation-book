@@ -5,7 +5,7 @@
 %sharedents;
 ]>
 
-<section>
+<section id="imagetransfer-software-vmlisub" >
   <title>vmlisub</title>
   <para>This virtual maschine image list subscriber implementation is intended to be a production grade referance implementation.</para>
   <section>

@@ -44,6 +44,127 @@ lists. Since individuals are identified with x509 certificates, Each certificate
 has an issuing certificate and a unique string called a 'subject' to identify 
 the certificate. The 'subject' of a certificate and the 'subject' of the issuing 
 certificate combined are called 'credentials', and will be globally unique.</para>
-
+    <para>ndividuals on rare occasions will need more than one certificate, for this 
+reason they are given a unique identifier under this system and allowed to 
+have more than one set of credentials. </para>
+    <para>Adding a individual to the vmli database.</para>
+        <programlisting>&prompt-user;  vmlisub_endorser --create \
+       --endorser_uuid=63175437-7d59-4851-b333-c96cb6545a86 \
+       --subject='/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable' \
+       --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'  </programlisting>
+    <para>Deleting and individual from a vmli database.</para>
+    <programlisting>vmlisub_endorser --delete \
+       --endorser_uuid=63175437-7d59-4851-b333-c96cb6545a86</programlisting>
+    <para>Allowing an individual to update a subscription.</para>
+    <programlisting>vmlisub_endorser --link \
+       --endorser_uuid=63175437-7d59-4851-b333-c96cb6545a86 \
+       --subscription_uuid=e55c1afe-0a62-4d31-a8d7-fb8c825f92a2</programlisting>
+    <para>Removing an individuals right to update a subscription.</para>
+    <programlisting>vmlisub_endorser --unlink \
+       --endorser_uuid=63175437-7d59-4851-b333-c96cb6545a86 \
+       --subscription_uuid=e55c1afe-0a62-4d31-a8d7-fb8c825f92a2</programlisting>
+    <para>Each endorser_uuid must be unique or they will be assumed to be the same item. 
+The endorser_uuid could be a more human name:</para>
+    <programlisting>vmlisub_endorser --create \
+       --endorser_uuid='Ian Gable' \
+       --subject='/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable' \
+       --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</programlisting>
+  </section>
+  <section>
+    <title>vmlisub_sub</title>    
+    <para>This application manages your subscriptions and thier update:</para>
+    <para>To add a subscription</para>
+    <programlisting>vmlisub_sub  -s https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</programlisting>
+    <para>Or alternatively you can download a file visually insepect it and subscribe to the local file.</para>
+    <programlisting>vmlisub_sub  -s file:////`pwd`/hepix_signed_image_list</programlisting>
+    <para>To update your subscriptions</para>
+    <programlisting>vmlisub_sub  -U</programlisting>
+    <para>To list subscriptions</para>
+    <programlisting>vmlisub_sub  -l
+63175437-7d59-4851-b333-c96cb6545a86    True    https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</programlisting>
+    <para>Getting Information on a subscription:</para>
+    <programlisting>vmlisub_sub  -i --uuid=63175437-7d59-4851-b333-c96cb6545a86
+dc:identifier=63175437-7d59-4851-b333-c96cb6545a86
+subscription.dc:description=HEPiX Image Exchange Testing
+subscription.sl:authorised=True
+subscription.hv:uri=https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list
+subscription.dc:date:updated=2011-04-16T19:23:19Z
+imagelist.dc:date:imported=2011-04-16T19:23:18Z
+imagelist.dc:date:created=2011-03-16T00:15:07Z
+imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
+    <para>you can also select on the basis of url:</para>
+    <programlisting>vmlisub_sub  -i -r https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list
+dc:identifier=63175437-7d59-4851-b333-c96cb6545a86
+subscription.dc:description=HEPiX Image Exchange Testing
+subscription.sl:authorised=True
+subscription.hv:uri=https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list
+subscription.dc:date:updated=2011-04-17T19:04:35Z
+imagelist.dc:date:imported=2011-04-17T19:04:34Z
+imagelist.dc:date:created=2011-03-16T00:15:07Z
+imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
+    <para>Change the output format to get the original message without the security wraper, or in original form:</para>
+    <programlisting>vmlisub_sub  -i --uuid=63175437-7d59-4851-b333-c96cb6545a86 -f message</programlisting>
+    <para>To delete a subscription</para>
+    <programlisting>vmlisub_sub  -D  --uuid=63175437-7d59-4851-b333-c96cb6545a86</programlisting>
+  </section>
+  <section>
+    <title> vmlisub_image</title>
+    <para> This application manages images within your subscription. </para> 
+    <para>List the available images</para>
+    <programlisting>vmlisub_image -l
+327016b0-6508-41d2-bce0-c1724cb3d3e2    2       63175437-7d59-4851-b333-c96cb6545a86
+ecfbc671-eaee-439c-b1a3-db85dbef5e7b    3       63175437-7d59-4851-b333-c96cb6545a86
+da42ca85-179b-4873-b12e-32d549bf02b6    2       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
+    <para>The results show the UUID of the image, the availability state and the
+subscription UUID. The state value is a bitmap, 1 is subscribed, 2 means its
+available in the current image lists. Now we will select an image for local caching.</para>
+    <section>
+      <title>Selecting Images</title>
+      <para>Images can be selected by either UUID or Sha512 hash. This allows explicit
+  selection of images or by the sha512 from an old image.</para>
+      <para>Delete the subscription by image.</para>
+      <programlisting>vmlisub_image -D -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</programlisting>
+      <para>Subscribe to an image.</para>
+      <programlisting>vmlisub_image -a -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</programlisting>
+      <para>Unsubscribe an image</para>
+      <programlisting>vmlisub_image -r -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</programlisting>
+    </section>
+  </section>
+  <section>
+    <title>vmlisub_cache  </title>
+    <para>  This application downloads images. By default it will download images, check the sha512
+hash of cached images and expire images from old image lists.</para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <programlisting></programlisting>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
   </section>
 </section>

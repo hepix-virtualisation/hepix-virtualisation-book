@@ -1,6 +1,40 @@
 To install the build dependacies on SL6 you may need the epel repo.
 
-The following command worked for me to install suitable versions 
-of all the books build dependacies.
+From a base SL6 install:
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-yum install libxslt fop docbook-style-xsl
+yum install libxslt \
+    fop \
+    docbook-style-xsl \
+    rpm-build \
+    make \
+    git \
+    -y
+
+For a debian wheezy install
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+apt-get install xsltproc fop make git
+
+To build the book
+~~~~~~~~~~~~
+
+GITLOCATION="git://github.com/hepix-virtualisation/hepix-virtualisation-book.git"
+rm -rf build
+git clone ${GITLOCATION} build
+cd build
+make html
+make pdf
+cd ..
+rm -f artifacts.tgz
+tar -zcvf artifacts.tgz build/*.pdf build/Book
+
+
+Post install steps
+~~~~~~~~~~~~~~~~~~
+
+I then copy the artifacts.tgz file to the web server and expand it, this way you get the output
+
+http://grid.desy.de/vm/hepix/vwg/doc/
+
+With PDF and html versions.

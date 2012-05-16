@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE part PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                      "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<section>
+  <title>vmlisub</title>
+  <para>This virtual maschine image list subscriber implementation is intended to be a production grade referance implementation.</para>
+  <section>
+    <title>Introduction</title>
+    <para>This application allows users to subscribe to virtual machine image lists, cache
+the images referenced to in the image list, validate the images list with x509 
+based public key cryptography, and validate the images against sha512 hashes in 
+the images lists and provide events for further applications to process updates 
+or expiries of virtual machine images without having to further validate the 
+images. This set of applications are designed to provide a similar work flow
+from each area of control to the imagelist archive.</para>
+    <itemizedlist>
+      <listitem>vmlisub_endorser - Endorsers of imagelist subscriptions.</listitem>
+      <listitem>vmlisub_sub      - Subscription list details.</listitem>
+      <listitem>vmlisub_image    - Image details.</listitem>
+      <listitem>vmlisub_cache    - Cache images and update events.</listitem>
+    </itemizedlist>
+    <para>They work in conjunction with a database to ease navigation, a local cache of
+image list subscriptions. The database is message format agnostic, but it
+authenticates and validates all messages in import. Because these are just
+caches of imagelists they are meant to be used the majority of the time without
+intervention.</para>
+    <para>If you are signing a list using the hepix image list signer, you should also
+install this application and subscribe to your current image.</para>
+    <para>It is intended to with a couple of cron scripts to be informed at any time if
+your local images are matching signatures in the image list.</para>
+    <para>Anyone curious about this application should consider this application a
+software application similar to Debian's 'aptitude' or Redhats 'yum', but rather
+for virtual machines, authenticated by the x509 signatures.</para>
+
+  </section>
+  <section>
+    <title>vmlisub_endorser</title>
+    <para>This application is for managing who the subscriber trusts to update image 
+lists. Since individuals are identified with x509 certificates, Each certificate
+has an issuing certificate and a unique string called a 'subject' to identify 
+the certificate. The 'subject' of a certificate and the 'subject' of the issuing 
+certificate combined are called 'credentials', and will be globally unique.</para>
+
+  </section>
+</section>

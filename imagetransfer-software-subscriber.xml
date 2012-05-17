@@ -191,27 +191,168 @@ directory.</para></listitem>
             <listitem>ExpirePosfix<para>This image is no longer in the cache directory.</para></listitem>
           </itemizedlist>
         </section>
+        <section>
+          <title>VMILS_EVENT_DC_DESCRIPTION</title>
+          <para>The description text in the image.</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_DC_IDENTIFIER</title>
+          <para>Unique identifier of the image. Its suggested that image producers use RFC 4122 
+UUID for imagelist this allows updating the list, and uniqueness.</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_DC_TITLE</title>
+          <para>Image Title.</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_HV_HYPERVISOR</title>
+          <para>Typically set to reflect the Virtualization technology values such as "xen", "kvm".</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_HV_SIZE</title>
+          <para>The Image Size</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_HV_URI</title>
+          <para>The Original URI for the image</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_SL_ARCH</title>
+          <para>The images architecture.</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_SL_CHECKSUM_SHA512</title>
+          <para>The Images sha512 checksum.</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_SL_COMMENTS</title>
+          <para>Comments added by the image author</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_SL_OS</title>
+          <para>The Operating System the VM image contains</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_SL_OSVERSION</title>
+          <para>The Operating System version</para>
+        </section>
+        <section>
+          <title>VMILS_EVENT_FILENAME</title>
+          <para>The Image file name.</para>
+        </section>
       </section>
-      <programlisting></programlisting>
-      <para></para>
-      <programlisting></programlisting>
-      <para></para>
-      <programlisting></programlisting>
-      <para></para>
-      <programlisting></programlisting>
-      <para></para>
-      <programlisting></programlisting>
-      <para></para>
-      <programlisting></programlisting>
-      <para></para>
-      <para></para>
-      <para></para>
-      <para></para>
-      <para></para>
-      <para></para>
-      <para></para>
-      <para></para>
-      <para></para>    
+      
     </section>
+  </section>
+  <section>
+    <title>Quick start use of hepixvmilsubscriber</title>
+    <para>First make sure that all the Certificate Revocation Lists (CRL) are upto date.</para>
+    <programlisting>&prompt-root;  fetch-crl</programlisting>
+    <para>To add a subscription,</para>
+    <programlisting>&prompt-user;  wget --no-check-certificate https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</programlisting>
+    <para>Now you can check the image list by visiual inspection.</para>
+    <programlisting>&prompt-user;  grep 'hv:[cd][an]' hepix_signed_image_list
+                "hv:ca": "/C=CA/O=Grid/CN=Grid Canada Certificate Authority", 
+                "hv:dn": "/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable", </programlisting>
+    <para>Now create this endorser. The endorser_uuid can be any string but its recommended this is a 
+short string possibly following the uuid standard:</para>
+    <programlisting>&prompt-user;  vmlisub_endorser --create \
+       --endorser_uuid='Ian' \
+       --subject='/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable' \
+       --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</programlisting>
+    <para>Now we can add the subscription, this will automatically link the endorser 
+with this subscription.</para>
+    <programlisting>&prompt-user;  vmlisub_endorser -l
+Ian    '/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable'        '/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</programlisting>
+    <para>The above command will show you the endorsers. Note the first column is the 
+identifier. In this case its shorter than a UUID. The second column is the 
+users certificate subject (some times know as distinguished name) while the 
+third column is the subject of the issuing certificate authority.</para>
+    <programlisting>&prompt-user;  vmlisub_sub -s file:////`pwd`/hepix_signed_image_list
+INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+WARNING:db_actions:list hv:uri does not match subscription uri</programlisting>
+    <para>Although less secure it is also possible to add the option '--auto-endorse'
+to the command line so that the users, and issuer's certificates are auto added
+to the database when subscribing.</para>
+    <programlisting>&prompt-user;  vmlisub_sub  --auto-endorse -s file:////`pwd`/hepix_signed_image_list
+INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+WARNING:db_actions:list hv:uri does not match subscription uri</programlisting>
+    <para>List the registered Images.</para>
+    <programlisting>&prompt-user;  vmlisub_image -l
+INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+327016b0-6508-41d2-bce0-c1724cb3d3e2    0       63175437-7d59-4851-b333-c96cb6545a86
+ecfbc671-eaee-439c-b1a3-db85dbef5e7b    0       63175437-7d59-4851-b333-c96cb6545a86
+da42ca85-179b-4873-b12e-32d549bf02b6    0       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
+    <para>The results show the UUID of the image, the availability state and the
+subscription UUID. The state value is a bitmap, 1 is subscribed, 2 means its
+available in the current image lists. Now we will select an image for local caching.</para>
+    <para>Next update the subscriptions.</para>
+    <programlisting>&prompt-user;  vmlisub_sub -U
+INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+INFO:db_actions:Updating:63175437-7d59-4851-b333-c96cb6545a86</programlisting>
+    <para>Now the data base contains the latest version of the image list. To query the
+available images they can be cached:</para>
+    <programlisting>&prompt-user;  vmlisub_image -l
+INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+327016b0-6508-41d2-bce0-c1724cb3d3e2    2       63175437-7d59-4851-b333-c96cb6545a86
+ecfbc671-eaee-439c-b1a3-db85dbef5e7b    2       63175437-7d59-4851-b333-c96cb6545a86
+da42ca85-179b-4873-b12e-32d549bf02b6    2       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
+    <para>Thsi now shows the images are available in the latest image list.</para>
+    <programlisting>&prompt-user;  vmlisub_image -a -u ecfbc671-eaee-439c-b1a3-db85dbef5e7b
+INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'</programlisting>
+    <para>The image list state is now changed to</para>
+    <programlisting>&prompt-user;  vmlisub_image -l
+INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+327016b0-6508-41d2-bce0-c1724cb3d3e2    2       63175437-7d59-4851-b333-c96cb6545a86
+ecfbc671-eaee-439c-b1a3-db85dbef5e7b    3       63175437-7d59-4851-b333-c96cb6545a86
+da42ca85-179b-4873-b12e-32d549bf02b6    2       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
+    <para>Clearly showing that the image 'ecfbc671-eaee-439c-b1a3-db85dbef5e7b' is subscribed.</para>
+    <para>Make the directories for caching the images.</para>
+    <programlisting>&prompt-user;  mkdir cache cache/partial cache/expired</programlisting>
+    <para>Now cache the images.</para>
+    <programlisting>&prompt-user;  vmlisub_cache
+INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+INFO:DownloadDir:Downloading 'ecfbc671-eaee-439c-b1a3-db85dbef5e7b'.
+INFO:CacheMan:moved file ecfbc671-eaee-439c-b1a3-db85dbef5e7b</programlisting>
+    <para>Once this is complete the image from the image list will be cached.</para>
+    <programlisting>&prompt-user;  find cache/
+cache/
+cache/partial
+cache/partial/cache.index
+cache/expired
+cache/expired/cache.index
+cache/ecfbc671-eaee-439c-b1a3-db85dbef5e7b
+cache/cache.index</programlisting>
+    <section>
+      <title>Set up for Production using Cron</title>
+      <para>Then the by hand configuration for your master DB</para>
+      <programlisting>&prompt-root;  useradd vmlisub</programlisting>
+      <programlisting>&prompt-root;  mkdir -p /var/lib/vmlisub /var/cache/vmimages/endorsed \
+      /var/cache/vmimages/partial /var/cache/vmimages/expired</programlisting>
+      <programlisting>&prompt-root;  touch /var/log/vmlisub.log</programlisting>
+      <programlisting>&prompt-root;  chown vmlisub:vmlisub /var/lib/vmlisub  /var/cache/vmimages/endorsed \
+      /var/cache/vmimages/partial /var/cache/vmimages/expired \
+      /var/log/vmlisub.log</programlisting>
+      <programlisting>&prompt-root;  sudo -u vmlisub /usr/bin/vmlisub_sub \
+      -s https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list \
+      -d sqlite:////var/lib/vmlisub/vmlisub.db</programlisting>
+      <para>make a cron job</para>
+      <programlisting>&prompt-root;  cat   /etc/cron.d/vmlisub
+50 */6 * * *    vmlisub (/usr/bin/vmlisub_sub -d sqlite:////var/lib/vmlisub/vmlisub.db -U; /usr/bin/vmlisub_cache -d sqlite:////var/lib/vmlisub/vmlisub.db -C /var/cache/vmimages/endorsed/ -p /var/cache/vmimages/partial/ -e /var/cache/vmimages/expired/ ) >> /var/log/vmlisub.log 2>&amp;1</programlisting>
+      
+    <para>So the script is executed every 6 hours shortly after fetch CRL.</para>
+    <para>Now at any time users with file permisions can get a list of valid images.</para>
+      <programlisting>&prompt-user;  vmlisub_image -l -d sqlite:////var/lib/vmlisub/vmlisub.db</programlisting>
+    </section>
+    
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
+    <para></para>
   </section>
 </section>

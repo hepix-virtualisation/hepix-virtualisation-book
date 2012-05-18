@@ -41,17 +41,17 @@ for virtual machines, authenticated by the x509 signatures.</para>
     <section>
       <title>Installation on Redhat Enterprise Linux 6</title>
       <para>Install EPEL for dependencies.</para>
-      <programlisting>&prompt-root; rpm -i http://download.fedora.redhat.com/pub/epel/6/x86_64/epel-release-6-5.noarch.rpm</programlisting>
+      <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/6/x86_64/epel-release-6-5.noarch.rpm</userinput></programlisting>
       <para>Install DESY yum repository.</para>
       
-      <programlisting>&prompt-root; cat /etc/yum.repos.d/desyvirt.repo
+      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/desyvirt.repo</userinput>
 [desyvirt]
 name=desyvirt
 baseurl=http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/
 enabled=1
 gpgcheck=0</programlisting>
       <para>Install the Grid CA repository for details please see https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
-      <programlisting>&prompt-root; cat /etc/yum.repos.d/egi-trust-anchor.repo
+      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/egi-trust-anchor.repo</userinput>
 [EGI-trustanchors]
 name=EGI-trustanchors
 baseurl=http://repository.egi.eu/sw/production/cas/1/current/
@@ -59,18 +59,18 @@ gpgkey=http://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-3
 gpgcheck=1
 enabled=1</programlisting>
       <para>install the ca-policy-egi-core</para>
-      <programlisting>&prompt-root; yum install ca-policy-egi-core</programlisting>
+      <programlisting>&prompt-root; <userinput>yum install ca-policy-egi-core</userinput></programlisting>
       <para>install fetch-crl</para>
-      <programlisting>&prompt-root; yum install fetch-crl</programlisting>
+      <programlisting>&prompt-root; <userinput>yum install fetch-crl</userinput></programlisting>
       <para></para>
-      <programlisting>&prompt-root; yum install hepixvmilsubscriber</programlisting>
+      <programlisting>&prompt-root; <userinput>yum install hepixvmilsubscriber</userinput></programlisting>
     </section>
     <section>
       <title>Installation on Redhat Enterprise Linux 5</title>
       <para>Install EPEL for dependencies.</para>
-      <programlisting>&prompt-root; rpm -i http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</programlisting>
+      <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</userinput></programlisting>
       <para>Install DESY yum repository.</para>
-      <programlisting>&prompt-root; cat /etc/yum.repos.d/desyvirt.repo
+      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/desyvirt.repo</userinput>
 [desyvirt]
 name=desyvirt
 baseurl=http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/
@@ -78,7 +78,7 @@ enabled=1
 gpgcheck=0</programlisting>
       <para>Install the Grid CA repository for details please see
 https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
-      <programlisting>&prompt-root; cat /etc/yum.repos.d/egi-trust-anchor.repo
+      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/egi-trust-anchor.repo</userinput>
 [EGI-trustanchors]
 name=EGI-trustanchors
 baseurl=http://repository.egi.eu/sw/production/cas/1/current/
@@ -86,15 +86,15 @@ gpgkey=http://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-3
 gpgcheck=1
 enabled=1</programlisting>
       <para>Install the lcg-CA</para>
-      <programlisting>&prompt-root; yum install lcg-CA</programlisting>
+      <programlisting>&prompt-root; <userinput>yum install lcg-CA</userinput></programlisting>
       <para>install fetch-crl</para>
-      <programlisting>&prompt-root; yum install fetch-crl</programlisting>
+      <programlisting>&prompt-root; <userinput>yum install fetch-crl</userinput></programlisting>
       <para>Install the hepix image list subscriber.</para>
-      <programlisting>&prompt-root; yum install hepixvmilsubscriber</programlisting>
+      <programlisting>&prompt-root; <userinput>yum install hepixvmilsubscriber</userinput></programlisting>
       <para>This may fail due to a dependency of m2crypto that cannot be satisfied. This is
 due to known bugs in m2crypto in the version shipped in RHEL5. If this is a
 problem please download the following</para>
-      <programlisting>&prompt-root; http://ftp.informatik.uni-frankfurt.de/fedora-archive/fedora/linux/releases/8/Everything/source/SRPMS/m2crypto-0.18-2.src.rpm</programlisting>
+      <programlisting>http://ftp.informatik.uni-frankfurt.de/fedora-archive/fedora/linux/releases/8/Everything/source/SRPMS/m2crypto-0.18-2.src.rpm</programlisting>
       <para>And build a native RPM.</para>
     </section>
   </section>
@@ -109,42 +109,42 @@ certificate combined are called 'credentials', and will be globally unique.</par
 reason they are given a unique identifier under this system and allowed to 
 have more than one set of credentials. </para>
     <para>Adding a individual to the vmli database.</para>
-        <programlisting>&prompt-user;  vmlisub_endorser --create \
+        <programlisting>&prompt-user;  <userinput>vmlisub_endorser --create \
        --endorser_uuid=63175437-7d59-4851-b333-c96cb6545a86 \
        --subject='/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable' \
-       --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'  </programlisting>
+       --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</userinput></programlisting>
     <para>Deleting and individual from a vmli database.</para>
-    <programlisting>&prompt-user;  vmlisub_endorser --delete \
-       --endorser_uuid=63175437-7d59-4851-b333-c96cb6545a86</programlisting>
+    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --delete \
+       --endorser_uuid=63175437-7d59-4851-b333-c96cb6545a86</userinput></programlisting>
     <para>Allowing an individual to update a subscription.</para>
-    <programlisting>&prompt-user;  vmlisub_endorser --link \
+    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --link \
        --endorser_uuid=63175437-7d59-4851-b333-c96cb6545a86 \
-       --subscription_uuid=e55c1afe-0a62-4d31-a8d7-fb8c825f92a2</programlisting>
+       --subscription_uuid=e55c1afe-0a62-4d31-a8d7-fb8c825f92a2</userinput></programlisting>
     <para>Removing an individuals right to update a subscription.</para>
-    <programlisting>&prompt-user;  vmlisub_endorser --unlink \
+    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --unlink \
        --endorser_uuid=63175437-7d59-4851-b333-c96cb6545a86 \
-       --subscription_uuid=e55c1afe-0a62-4d31-a8d7-fb8c825f92a2</programlisting>
+       --subscription_uuid=e55c1afe-0a62-4d31-a8d7-fb8c825f92a2</userinput></programlisting>
     <para>Each endorser_uuid must be unique or they will be assumed to be the same item. 
 The endorser_uuid could be a more human name:</para>
-    <programlisting>&prompt-user;  vmlisub_endorser --create \
+    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --create \
        --endorser_uuid='Ian Gable' \
        --subject='/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable' \
-       --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</programlisting>
+       --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</userinput></programlisting>
   </section>
   <section>
     <title>vmlisub_sub</title>    
     <para>This application manages your subscriptions and thier update:</para>
     <para>To add a subscription</para>
-    <programlisting>&prompt-user;  vmlisub_sub  -s https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</programlisting>
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -s https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</userinput></programlisting>
     <para>Or alternatively you can download a file visually insepect it and subscribe to the local file.</para>
-    <programlisting>&prompt-user;  vmlisub_sub  -s file:////`pwd`/hepix_signed_image_list</programlisting>
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -s file:////`pwd`/hepix_signed_image_list</userinput></programlisting>
     <para>To update your subscriptions</para>
-    <programlisting>&prompt-user;  vmlisub_sub  -U</programlisting>
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -U</userinput></programlisting>
     <para>To list subscriptions</para>
-    <programlisting>&prompt-user;  vmlisub_sub  -l
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -l</userinput>
 63175437-7d59-4851-b333-c96cb6545a86    True    https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</programlisting>
     <para>Getting Information on a subscription:</para>
-    <programlisting>&prompt-user;  vmlisub_sub  -i --uuid=63175437-7d59-4851-b333-c96cb6545a86
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -i --uuid=63175437-7d59-4851-b333-c96cb6545a86</userinput>
 dc:identifier=63175437-7d59-4851-b333-c96cb6545a86
 subscription.dc:description=HEPiX Image Exchange Testing
 subscription.sl:authorised=True
@@ -154,7 +154,7 @@ imagelist.dc:date:imported=2011-04-16T19:23:18Z
 imagelist.dc:date:created=2011-03-16T00:15:07Z
 imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     <para>you can also select on the basis of url:</para>
-    <programlisting>&prompt-user;  vmlisub_sub  -i -r https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -i -r https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</userinput>
 dc:identifier=63175437-7d59-4851-b333-c96cb6545a86
 subscription.dc:description=HEPiX Image Exchange Testing
 subscription.sl:authorised=True
@@ -164,7 +164,7 @@ imagelist.dc:date:imported=2011-04-17T19:04:34Z
 imagelist.dc:date:created=2011-03-16T00:15:07Z
 imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     <para>Change the output format to get the original message without the security wraper, or in original form:</para>
-    <programlisting>&prompt-user;  vmlisub_sub  -i --uuid=63175437-7d59-4851-b333-c96cb6545a86 -f message</programlisting>
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -i --uuid=63175437-7d59-4851-b333-c96cb6545a86 -f message</userinput></programlisting>
     <para>Three formats exist SMIME, message, lines. </para>
     <itemizedlist>
       <listitem>SMIME for applications that wish to process the signature as if from the endorser directly.</listitem>
@@ -173,13 +173,13 @@ imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     </itemizedlist>
     
     <para>To delete a subscription</para>
-    <programlisting>&prompt-user;  vmlisub_sub  -D  --uuid=63175437-7d59-4851-b333-c96cb6545a86</programlisting>
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -D  --uuid=63175437-7d59-4851-b333-c96cb6545a86</userinput></programlisting>
   </section>
   <section>
     <title> vmlisub_image</title>
     <para> This application manages images within your subscription. </para> 
     <para>List the available images</para>
-    <programlisting>&prompt-user;  vmlisub_image -l
+    <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
 327016b0-6508-41d2-bce0-c1724cb3d3e2    2       63175437-7d59-4851-b333-c96cb6545a86
 ecfbc671-eaee-439c-b1a3-db85dbef5e7b    3       63175437-7d59-4851-b333-c96cb6545a86
 da42ca85-179b-4873-b12e-32d549bf02b6    2       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
@@ -191,18 +191,18 @@ available in the current image lists. Now we will select an image for local cach
       <para>Images can be selected by either UUID or Sha512 hash. This allows explicit
   selection of images or by the sha512 from an old image.</para>
       <para>Delete the subscription by image.</para>
-      <programlisting>&prompt-user;  vmlisub_image -D -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</programlisting>
+      <programlisting>&prompt-user;  <userinput>vmlisub_image -D -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
       <para>Subscribe to an image.</para>
-      <programlisting>&prompt-user;  vmlisub_image -a -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</programlisting>
+      <programlisting>&prompt-user;  <userinput>vmlisub_image -a -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
       <para>Unsubscribe an image</para>
-      <programlisting>&prompt-user;  vmlisub_image -r -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</programlisting>
+      <programlisting>&prompt-user;  <userinput>vmlisub_image -r -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
     </section>
   </section>
   <section>
     <title>vmlisub_cache  </title>
     <para>  This application downloads images. By default it will download images, check the sha512
 hash of cached images and expire images from old image lists.</para>
-    <programlisting>&prompt-user;  vmlisub_cache
+    <programlisting>&prompt-user;  <userinput>vmlisub_cache</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 INFO:vmlisub_sub.main:Defaulting actions as 'expire', 'sha512' and 'download'.
 INFO:vmlisub_sub.main:Defaulting cache-dir to 'cache'.
@@ -217,11 +217,11 @@ INFO:CacheMan:moved file ecfbc671-eaee-439c-b1a3-db85dbef5e7b
 and concerned with downloading and managing updates of VM images into a cloud
 infrastructure, it is some times beneficial to have an event interface so that 
 applicatyions may embed these applications in larger systems.</para>
-      <programlisting>&prompt-user;  vmlisub_cache -x "/usr/bin/VmImageUpdateProcessor \$VMILS_EVENT_TYPE"</programlisting>
+      <programlisting>&prompt-user;  <userinput>vmlisub_cache -x "/usr/bin/VmImageUpdateProcessor \$VMILS_EVENT_TYPE"</userinput></programlisting>
       <para>The events interface launches a shell with a series of environment variables. The
 event must process its command within 10 seconds or else it will be sent a 
 termination signal. See the following example:</para>
-      <programlisting>vmlisub_cache -x 'env  ; exit 1'</programlisting>
+      <programlisting>&prompt-user;  <userinput>vmlisub_cache -x 'env  ; exit 1'</userinput></programlisting>
       <para>All Events have a type. This is given to the event handler by setting the 
 variable, VMILS_EVENT_TYPE with the following values "AvailablePrefix", 
 "AvailablePostfix", "ExpirePrefix" and "ExpirePosfix".</para>
@@ -314,38 +314,38 @@ UUID for imagelist this allows updating the list, and uniqueness.</para>
   <section>
     <title>Quick start use of hepixvmilsubscriber</title>
     <para>First make sure that all the Certificate Revocation Lists (CRL) are upto date.</para>
-    <programlisting>&prompt-root;  fetch-crl</programlisting>
+    <programlisting>&prompt-root;  <userinput>fetch-crl</userinput></programlisting>
     <para>To add a subscription,</para>
-    <programlisting>&prompt-user;  wget --no-check-certificate https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</programlisting>
+    <programlisting>&prompt-user;  <userinput>wget --no-check-certificate https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</userinput></programlisting>
     <para>Now you can check the image list by visiual inspection.</para>
-    <programlisting>&prompt-user;  grep 'hv:[cd][an]' hepix_signed_image_list
+    <programlisting>&prompt-user;  <userinput>grep 'hv:[cd][an]' hepix_signed_image_list</userinput>
                 "hv:ca": "/C=CA/O=Grid/CN=Grid Canada Certificate Authority", 
                 "hv:dn": "/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable", </programlisting>
     <para>Now create this endorser. The endorser_uuid can be any string but its recommended this is a 
 short string possibly following the uuid standard:</para>
-    <programlisting>&prompt-user;  vmlisub_endorser --create \
+    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --create \
        --endorser_uuid='Ian' \
        --subject='/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable' \
-       --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</programlisting>
+       --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</userinput></programlisting>
     <para>Now we can add the subscription, this will automatically link the endorser 
 with this subscription.</para>
-    <programlisting>&prompt-user;  vmlisub_endorser -l
+    <programlisting>&prompt-user;  <userinput>vmlisub_endorser -l</userinput>
 Ian    '/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable'        '/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</programlisting>
     <para>The above command will show you the endorsers. Note the first column is the 
 identifier. In this case its shorter than a UUID. The second column is the 
 users certificate subject (some times know as distinguished name) while the 
 third column is the subject of the issuing certificate authority.</para>
-    <programlisting>&prompt-user;  vmlisub_sub -s file:////`pwd`/hepix_signed_image_list
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub -s file:////`pwd`/hepix_signed_image_list</userinput>
 INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 WARNING:db_actions:list hv:uri does not match subscription uri</programlisting>
     <para>Although less secure it is also possible to add the option '--auto-endorse'
 to the command line so that the users, and issuer's certificates are auto added
 to the database when subscribing.</para>
-    <programlisting>&prompt-user;  vmlisub_sub  --auto-endorse -s file:////`pwd`/hepix_signed_image_list
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub  --auto-endorse -s file:////`pwd`/hepix_signed_image_list</userinput>
 INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 WARNING:db_actions:list hv:uri does not match subscription uri</programlisting>
     <para>List the registered Images.</para>
-    <programlisting>&prompt-user;  vmlisub_image -l
+    <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 327016b0-6508-41d2-bce0-c1724cb3d3e2    0       63175437-7d59-4851-b333-c96cb6545a86
 ecfbc671-eaee-439c-b1a3-db85dbef5e7b    0       63175437-7d59-4851-b333-c96cb6545a86
@@ -354,35 +354,35 @@ da42ca85-179b-4873-b12e-32d549bf02b6    0       63175437-7d59-4851-b333-c96cb654
 subscription UUID. The state value is a bitmap, 1 is subscribed, 2 means its
 available in the current image lists. Now we will select an image for local caching.</para>
     <para>Next update the subscriptions.</para>
-    <programlisting>&prompt-user;  vmlisub_sub -U
+    <programlisting>&prompt-user;  <userinput>vmlisub_sub -U</userinput>
 INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 INFO:db_actions:Updating:63175437-7d59-4851-b333-c96cb6545a86</programlisting>
     <para>Now the data base contains the latest version of the image list. To query the
 available images they can be cached:</para>
-    <programlisting>&prompt-user;  vmlisub_image -l
+    <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 327016b0-6508-41d2-bce0-c1724cb3d3e2    2       63175437-7d59-4851-b333-c96cb6545a86
 ecfbc671-eaee-439c-b1a3-db85dbef5e7b    2       63175437-7d59-4851-b333-c96cb6545a86
 da42ca85-179b-4873-b12e-32d549bf02b6    2       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
     <para>Thsi now shows the images are available in the latest image list.</para>
-    <programlisting>&prompt-user;  vmlisub_image -a -u ecfbc671-eaee-439c-b1a3-db85dbef5e7b
+    <programlisting>&prompt-user;  <userinput>vmlisub_image -a -u ecfbc671-eaee-439c-b1a3-db85dbef5e7b</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'</programlisting>
     <para>The image list state is now changed to</para>
-    <programlisting>&prompt-user;  vmlisub_image -l
+    <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 327016b0-6508-41d2-bce0-c1724cb3d3e2    2       63175437-7d59-4851-b333-c96cb6545a86
 ecfbc671-eaee-439c-b1a3-db85dbef5e7b    3       63175437-7d59-4851-b333-c96cb6545a86
 da42ca85-179b-4873-b12e-32d549bf02b6    2       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
     <para>Clearly showing that the image 'ecfbc671-eaee-439c-b1a3-db85dbef5e7b' is subscribed.</para>
     <para>Make the directories for caching the images.</para>
-    <programlisting>&prompt-user;  mkdir cache cache/partial cache/expired</programlisting>
+    <programlisting>&prompt-user;  <userinput>mkdir cache cache/partial cache/expired</userinput></programlisting>
     <para>Now cache the images.</para>
-    <programlisting>&prompt-user;  vmlisub_cache
+    <programlisting>&prompt-user; <userinput> vmlisub_cache</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 INFO:DownloadDir:Downloading 'ecfbc671-eaee-439c-b1a3-db85dbef5e7b'.
 INFO:CacheMan:moved file ecfbc671-eaee-439c-b1a3-db85dbef5e7b</programlisting>
     <para>Once this is complete the image from the image list will be cached.</para>
-    <programlisting>&prompt-user;  find cache/
+    <programlisting>&prompt-user; <userinput> find cache/</userinput>
 cache/
 cache/partial
 cache/partial/cache.index
@@ -393,29 +393,29 @@ cache/cache.index</programlisting>
     <section>
       <title>Set up for Production using Cron</title>
       <para>Then the by hand configuration for your master DB</para>
-      <programlisting>&prompt-root;  useradd vmlisub</programlisting>
-      <programlisting>&prompt-root;  mkdir -p /var/lib/vmlisub /var/cache/vmimages/endorsed \
-      /var/cache/vmimages/partial /var/cache/vmimages/expired</programlisting>
-      <programlisting>&prompt-root;  touch /var/log/vmlisub.log</programlisting>
-      <programlisting>&prompt-root;  chown vmlisub:vmlisub /var/lib/vmlisub  /var/cache/vmimages/endorsed \
+      <programlisting>&prompt-root;  <userinput>useradd vmlisub</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>mkdir -p /var/lib/vmlisub /var/cache/vmimages/endorsed \
+      /var/cache/vmimages/partial /var/cache/vmimages/expired</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>touch /var/log/vmlisub.log</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>chown vmlisub:vmlisub /var/lib/vmlisub  /var/cache/vmimages/endorsed \
       /var/cache/vmimages/partial /var/cache/vmimages/expired \
-      /var/log/vmlisub.log</programlisting>
-      <programlisting>&prompt-root;  sudo -u vmlisub /usr/bin/vmlisub_sub \
+      /var/log/vmlisub.log</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>sudo -u vmlisub /usr/bin/vmlisub_sub \
       -s https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list \
-      -d sqlite:////var/lib/vmlisub/vmlisub.db</programlisting>
+      -d sqlite:////var/lib/vmlisub/vmlisub.db</userinput></programlisting>
       <para>make a cron job</para>
-      <programlisting>&prompt-root;  cat   /etc/cron.d/vmlisub
+      <programlisting>&prompt-root; <userinput> cat   /etc/cron.d/vmlisub</userinput>
 50 */6 * * *    vmlisub (/usr/bin/vmlisub_sub -d sqlite:////var/lib/vmlisub/vmlisub.db -U; /usr/bin/vmlisub_cache -d sqlite:////var/lib/vmlisub/vmlisub.db -C /var/cache/vmimages/endorsed/ -p /var/cache/vmimages/partial/ -e /var/cache/vmimages/expired/ ) >> /var/log/vmlisub.log 2>&amp;1</programlisting>      
     <para>So the script is executed every 6 hours shortly after fetch CRL.</para>
     <para>Now at any time users with file permisions can get a list of valid images.</para>
-      <programlisting>&prompt-user;  vmlisub_image -l -d sqlite:////var/lib/vmlisub/vmlisub.db</programlisting>
+      <programlisting>&prompt-user; <userinput> vmlisub_image -l -d sqlite:////var/lib/vmlisub/vmlisub.db</userinput></programlisting>
     </section>
   </section>
   <section>
     <title>Logging configuration</title>
     <para>All scripts have a logging option. This is used to configure pythons logging 
       library. An example is shown below.</para>
-    <programlisting>&prompt-user;  vmlisub_image -L /usr/share/doc/hepixvmilsubscriber/logger.conf -l</programlisting>
+    <programlisting>&prompt-user; <userinput> vmlisub_image -L /usr/share/doc/hepixvmilsubscriber/logger.conf -l</userinput></programlisting>
 
     <para>Logging can be independently set up for each object to multiple locations, and 
       with different log levels.</para>
@@ -433,7 +433,7 @@ options will override any set environment options.</para>
       <para>Sets the executions string. Command line options can be set as enviroment 
 variables just like the command line interface. Users of the "sh shell" must
 protect the envroment variables from being substituted by thier shell.</para>
-      <programlisting>&prompt-user;  export VMILS_CACHE_EVENT="./myEventProcessor \$VMILS_EVENT_TYPE"</programlisting>
+      <programlisting>&prompt-user; <userinput> export VMILS_CACHE_EVENT="./myEventProcessor \$VMILS_EVENT_TYPE"</userinput></programlisting>
       <para>An example of how to execute a command with an action command line.</para>
     </section>
     <section>

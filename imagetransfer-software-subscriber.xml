@@ -5,7 +5,7 @@
 %sharedents;
 ]>
 
-<section id="imagetransfer-software-vmlisub" >
+<section id="imagetransfer-software-vmlisub">
   <title>vmlisub</title>
   <para>This virtual maschine image list subscriber implementation is intended to be a production grade referance implementation.</para>
   <section>
@@ -35,7 +35,74 @@ your local images are matching signatures in the image list.</para>
     <para>Anyone curious about this application should consider this application a
 software application similar to Debian's 'aptitude' or Redhats 'yum', but rather
 for virtual machines, authenticated by the x509 signatures.</para>
-
+  </section>
+  <section>
+    <title>Installation</title>
+    <section>
+      <title>Installation on Redhat Enterprise Linux 6</title>
+      <para>Install EPEL for dependencies.</para>
+      <programlisting>&prompt-root; rpm -i http://download.fedora.redhat.com/pub/epel/6/x86_64/epel-release-6-5.noarch.rpm</programlisting>
+      <para>Install DESY yum repository.</para>
+      
+      <programlisting>&prompt-root; cat /etc/yum.repos.d/desyvirt.repo
+[desyvirt]
+name=desyvirt
+baseurl=http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/
+enabled=1
+gpgcheck=0</programlisting>
+      <para>Install the Grid CA repository for details please see https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
+      <programlisting>&prompt-root; cat /etc/yum.repos.d/egi-trust-anchor.repo
+[EGI-trustanchors]
+name=EGI-trustanchors
+baseurl=http://repository.egi.eu/sw/production/cas/1/current/
+gpgkey=http://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-3
+gpgcheck=1
+enabled=1</programlisting>
+      <para>install the ca-policy-egi-core</para>
+      <programlisting>&prompt-root; yum install ca-policy-egi-core</programlisting>
+      <para>install fetch-crl</para>
+      <programlisting>&prompt-root; yum install fetch-crl</programlisting>
+      <para></para>
+      <programlisting>&prompt-root; yum install hepixvmilsubscriber</programlisting>
+    </section>
+    <section>
+      <title>Installation on Redhat Enterprise Linux 5</title>
+      <para>Install EPEL for dependencies.</para>
+      <programlisting>&prompt-root; rpm -i http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</programlisting>
+      <para>Install DESY yum repository.</para>
+      <programlisting>&prompt-root; cat /etc/yum.repos.d/desyvirt.repo
+[desyvirt]
+name=desyvirt
+baseurl=http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/
+enabled=1
+gpgcheck=0</programlisting>
+      <para>Install the Grid CA repository for details please see
+https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
+      <programlisting>&prompt-root; cat /etc/yum.repos.d/egi-trust-anchor.repo
+[EGI-trustanchors]
+name=EGI-trustanchors
+baseurl=http://repository.egi.eu/sw/production/cas/1/current/
+gpgkey=http://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-3
+gpgcheck=1
+enabled=1</programlisting>
+      <para>Install the lcg-CA</para>
+      <programlisting>&prompt-root; yum install lcg-CA</programlisting>
+      <para>install fetch-crl</para>
+      <programlisting>&prompt-root; yum install fetch-crl</programlisting>
+      <para>Install the hepix image list subscriber.</para>
+      <programlisting>&prompt-root; yum install hepixvmilsubscriber</programlisting>
+      <para>This may fail due to a dependency of m2crypto that cannot be satisfied. This is
+due to known bugs in m2crypto in the version shipped in RHEL5. If this is a
+problem please download the following</para>
+      <programlisting>&prompt-root; http://ftp.informatik.uni-frankfurt.de/fedora-archive/fedora/linux/releases/8/Everything/source/SRPMS/m2crypto-0.18-2.src.rpm</programlisting>
+      <para>And build a native RPM.</para>
+      <programlisting>&prompt-root; </programlisting>
+      <para></para>
+      <programlisting>&prompt-root; </programlisting>
+      <para></para>
+      <programlisting>&prompt-root; </programlisting>
+      <para></para>
+      <programlisting>&prompt-root; </programlisting>
   </section>
   <section>
     <title>vmlisub_endorser</title>
@@ -350,15 +417,68 @@ cache/cache.index</programlisting>
     <para>Now at any time users with file permisions can get a list of valid images.</para>
       <programlisting>&prompt-user;  vmlisub_image -l -d sqlite:////var/lib/vmlisub/vmlisub.db</programlisting>
     </section>
-    
-    <para></para>
-    <para></para>
-    <para></para>
-    <para></para>
-    <para></para>
-    <para></para>
-    <para></para>
-    <para></para>
-    <para></para>
+  </section>
+  <section>
+    <title>Logging configuration</title>
+    <para>All scripts have a logging option. This is used to configure pythons logging 
+      library. An example is shown below.</para>
+    <programlisting>&prompt-user;  vmlisub_image -L /usr/share/doc/hepixvmilsubscriber/logger.conf -l</programlisting>
+
+    <para>Logging can be independently set up for each object to multiple locations, and 
+      with different log levels.</para>
+  </section>
+  <section>
+    <title>Environment Variables</title>
+    <para>Environment variables can be used to set default values but the command line 
+options will override any set environment options.</para>
+    <section>
+      <title>VMILS_RDBMS </title>
+      <para>Sets the path to the database. For example "sqlite:///vmilsubscriber.db"</para>
+    </section>
+    <section>
+      <title>VMILS_CACHE_EVENT</title>
+      <para>Sets the executions string. Command line options can be set as enviroment 
+variables just like the command line interface. Users of the "sh shell" must
+protect the envroment variables from being substituted by thier shell.</para>
+      <programlisting>&prompt-user;  export VMILS_CACHE_EVENT="./myEventProcessor \$VMILS_EVENT_TYPE"</programlisting>
+      <para>An example of how to execute a command with an action command line.</para>
+    </section>
+    <section>
+      <title>VMILS_LOG_CONF</title>
+      <para>Sets the path to the logging configuration file.</para>
+    </section>
+    <section>
+      <title>VMILS_DIR_CERT</title>
+      <para>Sets the Path to the certificate authorities public keys, certificate revocation
+lists and certificate name spaces.</para>
+    </section>
+    <section>
+      <title>VMILS_CACHE_DIR_CACHE</title>
+      <para>Path used by 'vmlisub_endorser' to store verified VM images.</para>
+    </section>
+    <section>
+      <title>VMILS_CACHE_DIR_DOWNLOAD</title>
+      <para>Path used by 'vmlisub_endorser' to download VM images before VM image integrity
+is checked.</para>
+    </section>
+    <section>
+      <title>VMILS_CACHE_DIR_EXPIRE</title>
+      <para>Path used by 'vmlisub_endorser' to store VM images when they are no longer 
+endorsed.</para>
+    </section>
+    <section>
+      <title>VMILS_CACHE_ACTION_DOWNLOAD</title>
+      <para>Instructs 'vmlisub_endorser' to download the latest VM images and check 
+integrity.</para>
+    </section>
+    <section>
+      <title>VMILS_CACHE_ACTION_CHECK</title>
+      <para>Instructs 'vmlisub_endorser' check integrity for all currently stored VM images.</para>
+    </section>
+    <section>
+      <title>VMILS_CACHE_ACTION_EXPIRE</title>
+      <para>Instructs 'vmlisub_endorser' to expire stored VM images that are no longer 
+endorsed.</para>
+    </section>
   </section>
 </section>

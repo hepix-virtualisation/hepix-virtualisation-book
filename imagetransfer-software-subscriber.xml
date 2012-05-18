@@ -338,8 +338,7 @@ cache/cache.index</programlisting>
       -d sqlite:////var/lib/vmlisub/vmlisub.db</programlisting>
       <para>make a cron job</para>
       <programlisting>&prompt-root;  cat   /etc/cron.d/vmlisub
-50 */6 * * *    vmlisub (/usr/bin/vmlisub_sub -d sqlite:////var/lib/vmlisub/vmlisub.db -U; /usr/bin/vmlisub_cache -d sqlite:////var/lib/vmlisub/vmlisub.db -C /var/cache/vmimages/endorsed/ -p /var/cache/vmimages/partial/ -e /var/cache/vmimages/expired/ ) >> /var/log/vmlisub.log 2>&amp;1</programlisting>
-      
+50 */6 * * *    vmlisub (/usr/bin/vmlisub_sub -d sqlite:////var/lib/vmlisub/vmlisub.db -U; /usr/bin/vmlisub_cache -d sqlite:////var/lib/vmlisub/vmlisub.db -C /var/cache/vmimages/endorsed/ -p /var/cache/vmimages/partial/ -e /var/cache/vmimages/expired/ ) >> /var/log/vmlisub.log 2>&amp;1</programlisting>      
     <para>So the script is executed every 6 hours shortly after fetch CRL.</para>
     <para>Now at any time users with file permisions can get a list of valid images.</para>
       <programlisting>&prompt-user;  vmlisub_image -l -d sqlite:////var/lib/vmlisub/vmlisub.db</programlisting>

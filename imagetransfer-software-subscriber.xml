@@ -104,6 +104,13 @@ imagelist.dc:date:created=2011-03-16T00:15:07Z
 imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     <para>Change the output format to get the original message without the security wraper, or in original form:</para>
     <programlisting>&prompt-user;  vmlisub_sub  -i --uuid=63175437-7d59-4851-b333-c96cb6545a86 -f message</programlisting>
+    <para>Three formats exist SMIME, message, lines. </para>
+    <itemizedlist>
+      <listitem>SMIME for applications that wish to process the signature as if from the endorser directly.</listitem>
+      <listitem>message for applications that have no interest in processing the SMIME signature.</listitem>
+      <listitem>lines for human users of this application.</listitem>
+    </itemizedlist>
+    
     <para>To delete a subscription</para>
     <programlisting>&prompt-user;  vmlisub_sub  -D  --uuid=63175437-7d59-4851-b333-c96cb6545a86</programlisting>
   </section>

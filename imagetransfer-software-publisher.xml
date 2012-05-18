@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE part PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                      "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<section id="imagetransfer-software-vmlipub">
+  <title>hepixvmitrust</title>
+  <section>
+    <title>Introduction</title>
+    <para>hepixvmitrust is a package that contains a CLI tool, and a minimal
+implementation, in its documentation for X509 signing lists of
+virtual machine image metadata. The tools are generally reusable
+but were developed to satisfy the need to securely exchange virtual
+machine images between High Energy Physics sites, in a similar way
+to yum and apt repositories provide for rpms, this software provides
+for Virtual Maschines.</para>
+  </section>
+  
+  <section>
+    <title>Installation</title>
+    <section>
+      <title>Installation on Redhat Enterprise Linux 6</title>
+      <para>Install EPEL for dependencies.</para>
+      <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/6/x86_64/epel-release-6-5.noarch.rpm</userinput></programlisting>
+      <para>Install DESY yum repository.</para>
+      
+      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/desyvirt.repo</userinput>
+[desyvirt]
+name=desyvirt
+baseurl=http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/
+enabled=1
+gpgcheck=0</programlisting>
+      <para>Install the Grid CA repository for details please see https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
+      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/egi-trust-anchor.repo</userinput>
+[EGI-trustanchors]
+name=EGI-trustanchors
+baseurl=http://repository.egi.eu/sw/production/cas/1/current/
+gpgkey=http://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-3
+gpgcheck=1
+enabled=1</programlisting>
+      <para>install the ca-policy-egi-core</para>
+      <programlisting>&prompt-root; <userinput>yum install ca-policy-egi-core</userinput></programlisting>
+      <para>install fetch-crl</para>
+      <programlisting>&prompt-root; <userinput>yum install fetch-crl</userinput></programlisting>
+      <para></para>
+      <programlisting>&prompt-root; <userinput>yum install hepixvmitrust</userinput></programlisting>
+    </section>
+    <section>
+      <title>Installation on Redhat Enterprise Linux 5</title>
+      <para>Install EPEL for dependencies.</para>
+      <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</userinput></programlisting>
+      <para>Install DESY yum repository.</para>
+      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/desyvirt.repo</userinput>
+[desyvirt]
+name=desyvirt
+baseurl=http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/
+enabled=1
+gpgcheck=0</programlisting>
+      <para>Install the Grid CA repository for details please see
+https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
+      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/egi-trust-anchor.repo</userinput>
+[EGI-trustanchors]
+name=EGI-trustanchors
+baseurl=http://repository.egi.eu/sw/production/cas/1/current/
+gpgkey=http://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-3
+gpgcheck=1
+enabled=1</programlisting>
+      <para>Install the lcg-CA</para>
+      <programlisting>&prompt-root; <userinput>yum install lcg-CA</userinput></programlisting>
+      <para>install fetch-crl</para>
+      <programlisting>&prompt-root; <userinput>yum install fetch-crl</userinput></programlisting>
+      <para>Install the hepix image list subscriber.</para>
+      <programlisting>&prompt-root; <userinput>yum install hepixvmitrust</userinput></programlisting>
+    </section>
+    <section>
+      <title>Installation on Debian </title>
+      <para>Do not install thsi on debian 6.0 as the included version of python-m2crypto is not stable.</para>
+      <para>All the dependacies are available in the debian repository.</para>
+      <programlisting>&prompt-root; <userinput>aptitude install python-m2crypto</userinput></programlisting>
+      <para>Now install the code froms git.</para>
+      <programlisting>&prompt-root; <userinput>python setup.py install</userinput></programlisting>
+    </section>
+  </section>
+  
+  
+  
+  <section>
+    <title>Basic usage vmilisttool</title>
+    <para>To get a complete list of available commands do:</para>
+    <programlisting>&prompt-user; <userinput>vmilisttool --help</userinput></programlisting>
+    <para>Here is an example of how to create a signed image list:</para>
+    <section>
+      <title>Create a template for the image list.</title>
+      
+      <para></para>
+      <programlisting>&prompt-user; <userinput>vmilisttool --json image_list_template.json</userinput></programlisting>
+      <para>Edit the file image_list_template.json adding your list metadata so no 'null'
+entries exist.</para>
+      <programlisting>&prompt-user; <userinput>vim image_list_template.json</userinput></programlisting>
+    </section>
+    <section>
+      <title>Create a template for an image reference.</title>
+      
+      <para>Create a template for an image reference. This will compute the checksum of
+the image file and create a JSON text file containing that checksum.</para>
+      <programlisting>&prompt-user; <userinput>vmilisttool --image /home/jdoe/rawdiskimage.img --generate VMmetadata.json</userinput></programlisting>
+      <para>Edit the file VMmetadata.json adding your list metadata so no 'null' entries exist.</para>
+      <programlisting>&prompt-user; <userinput>vim  VMmetadata.json</userinput></programlisting>
+    </section>
+    <section>
+      <title>Add image metadata to the image list</title>
+      
+      <para>Add your newly updated image metadata to the image list</para>
+      <programlisting>&prompt-user; <userinput>vmilisttool  --template image_list_template.json  -add VMmetadata.json --json merged_image_list.json</userinput></programlisting>
+    </section>
+    <section>
+      <title>Sign the image list.</title>
+      
+      <para>Sign the now assembled metadata list.</para>
+      <programlisting>&prompt-user; <userinput>vmilisttool  --template merged_image_list.json -s signed_image_list</userinput></programlisting>
+    </section>
+  </section>
+  <section>
+    <title>How to verify and image</title>
+    <para>To get the DN and CA of your signature.</para>
+    <programlisting>&prompt-user; <userinput>openssl smime -in your_signed.msg \
+     -pk7out | openssl pkcs7 -print_certs</userinput></programlisting>
+    <para>To Verfy the message agaisnt the CA certificate.</para>
+    <programlisting>&prompt-user; <userinput>openssl smime -in your_signed.msg \
+     -CAfile /etc/grid-security/certificates/dd4b34ea.0 \
+     -verify 1> /dev/null</userinput></programlisting>
+  </section>
+  <section>
+    <title>Environment variables</title>
+    <para>Environment variables can be used to set defaults for variables that must be added to the
+JSON directly if not set.</para>
+    <para>Three groups of environment variables exist, Image list level,
+Endorser level and Image level. These three groups have unique prefixs.</para>
+    <section>
+      <title>Image list level</title>
+      <itemizedlist>
+        <listitem>HVMIL_DC_DATE_CREATED</listitem>
+        <listitem>HVMIL_DC_DATE_EXPIRES</listitem>
+        <listitem>HVMIL_DC_DESCRIPTION</listitem>
+        <listitem>HVMIL_DC_IDENTIFIER</listitem>
+        <listitem>HVMIL_DC_SOURCE</listitem>
+        <listitem>HVMIL_DC_TITLE</listitem>
+        <listitem>HVMIL_HV_URI</listitem>
+        <listitem>HVMIL_HV_VERSION</listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Image level</title>
+      <itemizedlist>
+        <listitem>HVMILI_DC_DESCRIPTION</listitem>
+        <listitem>HVMILI_DC_IDENTIFIER</listitem>
+        <listitem>HVMILI_DC_TITLE</listitem>
+        <listitem>HVMILI_HV_HYPERVISOR</listitem>
+        <listitem>HVMILI_HV_SIZE</listitem>
+        <listitem>HVMILI_HV_URI</listitem>
+        <listitem>HVMILI_HV_VERSION</listitem>
+        <listitem>HVMILI_SL_ARCH</listitem>
+        <listitem>HVMILI_SL_CHECKSUM_SHA512</listitem>
+        <listitem>HVMILI_SL_COMMENTS</listitem>
+        <listitem>HVMILI_SL_OS</listitem>
+        <listitem>HVMILI_SL_OSVERSION</listitem>
+      </itemizedlist>
+    </section>
+    <section>
+      <title>Endorser Level</title>
+      <itemizedlist>
+        <listitem>HVMILE_DC_CREATOR</listitem>
+        <listitem>HVMILE_HV_CA</listitem>
+        <listitem>HVMILE_HV_DN</listitem>
+        <listitem>HVMILE_HV_EMAIL</listitem>
+      </itemizedlist>
+    </section>
+  </section>
+</section>

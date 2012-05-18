@@ -103,6 +103,7 @@ problem please download the following</para>
       <programlisting>&prompt-root; </programlisting>
       <para></para>
       <programlisting>&prompt-root; </programlisting>
+    </section>
   </section>
   <section>
     <title>vmlisub_endorser</title>
@@ -315,7 +316,6 @@ UUID for imagelist this allows updating the list, and uniqueness.</para>
           <para>The Image file name.</para>
         </section>
       </section>
-      
     </section>
   </section>
   <section>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<chapter id="imagecreation-fileformat">
+  <info>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+  </info>
+  <title>Virtual machine Image File Format</title>
+  <para>While the virtualisation working group does not want the software to enforce 
+  a single data format we do want to support as many hyper-visor technologies as possible.</para>
+  <para>It is easier to support one image than many different image formats. For this 
+  reason the virtualsiation working group has come up with a single recommended format.</para>
+  <para>The file format is a joint decision of the working group.</para>
+  <section id="imagecreation-fileformat-hvwg1">
+    <title>Virtual Machine Image File Format V1</title>
+    <itemizedlist>
+      <listitem>Raw disk images are used as these are supported by Qemu and Xen natively.</listitem>
+      <listitem>The file will be partitioned using standard x86 partitioning schema.</listitem>
+      <listitem>The raw image file will be compressed with gzip to speed transfer of the images.</listitem>
+      <listitem>The Virtual machine will not use LVM as this may interfere with LVM running on 
+      the hyper-visor should it be necessary to mount the VM.</listitem>
+    </itemizedlist>
+  </section>
+  <section id="imagecreation-fileformat-hvwg2">
+    <title>Virtual Machine Image File Format V2</title>
+    <para>Since the original disk format assumed all disk space was included in a single image 
+    this caused issues for image producers wanting to produce images that would be used with 
+    a variety of number of cores, Since the image would have need to be different sizes for 
+    different number of cores.</para>
+    <para>To resolve the issue of image size being proportional to the number of cores intended 
+    to be used with any image the image file format has been changed.</para>
+    <itemizedlist>
+      <listitem>Raw disk images are used as these are supported by Qemu and Xen natively.</listitem>
+      <listitem>The file will be partitioned using standard x86 partitioning schema.</listitem>
+      <listitem>The raw image file will be compressed with gzip to speed transfer of the images.</listitem>
+      <listitem>The Virtual machine will not use LVM as this may interfere with LVM running on 
+      the hyper-visor should it be necessary to mount the VM.</listitem>
+    </itemizedlist>
+  </section>
+</chapter>

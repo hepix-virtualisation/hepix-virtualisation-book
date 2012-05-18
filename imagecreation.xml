@@ -17,4 +17,5 @@
     </para>
   </partintro>
   <xi:include href="imagecreation-multiplehypervisor.xml"/>
+  <xi:include href="imagecreation-fileformat.xml"/>
 </part>

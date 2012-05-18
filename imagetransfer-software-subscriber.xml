@@ -96,13 +96,6 @@ due to known bugs in m2crypto in the version shipped in RHEL5. If this is a
 problem please download the following</para>
       <programlisting>&prompt-root; http://ftp.informatik.uni-frankfurt.de/fedora-archive/fedora/linux/releases/8/Everything/source/SRPMS/m2crypto-0.18-2.src.rpm</programlisting>
       <para>And build a native RPM.</para>
-      <programlisting>&prompt-root; </programlisting>
-      <para></para>
-      <programlisting>&prompt-root; </programlisting>
-      <para></para>
-      <programlisting>&prompt-root; </programlisting>
-      <para></para>
-      <programlisting>&prompt-root; </programlisting>
     </section>
   </section>
   <section>

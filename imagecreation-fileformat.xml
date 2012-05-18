@@ -42,6 +42,7 @@
       <listitem>The raw image file will be compressed with gzip to speed transfer of the images.</listitem>
       <listitem>The Virtual machine will not use LVM as this may interfere with LVM running on 
       the hyper-visor should it be necessary to mount the VM.</listitem>
+      <listitem>The Virtual machine will mount a dynamically created image for the scratch space.</listitem>
     </itemizedlist>
   </section>
 </chapter>

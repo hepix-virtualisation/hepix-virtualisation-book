@@ -4,6 +4,20 @@
 <!ENTITY % sharedents SYSTEM "shared-entities.xml" >
 %sharedents;
 ]>
+<chapter id="imagetransfer-software-subscriber">  
+  <info>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+  </info>
+  <title>imagetransfer Software Subscribers</title>
+
+
+        
+
+
+
 
 <section id="imagetransfer-software-vmlisub">
   <title>vmlisub</title>
@@ -15,7 +29,32 @@ the images referenced to in the image list, validate the images list with x509
 based public key cryptography, and validate the images against sha512 hashes in 
 the images lists and provide events for further applications to process updates 
 or expiries of virtual machine images without having to further validate the 
-images. This set of applications are designed to provide a similar work flow
+images.</para>
+
+<para>This software is available at:</para>
+        <code>https://github.com/hepix-virtualisation/hepixvmilsubscriber</code>
+        <para>The software is based upon a simple database that stores subscriptions to image lists,
+          who can sign the image list, and which images belong to which subscriptions. It allows 
+          images to selected for subscription.</para>
+        <para>Subscribed images can be downloaded verified and cached. Cached images can be verified,
+          and if invalid or expired they are moved to an expiry directory.</para>
+        <section id="magetransfer-software-imagelist-consumer-status-features">
+          <title>Features</title>
+          <itemizedlist>
+            <listitem>Add and delete multiple subscriptions to image lists.</listitem>
+            <listitem>Update subscriptions checking authenticity of the message useng x509 based signatures.</listitem>
+            <listitem>Automation as a cron script.</listitem>
+            <listitem>Subscribe and unsubscribe to images from Imagelists.</listitem>
+            <listitem>Download verify images into a local cache.</listitem>
+            <listitem>Expire images to an archive when no longer endorsed or corrupt.</listitem>
+          </itemizedlist>
+        </section>
+
+
+
+
+
+<para> This set of applications are designed to provide a similar work flow
 from each area of control to the imagelist archive.</para>
     <itemizedlist>
       <listitem>vmlisub_endorser - Endorsers of imagelist subscriptions.</listitem>
@@ -38,6 +77,25 @@ for virtual machines, authenticated by the x509 signatures.</para>
   </section>
   <section>
     <title>Installation</title>
+    
+        
+    
+    <section id="imagetransfer-software-vmlisub-repo">
+      <title>Package Repositories.</title>
+      <para>The intra site tools are tested on every release for &rhel; 5 and 6 and are developed 
+        on the &debian; platform. They are available as src and binary RPM packages in the following 
+        repository sporting.</para>
+      <itemizedlist>
+        <listitem>http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/</listitem>
+        <listitem>http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/</listitem>
+      </itemizedlist>
+      <para>Deployment instructions are provided in the README included in the source code and 
+        the RPM.</para>
+    </section>
+    
+    
+    
+    
     <section>
       <title>Installation on Redhat Enterprise Linux 6</title>
       <para>Install EPEL for dependencies.</para>
@@ -474,4 +532,15 @@ integrity.</para>
 endorsed.</para>
     </section>
   </section>
+  <section id="imagetransfer-software-imagelist-consumer-status-todo">
+      <title>To Do (16-05-2012)</title>
+      <itemizedlist>
+        <listitem>Only message authenticity is checked, does not yet check authenticity of transport.</listitem>
+      </itemizedlist>
+      <para>While it does check the authenticity of the message using X509, at the moment the 
+        authenticity of the host is unchecked. For the programmability it would be far simpler to 
+        use x509 certificates to check the host server. In terms of deployment it would be far 
+        easier just to check any host key mechanism, as this is sufficient.</para>
+    </section>
 </section>
+</chapter>

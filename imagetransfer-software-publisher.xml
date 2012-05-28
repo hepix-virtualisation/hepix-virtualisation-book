@@ -11,16 +11,16 @@
       <surname>Synge</surname>
     </author>
   </info>
-  <title>Imagelist Publishing Software</title>
+  <title>&vmil; Publishing Software</title>
 
    <section id="imagetransfer-software-imagelist-creation-deployment">
-      <title>Deployment of Image Lists</title>
+      <title>Deployment of &vmil;s</title>
       <para>The security of a signed message with an expiry date is fine to ensure
   that a message is not faked. An old image can be presented to
-  subscribers blocking seeing the new image list. This is very unlikely
+  subscribers blocking seeing the new &vmil;. This is very unlikely
   given HEP name server setups, but to have confidence this is not occurring
   we need an authenticated connection with the web server and that means SSL.</para>
-      <para>It is an image list producers decision if they provide http, or https
+      <para>It is an &vmil; producers decision if they provide http, or https
   authenticated or even X509 authenticated access, Since this tool is based
   on X509 trust I would suggest deploying on an X509 based web server and
   not requiring client have an identify if possible, http(s) maybe enough
@@ -49,7 +49,7 @@ for Virtual Maschines.</para>
     <para>This software is available at:</para>
     <code>https://github.com/hepix-virtualisation/hepixvmitrust</code>
     <para>The software is production grade, and has been used by
-    many members of the &vwg; to generate signed image lists.</para>
+    many members of the &vwg; to generate signed &vmil;s.</para>
   </section>
   <section id="imagetransfer-software-imagelist-creation-status">
     <title>Status</title>
@@ -59,17 +59,17 @@ for Virtual Maschines.</para>
       <itemizedlist>
         <listitem>Command line application with library to support integration.</listitem>
         <listitem>Adds X509 Signature to lists of images.</listitem>
-        <listitem>Ability to add and remove images to image list.</listitem>
+        <listitem>Ability to add and remove images to &vmil;.</listitem>
         <listitem>Automatic setting of some meta data fields.</listitem>
         <listitem>Supports optional data fields.</listitem>
-        <listitem>Import signed image lists for modification.</listitem>
+        <listitem>Import signed &vmil;s for modification.</listitem>
         <listitem>Set all fields via enviroment variables.</listitem>
       </itemizedlist>
     </section>
     <section id="imagetransfer-software-imagelist-creation-status-todo">
       <title>To Do (11-08-2011)</title>
       <itemizedlist>
-        <listitem>Auto add CA and DN fields to image list.</listitem>
+        <listitem>Auto add CA and DN fields to &vmil;.</listitem>
       </itemizedlist>
     </section>
   </section>
@@ -148,7 +148,7 @@ enabled=1</programlisting>
       <programlisting>&prompt-root; <userinput>yum install lcg-CA</userinput></programlisting>
       <para>install fetch-crl</para>
       <programlisting>&prompt-root; <userinput>yum install fetch-crl</userinput></programlisting>
-      <para>Install the hepix image list subscriber.</para>
+      <para>Install the hepix &vmil; subscriber.</para>
       <programlisting>&prompt-root; <userinput>yum install hepixvmitrust</userinput></programlisting>
     </section>
     <section>
@@ -167,9 +167,9 @@ enabled=1</programlisting>
     <title>Basic usage vmilisttool</title>
     <para>To get a complete list of available commands do:</para>
     <programlisting>&prompt-user; <userinput>vmilisttool --help</userinput></programlisting>
-    <para>Here is an example of how to create a signed image list:</para>
+    <para>Here is an example of how to create a signed &vmil;:</para>
     <section>
-      <title>Create a template for the image list.</title>
+      <title>Create a template for the &vmil;.</title>
       
       <para></para>
       <programlisting>&prompt-user; <userinput>vmilisttool --json image_list_template.json</userinput></programlisting>
@@ -187,13 +187,13 @@ the image file and create a JSON text file containing that checksum.</para>
       <programlisting>&prompt-user; <userinput>vim  VMmetadata.json</userinput></programlisting>
     </section>
     <section>
-      <title>Add image metadata to the image list</title>
+      <title>Add image metadata to the &vmil;</title>
       
-      <para>Add your newly updated image metadata to the image list</para>
+      <para>Add your newly updated image metadata to the &vmil;</para>
       <programlisting>&prompt-user; <userinput>vmilisttool  --template image_list_template.json  -add VMmetadata.json --json merged_image_list.json</userinput></programlisting>
     </section>
     <section>
-      <title>Sign the image list.</title>
+      <title>Sign the &vmil;.</title>
       
       <para>Sign the now assembled metadata list.</para>
       <programlisting>&prompt-user; <userinput>vmilisttool  --template merged_image_list.json -s signed_image_list</userinput></programlisting>
@@ -213,10 +213,10 @@ the image file and create a JSON text file containing that checksum.</para>
     <title>Environment variables</title>
     <para>Environment variables can be used to set defaults for variables that must be added to the
 JSON directly if not set.</para>
-    <para>Three groups of environment variables exist, Image list level,
+    <para>Three groups of environment variables exist, &vmil; level,
 Endorser level and Image level. These three groups have unique prefixs.</para>
     <section>
-      <title>Image list level</title>
+      <title>&vmil; level</title>
       <itemizedlist>
         <listitem>HVMIL_DC_DATE_CREATED</listitem>
         <listitem>HVMIL_DC_DATE_EXPIRES</listitem>
@@ -258,12 +258,12 @@ Endorser level and Image level. These three groups have unique prefixs.</para>
 </section>
 <section id="imagetransfer-software-imagelist-creation-developer">
     <title>Minimal publisher: minimal.py</title>
-    <para>This is an alternative implantation of an image list signer in python,
+    <para>This is an alternative implantation of an &vmil; signer in python,
     using the m2crypto wrapper for openssl as does the CLI.</para>
     <para>This version is very compact and simplistic.and is available within the hepixvmitrust package as a dcoumentation file minimal.py:</para>
     <code>https://github.com/hepix-virtualisation/hepixvmitrust</code>
     <para>It is intended for products like repoman, VMIC and Petrags release
-    system, to see an example of signing thier own image lists, using
+    system, to see an example of signing thier own &vmil;s, using
     minimal code.</para>
     <programlisting>import sys
 import M2Crypto.SMIME

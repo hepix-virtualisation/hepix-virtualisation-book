@@ -57,10 +57,10 @@ images.</para>
 <para> This set of applications are designed to provide a similar work flow
 from each area of control to the &vmil; archive.</para>
     <itemizedlist>
-      <listitem>vmlisub_endorser - Endorsers of &vmil; subscriptions.</listitem>
-      <listitem>vmlisub_sub      - Subscription list details.</listitem>
-      <listitem>vmlisub_image    - Image details.</listitem>
-      <listitem>vmlisub_cache    - Cache images and update events.</listitem>
+      <listitem>&vmlisub_endorser; - Endorsers of &vmil; subscriptions.</listitem>
+      <listitem>&vmlisub_sub;      - Subscription list details.</listitem>
+      <listitem>&vmlisub_image;    - Image details.</listitem>
+      <listitem>&vmlisub_cache;    - Cache images and update events.</listitem>
     </itemizedlist>
     <para>They work in conjunction with a database to ease navigation, a local cache of
 &vmil; subscriptions. The database is message format agnostic, but it
@@ -157,7 +157,7 @@ problem please download the following</para>
     </section>
   </section>
   <section>
-    <title>vmlisub_endorser</title>
+    <title>&vmlisub_endorser;</title>
     <para>This application is for managing who the subscriber trusts to update image 
 lists. Since individuals are identified with x509 certificates, Each certificate
 has an issuing certificate and a unique string called a 'subject' to identify 
@@ -190,7 +190,7 @@ The endorser_uuid could be a more human name:</para>
        --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</userinput></programlisting>
   </section>
   <section>
-    <title>vmlisub_sub</title>    
+    <title>&vmlisub_sub;</title>    
     <para>This application manages your subscriptions and thier update:</para>
     <para>To add a subscription</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_sub  -s https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</userinput></programlisting>
@@ -234,7 +234,7 @@ imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     <programlisting>&prompt-user;  <userinput>vmlisub_sub  -D  --uuid=63175437-7d59-4851-b333-c96cb6545a86</userinput></programlisting>
   </section>
   <section>
-    <title> vmlisub_image</title>
+    <title> &vmlisub_image;</title>
     <para> This application manages images within your subscription. </para> 
     <para>List the available images</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
@@ -257,7 +257,7 @@ available in the current &vmil;s. Now we will select an image for local caching.
     </section>
   </section>
   <section>
-    <title>vmlisub_cache  </title>
+    <title>&vmlisub_cache;  </title>
     <para>  This application downloads images. By default it will download images, check the sha512
 hash of cached images and expire images from old &vmil;s.</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_cache</userinput>
@@ -270,7 +270,7 @@ INFO:DownloadDir:Downloading 'ecfbc671-eaee-439c-b1a3-db85dbef5e7b'.
 INFO:CacheMan:moved file ecfbc671-eaee-439c-b1a3-db85dbef5e7b
 </programlisting>
     <section>
-      <title>vmlisub_cache Event interface</title>
+      <title>&vmlisub_cache; Event interface</title>
       <para>Since this application suite is intended to be embedded in a larger application 
 and concerned with downloading and managing updates of VM images into a cloud
 infrastructure, it is some times beneficial to have an event interface so that 
@@ -306,7 +306,7 @@ change.</para>
       </itemizedlist>
       <para>These correspond to the variables within the &vmil;.</para>
       <section>
-        <title>vmlisub_cache Event Environment variables</title>
+        <title>&vmlisub_cache; Event Environment variables</title>
         <section>
           <title>VMILS_EVENT_TYPE</title>
           <itemizedlist>
@@ -505,30 +505,30 @@ lists and certificate name spaces.</para>
     </section>
     <section>
       <title>VMILS_CACHE_DIR_CACHE</title>
-      <para>Path used by 'vmlisub_endorser' to store verified VM images.</para>
+      <para>Path used by '&vmlisub_endorser;' to store verified VM images.</para>
     </section>
     <section>
       <title>VMILS_CACHE_DIR_DOWNLOAD</title>
-      <para>Path used by 'vmlisub_endorser' to download VM images before VM image integrity
+      <para>Path used by '&vmlisub_endorser;' to download VM images before VM image integrity
 is checked.</para>
     </section>
     <section>
       <title>VMILS_CACHE_DIR_EXPIRE</title>
-      <para>Path used by 'vmlisub_endorser' to store VM images when they are no longer 
+      <para>Path used by '&vmlisub_endorser;' to store VM images when they are no longer 
 endorsed.</para>
     </section>
     <section>
       <title>VMILS_CACHE_ACTION_DOWNLOAD</title>
-      <para>Instructs 'vmlisub_endorser' to download the latest VM images and check 
+      <para>Instructs '&vmlisub_endorser;' to download the latest VM images and check 
 integrity.</para>
     </section>
     <section>
       <title>VMILS_CACHE_ACTION_CHECK</title>
-      <para>Instructs 'vmlisub_endorser' check integrity for all currently stored VM images.</para>
+      <para>Instructs '&vmlisub_endorser;' check integrity for all currently stored VM images.</para>
     </section>
     <section>
       <title>VMILS_CACHE_ACTION_EXPIRE</title>
-      <para>Instructs 'vmlisub_endorser' to expire stored VM images that are no longer 
+      <para>Instructs '&vmlisub_endorser;' to expire stored VM images that are no longer 
 endorsed.</para>
     </section>
   </section>

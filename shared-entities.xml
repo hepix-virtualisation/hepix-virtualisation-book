@@ -32,6 +32,10 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY repoman      "<productname>Repoman</productname>">
 <!ENTITY vmic         "<productname>VMIC</productname>">
 <!ENTITY stratuslab   "<productname>StratusLab</productname>">
+<!ENTITY  vmlisub_endorser  "<productname>vmlisub_endorser</productname>">
+<!ENTITY  vmlisub_sub  "<productname>vmlisub_sub</productname>">
+<!ENTITY  vmlisub_image  "<productname>vmlisub_image</productname>">
+<!ENTITY  vmlisub_cache  "<productname>vmlisub_cache</productname>">
 
 
 <!-- Various literals -->

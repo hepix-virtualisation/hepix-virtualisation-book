@@ -30,30 +30,24 @@ based public key cryptography, and validate the images against sha512 hashes in
 the images lists and provide events for further applications to process updates 
 or expiries of virtual machine images without having to further validate the 
 images.</para>
-
-<para>This software is available at:</para>
-        <code>https://github.com/hepix-virtualisation/hepixvmilsubscriber</code>
-        <para>The software is based upon a simple database that stores subscriptions to &vmil;s,
-          who can sign the &vmil;, and which images belong to which subscriptions. It allows 
-          images to selected for subscription.</para>
-        <para>Subscribed images can be downloaded verified and cached. Cached images can be verified,
-          and if invalid or expired they are moved to an expiry directory.</para>
-        <section id="magetransfer-software-imagelist-consumer-status-features">
-          <title>Features</title>
-          <itemizedlist>
-            <listitem>Add and delete multiple subscriptions to &vmil;s.</listitem>
-            <listitem>Update subscriptions checking authenticity of the message useng x509 based signatures.</listitem>
-            <listitem>Automation as a cron script.</listitem>
-            <listitem>Subscribe and unsubscribe to images from &vmil;s.</listitem>
-            <listitem>Download verify images into a local cache.</listitem>
-            <listitem>Expire images to an archive when no longer endorsed or corrupt.</listitem>
-          </itemizedlist>
-        </section>
-
-
-
-
-
+    <para>This software is available at:</para>
+    <code>https://github.com/hepix-virtualisation/hepixvmilsubscriber</code>
+    <para>The software is based upon a simple database that stores subscriptions to &vmil;s,
+      who can sign the &vmil;, and which images belong to which subscriptions. It allows 
+      images to selected for subscription.</para>
+    <para>Subscribed images can be downloaded verified and cached. Cached images can be verified,
+      and if invalid or expired they are moved to an expiry directory.</para>
+    <section id="magetransfer-software-imagelist-consumer-status-features">
+      <title>Features</title>
+      <itemizedlist>
+        <listitem>Add and delete multiple subscriptions to &vmil;s.</listitem>
+        <listitem>Update subscriptions checking authenticity of the message useng x509 based signatures.</listitem>
+        <listitem>Automation as a cron script.</listitem>
+        <listitem>Subscribe and unsubscribe to images from &vmil;s.</listitem>
+        <listitem>Download verify images into a local cache.</listitem>
+        <listitem>Expire images to an archive when no longer endorsed or corrupt.</listitem>
+      </itemizedlist>
+    </section>
 <para> This set of applications are designed to provide a similar work flow
 from each area of control to the &vmil; archive.</para>
     <itemizedlist>
@@ -77,9 +71,6 @@ for virtual machines, authenticated by the x509 signatures.</para>
   </section>
   <section>
     <title>Installation</title>
-    
-        
-    
     <section id="imagetransfer-software-vmlisub-repo">
       <title>Package Repositories.</title>
       <para>The intra site tools are tested on every release for &rhel; 5 and 6 and are developed 
@@ -155,7 +146,91 @@ problem please download the following</para>
       <programlisting>http://ftp.informatik.uni-frankfurt.de/fedora-archive/fedora/linux/releases/8/Everything/source/SRPMS/m2crypto-0.18-2.src.rpm</programlisting>
       <para>And build a native RPM.</para>
     </section>
-  </section>
+    
+    
+    
+    <section>
+      <title>Installation on &wheezy; or later,</title>
+      <para>Do not install this on debian 6.0 as the included version of python-m2crypto is not stable.</para>
+      <para>These instructions are for &wheezy; or later.</para>
+      <para>Unfortunatly at this moment the code is not packaged. but all the dependacies are available 
+      in the debian repository. </para>
+      
+      <para>For Grid scientific use you can get a trust store easily using the egi.eu repository.</para>
+      <programlisting>&prompt-root; <userinput>wget -q -O - \
+https://dist.eugridpma.info/distribution/igtf/current/GPG-KEY-EUGridPMA-RPM-3 \
+ | apt-key add -</userinput></programlisting>
+      <para>Add the following line to your sources.list file for APT:</para>
+      <programlisting>#### EGI Trust Anchor Distribution ####
+deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core</programlisting>
+      <para>for example:</para>
+      <programlisting>&prompt-root; <userinput>echo '#### EGI Trust Anchor Distribution ####' >> \
+    /etc/apt/sources.list</userinput>
+<userinput>echo 'deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core' >> \
+    /etc/apt/sources.list</userinput></programlisting>
+      <para>Now install the &ca; for the grid (Other &ca; can be substituted), install a tool to download and cache the &crl; </para>
+      <programlisting>&prompt-root; <userinput>aptitude update</userinput>
+&prompt-root; <userinput>aptitude install ca-policy-egi-core</userinput>
+&prompt-root; <userinput>aptitude install fetch-crl</userinput>
+&prompt-root; <userinput>fetch-crl </userinput></programlisting>
+
+      <para>Now install the code froms git.</para>
+      <programlisting>http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/</programlisting>
+      
+      <para>The leatest version of hepixvmitrust-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
+       <programlisting>&prompt-root; <userinput>$wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/hepixvmitrust-0.0.14.tar.gz</userinput>
+Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
+Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 19922 (19K) [application/x-tar]
+Saving to: `hepixvmitrust-0.0.14.tar.gz'
+
+100%[======================================>] 19,922      --.-K/s   in 0.05s   
+
+2012-05-28 19:45:45 (413 KB/s) - `hepixvmitrust-0.0.14.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf hepixvmitrust-0.0.14.tar.gz </userinput>
+&prompt-root; <userinput>cd hepixvmitrust-0.0.14</userinput>
+&prompt-root; <userinput>python setup install</userinput>
+&prompt-root; <userinput>echo $?</userinput>
+&prompt-root; <userinput>cd ..</userinput></programlisting>
+      <para>The leatest version ofsmimeX509validation-0.0.7.tar.gz  -X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
+       <programlisting>&prompt-root; <userinput></userinput>
+&prompt-root; <userinput>wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/smimeX509validation-0.0.7.tar.gz</userinput>
+Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
+Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 19922 (19K) [application/x-tar]
+Saving to: `smimeX509validation-0.0.7.tar.gz'
+
+100%[======================================>] 19,922      --.-K/s   in 0.05s   
+
+2012-05-28 19:45:45 (413 KB/s) - `smimeX509validation-0.0.7.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf smimeX509validation-0.0.7.tar.gz </userinput>
+&prompt-root; <userinput>cd smimeX509validation-0.0.7</userinput>
+&prompt-root; <userinput>python setup install</userinput>
+&prompt-root; <userinput>echo $?</userinput>
+&prompt-root; <userinput>cd ..</userinput></programlisting>
+      <para>The leatest version of hepixvmilsubscriber-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
+       <programlisting>&prompt-root; <userinput></userinput>
+&prompt-root; <userinput>wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/hepixvmilsubscriber-0.1.14.tar.gz</userinput>
+Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
+Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 19922 (19K) [application/x-tar]
+Saving to: `hepixvmilsubscriber-0.1.14.tar.gz'
+
+100%[======================================>] 19,922      --.-K/s   in 0.05s   
+
+2012-05-28 19:45:45 (413 KB/s) - `hepixvmilsubscriber-0.1.14.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf hepixvmilsubscriber-0.1.14.tar.gz </userinput>
+&prompt-root; <userinput>cd hepixvmilsubscriber-0.1.14</userinput>
+&prompt-root; <userinput>python setup install</userinput>
+&prompt-root; <userinput>echo $?</userinput>
+&prompt-root; <userinput>cd ..</userinput></programlisting>
+    </section>
+    
+    
+    
   <section>
     <title>&vmlisub_endorser;</title>
     <para>This application is for managing who the subscriber trusts to update image 
@@ -532,6 +607,7 @@ integrity.</para>
 endorsed.</para>
     </section>
   </section>
+  </section>
   <section id="imagetransfer-software-imagelist-consumer-status-todo">
       <title>To Do (16-05-2012)</title>
       <itemizedlist>
@@ -542,5 +618,5 @@ endorsed.</para>
         use x509 certificates to check the host server. In terms of deployment it would be far 
         easier just to check any host key mechanism, as this is sufficient.</para>
     </section>
-</section>
+  </section>
 </chapter>

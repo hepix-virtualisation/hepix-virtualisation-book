@@ -27,6 +27,7 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY hep          "High Energy Physics">
 <!ENTITY rhel         "<productname>Redhat Enterprise Linux</productname>">
 <!ENTITY debian       "<productname>Debian Linux</productname>">
+
 <!ENTITY openstack    "<productname>OpenStack</productname>">
 <!ENTITY eucalyptus   "<productname>Eucalyptus</productname>">
 <!ENTITY repoman      "<productname>Repoman</productname>">
@@ -36,7 +37,7 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY  vmlisub_sub  "<productname>vmlisub_sub</productname>">
 <!ENTITY  vmlisub_image  "<productname>vmlisub_image</productname>">
 <!ENTITY  vmlisub_cache  "<productname>vmlisub_cache</productname>">
-
+<!ENTITY wheezy       "<productname>Debian Linux Codename Wheezy</productname>">
 
 <!-- Various literals -->
 <!ENTITY vm           "<literal>Virtual Machine</literal>">
@@ -45,6 +46,8 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY vee          "<literal>Virtualised Execution Environments</literal>">
 <!ENTITY fss         "<emphasis>Fair Share Scheduling</emphasis>">
 <!ENTITY dubcore      "<literal>Dublin Core</literal>">
+<!ENTITY crl          "<literal>Certificate Revocation Lists</literal>">
+<!ENTITY ca          "<literal> Certification Authorities</literal>">
 
 <!-- When defining attributes, default values, etc. -->
 <!ENTITY true         "<emphasis>True</emphasis>">

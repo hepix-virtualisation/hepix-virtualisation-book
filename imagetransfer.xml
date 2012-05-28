@@ -18,5 +18,6 @@
   <xi:include href="imagetransfer-plan.xml"/>
   <xi:include href="imagetransfer-usecases.xml"/>
   <xi:include href="imagetransfer-imagelist.xml"/>
+  <xi:include href="imagetransfer-publishers.xml"/>
   <xi:include href="imagetransfer-software.xml"/>
 </part>

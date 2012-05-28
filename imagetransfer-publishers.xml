@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<chapter id="imagetransfer-publishers">  
+  <info>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+  </info>
+  <title>Image list publishers.</title>
+  <para>At the time of writing (28-05-2012) the following image list publishers exist.</para>
+  <itemizedlist>
+    <listitem>
+      <ulink url="https://cernvm.cern.ch/releases/image.list">
+        The CERN Virtual Machine's production images by Predrag Buncic.
+        The CERN Virtual Machine uses CernVMfs to help scientiets run the virtual maschine with LCG software using a HTTP based file system. Many 
+        different hypervisors are supported. QEMU/KVM, Xen, VirtualBox, Hyper-V, VMware, VirtualPC.
+      </ulink>
+    </listitem>
+    <listitem>
+      <ulink url="https://dish.desy.de:2880/testing.smime">
+        The DISH Virtual Machine's list by Owen Synge.
+      </ulink>
+      DISH is short for DESY Image SHaring. We have images designed for use at DESY and images designed for use in gerneric sites based on Scientific Linux (Generic).
+    </listitem>         
+    <listitem>
+      <ulink url="https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list">
+        Ian Gable's Univertisty of Victoria Cloud images.
+      </ulink>
+    </listitem>
+
+  </itemizedlist>
+</chapter>

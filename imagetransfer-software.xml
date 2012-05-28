@@ -120,31 +120,6 @@ security for many this is a discussion point.</para>
         </section>
       </section>
     </section>
-    <section id="imagetransfer-software-imagelist-publishers">
-      <title>Image list publishers.</title>
-      <para>At the time of writing (16-05-2012) the following image list publishers exist.</para>
-      <itemizedlist>
-        <listitem>
-          <ulink url="https://cernvm.cern.ch/releases/image.list">
-            The CERN Virtual Machine's production images by Predrag Buncic.
-            The CERN Virtual Machine uses CernVMfs to help scientiets run the virtual maschine with LCG software using a HTTP based file system. Many 
-            different hypervisors are supported. QEMU/KVM, Xen, VirtualBox, Hyper-V, VMware, VirtualPC.
-          </ulink>
-        </listitem>
-        <listitem>
-          <ulink url="https://dish.desy.de:2880/testing.smime">
-            The DISH Virtual Machine's list by Owen Synge.
-          </ulink>
-          DISH is short for DESY Image SHaring. We have images designed for use at DESY and images designed for use in gerneric sites based on Scientific Linux (Generic).
-        </listitem>         
-        <listitem>
-          <ulink url="https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list">
-            Ian Gable's Univertisty of Victoria Cloud images.
-          </ulink>
-        </listitem>
-        
-      </itemizedlist>
-    </section>
     <section id="imagetransfer-software-imagelist-deployment">
       <title>Image list tools deployment.</title>
       <para>The intra site tools are tested on every release for &rhel; 5 and 6 and are developed 

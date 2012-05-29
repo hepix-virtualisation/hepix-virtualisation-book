@@ -69,7 +69,7 @@ for Virtual Maschines.</para>
     <section id="imagetransfer-software-imagelist-creation-status-todo">
       <title>To Do (11-08-2011)</title>
       <itemizedlist>
-        <listitem>Auto add CA and DN fields to &vmil;.</listitem>
+        <listitem>Auto add &ca; issuer and Subject fields to &vmil;.</listitem>
       </itemizedlist>
     </section>
   </section>
@@ -109,7 +109,7 @@ name=desyvirt
 baseurl=http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/
 enabled=1
 gpgcheck=0</programlisting>
-      <para>Install the Grid CA repository for details please see https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
+      <para>Install the Grid &ca; repository for details please see https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
       <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/egi-trust-anchor.repo</userinput>
 [EGI-trustanchors]
 name=EGI-trustanchors
@@ -135,7 +135,7 @@ name=desyvirt
 baseurl=http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/
 enabled=1
 gpgcheck=0</programlisting>
-      <para>Install the Grid CA repository for details please see
+      <para>Install the Grid &ca; repository for details please see
 https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
       <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/egi-trust-anchor.repo</userinput>
 [EGI-trustanchors]
@@ -236,10 +236,10 @@ the image file and create a JSON text file containing that checksum.</para>
   </section>
   <section>
     <title>How to verify and image</title>
-    <para>To get the DN and CA of your signature.</para>
+    <para>To get the Subject and &ca; of your signature.</para>
     <programlisting>&prompt-user; <userinput>openssl smime -in your_signed.msg \
      -pk7out | openssl pkcs7 -print_certs</userinput></programlisting>
-    <para>To Verfy the message agaisnt the CA certificate.</para>
+    <para>To Verfy the message agaisnt the &ca; public certificate.</para>
     <programlisting>&prompt-user; <userinput>openssl smime -in your_signed.msg \
      -CAfile /etc/grid-security/certificates/dd4b34ea.0 \
      -verify 1> /dev/null</userinput></programlisting>

@@ -95,7 +95,7 @@ hv:imagelist
         </itemizedlist>
         <section>
           <title>hv:imagelist/hv:endorser/hv:ca</title>
-          <para>standard hash id for the CA, corresponds with the CA directory files.</para>
+          <para>standard hash id for the &ca;, corresponds with the "hv:ca" field.</para>
           <itemizedlist>
             <listitem><para>XML Rendering:</para><programlisting>&lt;hv:ca&gt;/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services&lt;/hv:ca&gt;</programlisting></listitem>
             <listitem><para>JSON Rendering:</para><programlisting>{ "hv:ca": "/C=DE/O=GermanGrid/CN=GridKa-CA" }</programlisting></listitem>

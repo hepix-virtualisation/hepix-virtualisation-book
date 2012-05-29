@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE part PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                      "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+<chapter id="imagetransfer-software-site">  
+  <info>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+  </info>
+  <title>Site Image Management Software</title>
+  <section id="imagetransfer-software-site-vmic">
+    <title>Intra Site Transfers.</title>
+      <para>Tools for moving &vmi;'s around a site.</para>
+      <section id="imagetransfer-software-VMIC">
+        <title>VMIC</title>
+        <para>This application manages which images can be deployed at a site.</para>
+        <section id="imagetransfer-software-VMIC-status">
+          <title>Status</title>
+          <para>This software is available at:</para>
+          <code>svn co svn+ssh://svn.cern.ch/reps/CloudServices/trunk/virtualization/</code>
+          <para>This software has been deployed at CERN for some months and is currently used to manage 
+          worker node deployment.</para>
+          <section id="imagetransfer-software-VMIC-status-features">
+            <title>Features</title>
+            <itemizedlist>
+              <listitem>Single web interface to manage image deployment as a site.</listitem>
+              <listitem>Uses X509 signed image list to communicate with worker nodes.</listitem>
+              <listitem>Allows multiple admins to manage site deployment.</listitem>
+              <listitem>Provides the sites signed list of approved images to worker nodes.</listitem>
+              <listitem>In production since October 2010 at CERN.</listitem>
+            </itemizedlist>
+            <note>Both the producer of an image and the site produce signed list of images, 
+              these provide different functions, the image is signed by the producer to show 
+              to the site the image came from the producer, while the site may sign a list 
+              of images to allow them to be run at a site.</note>
+          </section>
+        </section>
+    </section>
+  </section>
+</chapter>

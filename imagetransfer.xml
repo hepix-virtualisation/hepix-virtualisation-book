@@ -8,15 +8,18 @@
 <part id="imagetransfer" xmlns:xi="http://www.w3.org/2001/XInclude">
   <?dbhtml dir="imagetransfer"?>
 
-  <title>Image transfer</title>
+  <title>&vmi; Transfer</title>
 
   <partintro>
     <para>
-      This part is to cover image transfer issues.
+      This part is to cover &vmi; transfer issues.
     </para>
   </partintro>
   <xi:include href="imagetransfer-plan.xml"/>
   <xi:include href="imagetransfer-usecases.xml"/>
   <xi:include href="imagetransfer-imagelist.xml"/>
-  <xi:include href="imagetransfer-software.xml"/>
+  <xi:include href="imagetransfer-publishers.xml"/>
+  <xi:include href="imagetransfer-software-publisher.xml"/>
+  <xi:include href="imagetransfer-software-subscriber.xml"/>
+  <xi:include href="imagetransfer-software-site.xml"/>
 </part>

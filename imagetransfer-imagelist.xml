@@ -7,9 +7,9 @@
 
 <chapter id="imagelist">
 
-  <title>Image List Format</title>
+  <title>&vmil; Format</title>
 
-  <para>This section of the document describes the format of the image list. 
+  <para>This section of the document describes the format of the &vmil;. 
   The list image format takes attributes from 3 different applications and 
   builds them into a hierarchical structure. 
   The applications are &vmic;, &stratuslab;, and &repoman;</para>
@@ -53,9 +53,9 @@ hv:imagelist
     </programlisting>
   </section>
   <section id="imagelist-fields">
-    <title>Imagelist Fields</title>
+    <title>&vmil; Fields</title>
     <section>
-      <title>Required Imagelist Fields</title>
+      <title>Required &vmil; Fields</title>
       <section>
         <title>hv:imagelist</title>
         <para>container for metadata</para>
@@ -78,7 +78,7 @@ hv:imagelist
       </section>
       <section>
         <title>hv:imagelist/dc:date:expires</title>
-        <para>date in format year-month-day when imagelist will no longer be trusted</para>
+        <para>date in format year-month-day when &vmil; will no longer be trusted</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;dc:date type="created"&gt;2011-05-07T17:09:12Z&lt;/dc:date&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "dc:date:expires": "2011-04-07T17:09:12Z" }</programlisting></listitem>
@@ -95,7 +95,7 @@ hv:imagelist
         </itemizedlist>
         <section>
           <title>hv:imagelist/hv:endorser/hv:ca</title>
-          <para>standard hash id for the CA, corresponds with the CA directory files.</para>
+          <para>standard hash id for the &ca;, corresponds with the "hv:ca" field.</para>
           <itemizedlist>
             <listitem><para>XML Rendering:</para><programlisting>&lt;hv:ca&gt;/C=GB/ST=Greater Manchester/L=Salford/O=Comodo CA Limited/CN=AAA Certificate Services&lt;/hv:ca&gt;</programlisting></listitem>
             <listitem><para>JSON Rendering:</para><programlisting>{ "hv:ca": "/C=DE/O=GermanGrid/CN=GridKa-CA" }</programlisting></listitem>
@@ -130,7 +130,7 @@ hv:imagelist
       </section>
       <section>
         <title>hv:imagelist/dc:identifier</title>
-        <para>RFC 4122 UUID for imagelist this allows updating the list, and uniqueness.</para>
+        <para>RFC 4122 UUID for &vmil; this allows updating the list, and uniqueness.</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;dc:identifier&gt;9ac60a74-c67f-457f-bd80-04c8ff6ecf3d&lt;/dc:identifier&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "dc:identifier": "488dcdc4-9ab1-4fc8-a7ba-b7a5428ecb3d" }</programlisting></listitem>
@@ -139,15 +139,15 @@ hv:imagelist
       </section>
       <section>
         <title>hv:imagelist/dc:description</title>
-        <para>description of the image list</para>
+        <para>description of the &vmil;</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;dc:description&gt;Owens list of images from DESY quattor.&lt;/dc:description&gt;</programlisting></listitem>
-          <listitem><para>JSON Rendering:</para><programlisting>{ "dc:description": "a README example of an image list" }</programlisting></listitem>
+          <listitem><para>JSON Rendering:</para><programlisting>{ "dc:description": "a README example of an &vmil;" }</programlisting></listitem>
         </itemizedlist>
       </section>
       <section>
         <title>hv:imagelist/dc:title</title>
-        <para>title of image list</para>
+        <para>title of &vmil;</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;dc:description&gt;DISH service&lt;/dc:description&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>"dc:title": "README example",</programlisting></listitem>
@@ -282,7 +282,7 @@ hv:imagelist
       </section>
       <section>
         <title>hv:imagelist/hv:version</title>
-        <para>The version of the imagelist, so that updates can share the same metadata
+        <para>The version of the &vmil;, so that updates can share the same metadata
       (with exception of dc:identifier) in case of update. Typically a numeric value.</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;hv:version&gt;4&lt;/hv:version&gt;</programlisting></listitem>
@@ -291,7 +291,7 @@ hv:imagelist
       </section>
       <section>
         <title>hv:imagelist/hv:uri</title>
-        <para>The uri to retrive new versions of the imagelist, that updates can be retrived.</para>
+        <para>The uri to retrive new versions of the &vmil;, that updates can be retrived.</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;https://example.org/imagelist.xml&lt;/hv:uri&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "hv:uri": "http://example.org/example-image-list.image_list" }</programlisting></listitem>
@@ -299,7 +299,7 @@ hv:imagelist
       </section>
     </section>
     <section>
-      <title>Optional Imagelist Fields</title>
+      <title>Optional &vmil; Fields</title>
       <section>
         <title>hv:imagelist/hv:images/hv:image/hv:core_minimum</title>
         <para>Minimum number of virtual cores required to run the virtual machine image expressed as an integer.</para>

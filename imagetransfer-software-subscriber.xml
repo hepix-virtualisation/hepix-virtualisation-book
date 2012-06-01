@@ -4,40 +4,89 @@
 <!ENTITY % sharedents SYSTEM "shared-entities.xml" >
 %sharedents;
 ]>
+<chapter id="imagetransfer-software-subscriber">  
+  <info>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+  </info>
+  <title>&vmil; Subscribing Software</title>
+
+
+        
+
+
+
 
 <section id="imagetransfer-software-vmlisub">
   <title>vmlisub</title>
-  <para>This virtual maschine image list subscriber implementation is intended to be a production grade referance implementation.</para>
+  <para>This virtual maschine &vmil; subscriber implementation is intended to be a production grade referance implementation.</para>
   <section>
     <title>Introduction</title>
-    <para>This application allows users to subscribe to virtual machine image lists, cache
-the images referenced to in the image list, validate the images list with x509 
+    <para>This application allows users to subscribe to virtual machine &vmil;s, cache
+the images referenced to in the &vmil;, validate the images list with x509 
 based public key cryptography, and validate the images against sha512 hashes in 
 the images lists and provide events for further applications to process updates 
 or expiries of virtual machine images without having to further validate the 
-images. This set of applications are designed to provide a similar work flow
-from each area of control to the imagelist archive.</para>
+images.</para>
+    <para>This software is available at:</para>
+    <code>https://github.com/hepix-virtualisation/hepixvmilsubscriber</code>
+    <para>The software is based upon a simple database that stores subscriptions to &vmil;s,
+      who can sign the &vmil;, and which images belong to which subscriptions. It allows 
+      images to selected for subscription.</para>
+    <para>Subscribed images can be downloaded verified and cached. Cached images can be verified,
+      and if invalid or expired they are moved to an expiry directory.</para>
+    <section id="magetransfer-software-imagelist-consumer-status-features">
+      <title>Features</title>
+      <itemizedlist>
+        <listitem>Add and delete multiple subscriptions to &vmil;s.</listitem>
+        <listitem>Update subscriptions checking authenticity of the message useng x509 based signatures.</listitem>
+        <listitem>Automation as a cron script.</listitem>
+        <listitem>Subscribe and unsubscribe to images from &vmil;s.</listitem>
+        <listitem>Download verify images into a local cache.</listitem>
+        <listitem>Expire images to an archive when no longer endorsed or corrupt.</listitem>
+      </itemizedlist>
+    </section>
+<para> This set of applications are designed to provide a similar work flow
+from each area of control to the &vmil; archive.</para>
     <itemizedlist>
-      <listitem>vmlisub_endorser - Endorsers of imagelist subscriptions.</listitem>
-      <listitem>vmlisub_sub      - Subscription list details.</listitem>
-      <listitem>vmlisub_image    - Image details.</listitem>
-      <listitem>vmlisub_cache    - Cache images and update events.</listitem>
+      <listitem>&vmlisub_endorser; - Endorsers of &vmil; subscriptions.</listitem>
+      <listitem>&vmlisub_sub;      - Subscription list details.</listitem>
+      <listitem>&vmlisub_image;    - Image details.</listitem>
+      <listitem>&vmlisub_cache;    - Cache images and update events.</listitem>
     </itemizedlist>
     <para>They work in conjunction with a database to ease navigation, a local cache of
-image list subscriptions. The database is message format agnostic, but it
+&vmil; subscriptions. The database is message format agnostic, but it
 authenticates and validates all messages in import. Because these are just
-caches of imagelists they are meant to be used the majority of the time without
+caches of &vmil;s they are meant to be used the majority of the time without
 intervention.</para>
-    <para>If you are signing a list using the hepix image list signer, you should also
+    <para>If you are signing a list using the hepix &vmil; signer, you should also
 install this application and subscribe to your current image.</para>
     <para>It is intended to with a couple of cron scripts to be informed at any time if
-your local images are matching signatures in the image list.</para>
+your local images are matching signatures in the &vmil;.</para>
     <para>Anyone curious about this application should consider this application a
 software application similar to Debian's 'aptitude' or Redhats 'yum', but rather
 for virtual machines, authenticated by the x509 signatures.</para>
   </section>
   <section>
     <title>Installation</title>
+    <section id="imagetransfer-software-vmlisub-repo">
+      <title>Package Repositories.</title>
+      <para>The intra site tools are tested on every release for &rhel; 5 and 6 and are developed 
+        on the &debian; platform. They are available as src and binary RPM packages in the following 
+        repository sporting.</para>
+      <itemizedlist>
+        <listitem>http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/</listitem>
+        <listitem>http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/</listitem>
+      </itemizedlist>
+      <para>Deployment instructions are provided in the README included in the source code and 
+        the RPM.</para>
+    </section>
+    
+    
+    
+    
     <section>
       <title>Installation on Redhat Enterprise Linux 6</title>
       <para>Install EPEL for dependencies.</para>
@@ -89,7 +138,7 @@ enabled=1</programlisting>
       <programlisting>&prompt-root; <userinput>yum install lcg-CA</userinput></programlisting>
       <para>install fetch-crl</para>
       <programlisting>&prompt-root; <userinput>yum install fetch-crl</userinput></programlisting>
-      <para>Install the hepix image list subscriber.</para>
+      <para>Install the hepix &vmil; subscriber.</para>
       <programlisting>&prompt-root; <userinput>yum install hepixvmilsubscriber</userinput></programlisting>
       <para>This may fail due to a dependency of m2crypto that cannot be satisfied. This is
 due to known bugs in m2crypto in the version shipped in RHEL5. If this is a
@@ -97,9 +146,93 @@ problem please download the following</para>
       <programlisting>http://ftp.informatik.uni-frankfurt.de/fedora-archive/fedora/linux/releases/8/Everything/source/SRPMS/m2crypto-0.18-2.src.rpm</programlisting>
       <para>And build a native RPM.</para>
     </section>
-  </section>
+    
+    
+    
+    <section>
+      <title>Installation on &wheezy; or later,</title>
+      <para>Do not install this on debian 6.0 as the included version of python-m2crypto is not stable.</para>
+      <para>These instructions are for &wheezy; or later.</para>
+      <para>Unfortunatly at this moment the code is not packaged. but all the dependacies are available 
+      in the debian repository. </para>
+      
+      <para>For Grid scientific use you can get a trust store easily using the egi.eu repository.</para>
+      <programlisting>&prompt-root; <userinput>wget -q -O - \
+https://dist.eugridpma.info/distribution/igtf/current/GPG-KEY-EUGridPMA-RPM-3 \
+ | apt-key add -</userinput></programlisting>
+      <para>Add the following line to your sources.list file for APT:</para>
+      <programlisting>#### EGI Trust Anchor Distribution ####
+deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core</programlisting>
+      <para>for example:</para>
+      <programlisting>&prompt-root; <userinput>echo '#### EGI Trust Anchor Distribution ####' >> \
+    /etc/apt/sources.list</userinput>
+<userinput>echo 'deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core' >> \
+    /etc/apt/sources.list</userinput></programlisting>
+      <para>Now install the &ca; for the grid (Other &ca; can be substituted), install a tool to download and cache the &crl; </para>
+      <programlisting>&prompt-root; <userinput>aptitude update</userinput>
+&prompt-root; <userinput>aptitude install ca-policy-egi-core</userinput>
+&prompt-root; <userinput>aptitude install fetch-crl</userinput>
+&prompt-root; <userinput>fetch-crl </userinput></programlisting>
+
+      <para>Now install the code froms git.</para>
+      <programlisting>http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/</programlisting>
+      
+      <para>The leatest version of hepixvmitrust-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
+       <programlisting>&prompt-root; <userinput>$wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/hepixvmitrust-0.0.14.tar.gz</userinput>
+Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
+Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 19922 (19K) [application/x-tar]
+Saving to: `hepixvmitrust-0.0.14.tar.gz'
+
+100%[======================================>] 19,922      --.-K/s   in 0.05s   
+
+2012-05-28 19:45:45 (413 KB/s) - `hepixvmitrust-0.0.14.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf hepixvmitrust-0.0.14.tar.gz </userinput>
+&prompt-root; <userinput>cd hepixvmitrust-0.0.14</userinput>
+&prompt-root; <userinput>python setup install</userinput>
+&prompt-root; <userinput>echo $?</userinput>
+&prompt-root; <userinput>cd ..</userinput></programlisting>
+      <para>The leatest version ofsmimeX509validation-0.0.7.tar.gz  -X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
+       <programlisting>&prompt-root; <userinput></userinput>
+&prompt-root; <userinput>wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/smimeX509validation-0.0.7.tar.gz</userinput>
+Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
+Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 19922 (19K) [application/x-tar]
+Saving to: `smimeX509validation-0.0.7.tar.gz'
+
+100%[======================================>] 19,922      --.-K/s   in 0.05s   
+
+2012-05-28 19:45:45 (413 KB/s) - `smimeX509validation-0.0.7.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf smimeX509validation-0.0.7.tar.gz </userinput>
+&prompt-root; <userinput>cd smimeX509validation-0.0.7</userinput>
+&prompt-root; <userinput>python setup install</userinput>
+&prompt-root; <userinput>echo $?</userinput>
+&prompt-root; <userinput>cd ..</userinput></programlisting>
+      <para>The leatest version of hepixvmilsubscriber-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
+       <programlisting>&prompt-root; <userinput></userinput>
+&prompt-root; <userinput>wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/hepixvmilsubscriber-0.1.14.tar.gz</userinput>
+Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
+Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 19922 (19K) [application/x-tar]
+Saving to: `hepixvmilsubscriber-0.1.14.tar.gz'
+
+100%[======================================>] 19,922      --.-K/s   in 0.05s   
+
+2012-05-28 19:45:45 (413 KB/s) - `hepixvmilsubscriber-0.1.14.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf hepixvmilsubscriber-0.1.14.tar.gz </userinput>
+&prompt-root; <userinput>cd hepixvmilsubscriber-0.1.14</userinput>
+&prompt-root; <userinput>python setup install</userinput>
+&prompt-root; <userinput>echo $?</userinput>
+&prompt-root; <userinput>cd ..</userinput></programlisting>
+    </section>
+    
+    
+    
   <section>
-    <title>vmlisub_endorser</title>
+    <title>&vmlisub_endorser;</title>
     <para>This application is for managing who the subscriber trusts to update image 
 lists. Since individuals are identified with x509 certificates, Each certificate
 has an issuing certificate and a unique string called a 'subject' to identify 
@@ -132,7 +265,7 @@ The endorser_uuid could be a more human name:</para>
        --issuer='/C=CA/O=Grid/CN=Grid Canada Certificate Authority'</userinput></programlisting>
   </section>
   <section>
-    <title>vmlisub_sub</title>    
+    <title>&vmlisub_sub;</title>    
     <para>This application manages your subscriptions and thier update:</para>
     <para>To add a subscription</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_sub  -s https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</userinput></programlisting>
@@ -176,7 +309,7 @@ imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     <programlisting>&prompt-user;  <userinput>vmlisub_sub  -D  --uuid=63175437-7d59-4851-b333-c96cb6545a86</userinput></programlisting>
   </section>
   <section>
-    <title> vmlisub_image</title>
+    <title> &vmlisub_image;</title>
     <para> This application manages images within your subscription. </para> 
     <para>List the available images</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
@@ -185,7 +318,7 @@ ecfbc671-eaee-439c-b1a3-db85dbef5e7b    3       63175437-7d59-4851-b333-c96cb654
 da42ca85-179b-4873-b12e-32d549bf02b6    2       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
     <para>The results show the UUID of the image, the availability state and the
 subscription UUID. The state value is a bitmap, 1 is subscribed, 2 means its
-available in the current image lists. Now we will select an image for local caching.</para>
+available in the current &vmil;s. Now we will select an image for local caching.</para>
     <section>
       <title>Selecting Images</title>
       <para>Images can be selected by either UUID or Sha512 hash. This allows explicit
@@ -199,9 +332,9 @@ available in the current image lists. Now we will select an image for local cach
     </section>
   </section>
   <section>
-    <title>vmlisub_cache  </title>
+    <title>&vmlisub_cache;  </title>
     <para>  This application downloads images. By default it will download images, check the sha512
-hash of cached images and expire images from old image lists.</para>
+hash of cached images and expire images from old &vmil;s.</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_cache</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 INFO:vmlisub_sub.main:Defaulting actions as 'expire', 'sha512' and 'download'.
@@ -212,7 +345,7 @@ INFO:DownloadDir:Downloading 'ecfbc671-eaee-439c-b1a3-db85dbef5e7b'.
 INFO:CacheMan:moved file ecfbc671-eaee-439c-b1a3-db85dbef5e7b
 </programlisting>
     <section>
-      <title>vmlisub_cache Event interface</title>
+      <title>&vmlisub_cache; Event interface</title>
       <para>Since this application suite is intended to be embedded in a larger application 
 and concerned with downloading and managing updates of VM images into a cloud
 infrastructure, it is some times beneficial to have an event interface so that 
@@ -246,9 +379,9 @@ change.</para>
         <listitem>VMILS_EVENT_TYPE</listitem>
         <listitem>VMILS_EVENT_FILENAME</listitem>
       </itemizedlist>
-      <para>These correspond to the variables within the image list.</para>
+      <para>These correspond to the variables within the &vmil;.</para>
       <section>
-        <title>vmlisub_cache Event Environment variables</title>
+        <title>&vmlisub_cache; Event Environment variables</title>
         <section>
           <title>VMILS_EVENT_TYPE</title>
           <itemizedlist>
@@ -266,7 +399,7 @@ directory.</para></listitem>
         <section>
           <title>VMILS_EVENT_DC_IDENTIFIER</title>
           <para>Unique identifier of the image. Its suggested that image producers use RFC 4122 
-UUID for imagelist this allows updating the list, and uniqueness.</para>
+UUID for &vmil; this allows updating the list, and uniqueness.</para>
         </section>
         <section>
           <title>VMILS_EVENT_DC_TITLE</title>
@@ -317,7 +450,7 @@ UUID for imagelist this allows updating the list, and uniqueness.</para>
     <programlisting>&prompt-root;  <userinput>fetch-crl</userinput></programlisting>
     <para>To add a subscription,</para>
     <programlisting>&prompt-user;  <userinput>wget --no-check-certificate https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list</userinput></programlisting>
-    <para>Now you can check the image list by visiual inspection.</para>
+    <para>Now you can check the &vmil; by visiual inspection.</para>
     <programlisting>&prompt-user;  <userinput>grep 'hv:[cd][an]' hepix_signed_image_list</userinput>
                 "hv:ca": "/C=CA/O=Grid/CN=Grid Canada Certificate Authority", 
                 "hv:dn": "/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable", </programlisting>
@@ -352,22 +485,22 @@ ecfbc671-eaee-439c-b1a3-db85dbef5e7b    0       63175437-7d59-4851-b333-c96cb654
 da42ca85-179b-4873-b12e-32d549bf02b6    0       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
     <para>The results show the UUID of the image, the availability state and the
 subscription UUID. The state value is a bitmap, 1 is subscribed, 2 means its
-available in the current image lists. Now we will select an image for local caching.</para>
+available in the current &vmil;s. Now we will select an image for local caching.</para>
     <para>Next update the subscriptions.</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_sub -U</userinput>
 INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 INFO:db_actions:Updating:63175437-7d59-4851-b333-c96cb6545a86</programlisting>
-    <para>Now the data base contains the latest version of the image list. To query the
+    <para>Now the data base contains the latest version of the &vmil;. To query the
 available images they can be cached:</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 327016b0-6508-41d2-bce0-c1724cb3d3e2    2       63175437-7d59-4851-b333-c96cb6545a86
 ecfbc671-eaee-439c-b1a3-db85dbef5e7b    2       63175437-7d59-4851-b333-c96cb6545a86
 da42ca85-179b-4873-b12e-32d549bf02b6    2       63175437-7d59-4851-b333-c96cb6545a86</programlisting>
-    <para>Thsi now shows the images are available in the latest image list.</para>
+    <para>Thsi now shows the images are available in the latest &vmil;.</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_image -a -u ecfbc671-eaee-439c-b1a3-db85dbef5e7b</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'</programlisting>
-    <para>The image list state is now changed to</para>
+    <para>The &vmil; state is now changed to</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 327016b0-6508-41d2-bce0-c1724cb3d3e2    2       63175437-7d59-4851-b333-c96cb6545a86
@@ -381,7 +514,7 @@ da42ca85-179b-4873-b12e-32d549bf02b6    2       63175437-7d59-4851-b333-c96cb654
 INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
 INFO:DownloadDir:Downloading 'ecfbc671-eaee-439c-b1a3-db85dbef5e7b'.
 INFO:CacheMan:moved file ecfbc671-eaee-439c-b1a3-db85dbef5e7b</programlisting>
-    <para>Once this is complete the image from the image list will be cached.</para>
+    <para>Once this is complete the image from the &vmil; will be cached.</para>
     <programlisting>&prompt-user; <userinput> find cache/</userinput>
 cache/
 cache/partial
@@ -447,31 +580,43 @@ lists and certificate name spaces.</para>
     </section>
     <section>
       <title>VMILS_CACHE_DIR_CACHE</title>
-      <para>Path used by 'vmlisub_endorser' to store verified VM images.</para>
+      <para>Path used by '&vmlisub_endorser;' to store verified VM images.</para>
     </section>
     <section>
       <title>VMILS_CACHE_DIR_DOWNLOAD</title>
-      <para>Path used by 'vmlisub_endorser' to download VM images before VM image integrity
+      <para>Path used by '&vmlisub_endorser;' to download VM images before VM image integrity
 is checked.</para>
     </section>
     <section>
       <title>VMILS_CACHE_DIR_EXPIRE</title>
-      <para>Path used by 'vmlisub_endorser' to store VM images when they are no longer 
+      <para>Path used by '&vmlisub_endorser;' to store VM images when they are no longer 
 endorsed.</para>
     </section>
     <section>
       <title>VMILS_CACHE_ACTION_DOWNLOAD</title>
-      <para>Instructs 'vmlisub_endorser' to download the latest VM images and check 
+      <para>Instructs '&vmlisub_endorser;' to download the latest VM images and check 
 integrity.</para>
     </section>
     <section>
       <title>VMILS_CACHE_ACTION_CHECK</title>
-      <para>Instructs 'vmlisub_endorser' check integrity for all currently stored VM images.</para>
+      <para>Instructs '&vmlisub_endorser;' check integrity for all currently stored VM images.</para>
     </section>
     <section>
       <title>VMILS_CACHE_ACTION_EXPIRE</title>
-      <para>Instructs 'vmlisub_endorser' to expire stored VM images that are no longer 
+      <para>Instructs '&vmlisub_endorser;' to expire stored VM images that are no longer 
 endorsed.</para>
     </section>
   </section>
-</section>
+  </section>
+  <section id="imagetransfer-software-imagelist-consumer-status-todo">
+      <title>To Do (16-05-2012)</title>
+      <itemizedlist>
+        <listitem>Only message authenticity is checked, does not yet check authenticity of transport.</listitem>
+      </itemizedlist>
+      <para>While it does check the authenticity of the message using X509, at the moment the 
+        authenticity of the host is unchecked. For the programmability it would be far simpler to 
+        use x509 certificates to check the host server. In terms of deployment it would be far 
+        easier just to check any host key mechanism, as this is sufficient.</para>
+    </section>
+  </section>
+</chapter>

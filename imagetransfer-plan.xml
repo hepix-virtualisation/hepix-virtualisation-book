@@ -31,10 +31,10 @@ addressing various issues such as validation, verification, expiry and revocatio
 distribution technology is not discussed in detail.</para>
   <section id="imagetransfer-plan-summary">
     <title>Summary</title>
-    <para>Images are referenced by an Image List which contains a secure hash (sha512) signed 
-    using x509 technology. These Image Lists are published, and interested sites subscribe to the Lists
+    <para>Images are referenced by an &vmil; which contains a secure hash (sha512) signed 
+    using x509 technology. These &vmil;s are published, and interested sites subscribe to the Lists
      in a catalogue at the site. When an instantiation request for an image is received, the Image
-     validity is checked.  If the Image list is valid, the Image is contextualised and then instantiated. 
+     validity is checked.  If the &vmil; is valid, the Image is contextualised and then instantiated. 
      Images that do not pass validation are not instantiated.</para>
   </section>
   <section id="imagetransfer-plan-description">
@@ -53,16 +53,16 @@ credentials. If the the chek is passed then the image is contextualised and inst
 or revoked images are refused.</para>
   </section>
   <section id="imagetransfer-plan-signing">
-    <title>Image list Signing</title>
-    <para>An Image will be created by a Creator and added to an Image List which is then signed by the 
-    Creator's x509 certificate. The Image List will have an appropriate expiry for the Image in the Image List. 
+    <title>&vmil; Signing</title>
+    <para>An Image will be created by a Creator and added to an &vmil; which is then signed by the 
+    Creator's x509 certificate. The &vmil; will have an appropriate expiry for the Image in the &vmil;. 
     The Image may then be distributed by an appropriate mechanism.</para>
-    <para>Images may be revoked by not including the Image in the latest version of the Image List. The URI to establish the 
-    latest version of the Image List will be contained in the Image List metadata.</para>
+    <para>Images may be revoked by not including the Image in the latest version of the &vmil;. The URI to establish the 
+    latest version of the &vmil; will be contained in the &vmil; metadata.</para>
   </section>
   <section id="imagetransfer-plan-distribution">
     <title>Distribution</title>
-    <para>The Image List is provided on a host that can be authenticated to prevent man-in-the-middle 
+    <para>The &vmil; is provided on a host that can be authenticated to prevent man-in-the-middle 
     attacks blocking update notices. An image may be distributed to Sites by any suitable means including 
     the existing software distribution mechanism, via a URI reference in the metadata. The transfer can be 
     validated using a secure hash which is expected to be sha512.</para>
@@ -72,7 +72,7 @@ or revoked images are refused.</para>
       <title>Local Catalogue</title>
       <para>A Site will have a Local Catalogue which will be a registry (database) of Images which may be
         considered for running at the Site. The Catalogue will contain metadata for each subscribed Image 
-        and Image List. This metadata will at least contain the x509 certification data, the unique UUID, 
+        and &vmil;. This metadata will at least contain the x509 certification data, the unique UUID, 
         a Tag, resource locator, a global validity flag field and a local validity flag field.</para>
       <para>The Local Catalogue will subscribe to the appropriate revocation service (CRLs) and flag Images 
       that have been revoked by setting the global validity flag.</para>
@@ -82,8 +82,8 @@ or revoked images are refused.</para>
     </section>
     <section id="imagetransfer-plan-distribution-registration">
     <title>Registration/Subscription</title>
-    <para>A distributed Image List will be subscribed into the local Catalogue by the distribution mechanism. 
-    The subscriber will write the Image List metadata to the Catalogue and set the global validity flag by 
+    <para>A distributed &vmil; will be subscribed into the local Catalogue by the distribution mechanism. 
+    The subscriber will write the &vmil; metadata to the Catalogue and set the global validity flag by 
     checking the latest CRLs. Images may be subscribed locally.</para>
     </section>
     <section id="imagetransfer-plan-distribution-instantiation">

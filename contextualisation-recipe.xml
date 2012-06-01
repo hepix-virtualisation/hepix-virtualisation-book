@@ -40,8 +40,7 @@ Saving to: `test-seba.img.bz2'
       </section>
       <section id="contextualisation-recipe-part1_2">
         <title>Handling the Image</title>
-        <programlisting>
-&prompt-root;ls -l
+        <programlisting>&prompt-root; <userinput>ls -l</userinput>
 total 519956
 drwx------ 2 root root     16384 Apr  1 17:22 lost+found
 -rw-r--r-- 1 root root 531888187 Jul  6 15:19 test-seba.img.bz2

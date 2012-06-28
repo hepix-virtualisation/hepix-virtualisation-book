@@ -269,7 +269,7 @@ deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core</programl
       <para>for example:</para>
       <programlisting>&prompt-root; <userinput>echo '#### EGI Trust Anchor Distribution ####' >> \
     /etc/apt/sources.list</userinput>
-<userinput>echo 'deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core' >> \
+&prompt-root; <userinput>echo 'deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core' >> \
     /etc/apt/sources.list</userinput></programlisting>
       <para>Now install the &ca; for the grid (Other &ca; can be substituted), install a tool to download and cache the &crl; </para>
       <programlisting>&prompt-root; <userinput>aptitude update</userinput>

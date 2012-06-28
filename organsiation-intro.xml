@@ -44,14 +44,14 @@
     of computing it was seen that the &vwg; cannot limit their effort to only working with cloud based solutions 
     and our work scope should be equally applicable to Cloud and &vee; on a batch queue compute node.</para>
     <para>One of the side effects of &hep; having pioneered Grid computing, is that the community have already 
-    learnt about the diversity of sites, and considerable effort has been put into minimising the differences 
+    learned about the diversity of sites, and considerable effort has been put into minimising the differences 
     between sites from a experiments perspective. The &hep; community and sites serving them have come to understand 
     that some areas of site management are not practical to unify. In areas where tools and practices are 
     developing quickly innovation is potentially hindered by enforcing standardisation. This is also true that 
     site management requires considerable effort which has already been invested, and change would be detrimental, 
     a good example of this is in site deployment and configuration. The &vwg; decided very early on that we 
     where not going to look into areas that would effect sites local deployment and configuration. The rational 
-    was that many sites already had virtulisation strategies, and sites that did not, should not be prevented 
+    was that many sites already had virtualisation strategies, and sites that did not, should not be prevented 
     from working with newer tools and cloud infrastructures.</para>
   </section>
   <section id="organisation-intro-usecases">
@@ -74,7 +74,7 @@
     <title>&vwg; Scope</title>  
     <para>From these basic use cases the &vwg; decided to focuses on four main areas of investigation.</para>
     <itemizedlist>
-      <listitem>A security policy for manging &vee;.</listitem>
+      <listitem>A security policy for managing &vee;.</listitem>
       <listitem>A recipe to make site neutral &vee;.</listitem>
       <listitem>A mechanism to distribute &vee; consistent with the requirements and use cases of &hepix; sites.</listitem>
       <listitem>A mechanism to make site neutral &vee; interact with the site batch queue.</listitem>

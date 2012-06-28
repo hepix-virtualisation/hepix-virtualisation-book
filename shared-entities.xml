@@ -60,12 +60,23 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY prompt-one   "<prompt>[one] #</prompt>">
 
 <!-- blobcasts -->
-<!ENTITY blobDn   "/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable">
-<!ENTITY blobUrl "https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list">
-<!ENTITY blobIssuer   "/C=CA/O=Grid/CN=Grid Canada Certificate Authority">
+<!-- CERN VM
+<!ENTITY blobDn   "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=buncic/CN=379010/CN=Predrag Buncic">
+<!ENTITY blobUrl "https://cernvm.cern.ch/releases/image.list">
+<!ENTITY blobIssuer   "/DC=ch/DC=cern/CN=CERN Trusted Certification Authority">
 <!ENTITY blobSubscriptionUuid   "63175437-7d59-4851-b333-c96cb6545a86">
-<!ENTITY blobSubscriptionDcdescription   "HEPiX Image Exchange Testing">
+<!ENTITY blobSubscriptionDcdescription   "CERN Virtual Machine">
 <!ENTITY blobEndorserUuid   "e55c1afe-0a62-4d31-a8d7-fb8c825f92a2">
-<!ENTITY blobImageIdExampleSubscribed   "ecfbc671-eaee-439c-b1a3-db85dbef5e7b">
+<!ENTITY blobImageIdExampleSubscribed   "858a817e-0ca2-473f-89d3-d5bdfc51968e">
+-->
+<!-- DISH -->
+<!ENTITY blobUrl "https://dish.desy.de:2880/testing.smime">
+<!ENTITY blobDn   "/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge">
+<!ENTITY blobIssuer   "/C=DE/O=GermanGrid/CN=GridKa-CA">
+<!ENTITY blobSubscriptionUuid   "9b6fad19-d913-4cca-b77d-c4b4fcd9dc36">
+<!ENTITY blobSubscriptionDcdescription   "DESY Image List SHaring service">
+<!ENTITY blobEndorserUuid   "e55c1afe-0a62-4d31-a8d7-fb8c825f92a2">
+<!ENTITY blobImageIdExampleSubscribed   "5f00fec3-4f2a-4fa0-a965-d52115606044">
+
 <!-- Misc -->
 <!-- <!ENTITY ndash "&#x2013;"> -->

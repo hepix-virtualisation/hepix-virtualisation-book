@@ -59,7 +59,13 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY prompt-root  "<prompt>[root] #</prompt>">
 <!ENTITY prompt-one   "<prompt>[one] #</prompt>">
 
-
-
+<!-- blobcasts -->
+<!ENTITY blobDn   "/C=CA/O=Grid/OU=phys.uvic.ca/CN=Ian Gable">
+<!ENTITY blobUrl "https://particle.phys.uvic.ca/~igable/hepix/hepix_signed_image_list">
+<!ENTITY blobIssuer   "/C=CA/O=Grid/CN=Grid Canada Certificate Authority">
+<!ENTITY blobSubscriptionUuid   "63175437-7d59-4851-b333-c96cb6545a86">
+<!ENTITY blobSubscriptionDcdescription   "HEPiX Image Exchange Testing">
+<!ENTITY blobEndorserUuid   "e55c1afe-0a62-4d31-a8d7-fb8c825f92a2">
+<!ENTITY blobImageIdExampleSubscribed   "ecfbc671-eaee-439c-b1a3-db85dbef5e7b">
 <!-- Misc -->
 <!-- <!ENTITY ndash "&#x2013;"> -->

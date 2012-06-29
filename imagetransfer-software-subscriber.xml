@@ -163,10 +163,18 @@ cache/cache.index</programlisting>
       -d sqlite:////var/lib/vmlisub/vmlisub.db</userinput></programlisting>
       <para>make a cron job</para>
       <programlisting>&prompt-root; <userinput> cat   /etc/cron.d/vmlisub</userinput>
-50 */6 * * *    vmlisub (/usr/bin/vmlisub_sub -d sqlite:////var/lib/vmlisub/vmlisub.db -U; /usr/bin/vmlisub_cache -d sqlite:////var/lib/vmlisub/vmlisub.db -C /var/cache/vmimages/endorsed/ -p /var/cache/vmimages/partial/ -e /var/cache/vmimages/expired/ ) >> /var/log/vmlisub.log 2>&amp;1</programlisting>      
+export VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db"
+export VMILS_CACHE_DIR_CACHE="/var/cache/vmimages/endorsed/"
+export VMILS_CACHE_DIR_DOWNLOAD="/var/cache/vmimages/partial/"
+export VMILS_CACHE_DIR_EXPIRE="/var/cache/vmimages/expired/"
+export VMILS_CACHE_EVENT="python /usr/share/doc/hepixvmilsubscriber-0.1.17/vmlisub_eventHndlExpl  --output_file=/tmp/foo --datetime"
+
+50 */6 * * *	vmlisub	(/usr/bin/vmlisub_sub -U; /usr/bin/vmlisub_cache  ) >> /var/log/vmlisub.log 2>&amp;1</programlisting>      
     <para>So the script is executed every 6 hours shortly after fetch CRL.</para>
+    <para>If a new &vmi; is downloaded, or an old &vmi; is expired the event will triggor "VMILS_CACHE_EVENT" and 
+    the application vmlisub_eventHndlExpl will append the data to /tmp/foo</para>
     <para>Now at any time users with file permisions can get a list of valid images.</para>
-      <programlisting>&prompt-user; <userinput> vmlisub_image -l -d sqlite:////var/lib/vmlisub/vmlisub.db</userinput></programlisting>
+      <programlisting>&prompt-user; <userinput>VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db" vmlisub_image -l</userinput></programlisting>
     </section>
   </section>
 

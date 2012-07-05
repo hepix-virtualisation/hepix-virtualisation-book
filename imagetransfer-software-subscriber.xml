@@ -22,6 +22,10 @@
 <section id="imagetransfer-software-vmlisub">
   <title>vmlisub</title>
   <para>This virtual machine &vmil; subscriber implementation is intended to be a production grade reference implementation.</para>
+  <para>The software makes use of a database to store subscriptions in a simplar way to a podcast reader or a linux package manager. 
+  The tested Database is SqlLight, but it is based upon SQLalchamy so shoudl support many databases. Sdllight has proved more than 
+  adiquate for the low transaction rate of a image list subscriber and so deployment issues are mearly backing up a databasefile.</para>
+  <para>Since the software is made with the Grid in mind it is only natural that the X509 certificate model is used. </para>
   <section id="imagetransfer-software-vmlisub-introduction">
     <title>Introduction</title>
     <para>This application allows users to subscribe to virtual machine &vmil;s, cache
@@ -73,6 +77,15 @@ for virtual machines, authenticated by the x509 signatures.</para>
     <title>Quick start use of hepixvmilsubscriber</title>
     <para>First make sure that all the Certificate Revocation Lists (CRL) are upto date.</para>
     <programlisting>&prompt-root;  <userinput>fetch-crl</userinput></programlisting>
+    <para>This suit of applications can use either enviroment variable or command line to set most parmaters.
+    If neither enviroment variables or command line parameters are not set for critical variables the application 
+    will provide defaults and show warnings.</para>
+    <para>The most important setting is the location of the database. This is read from VMILS_RDBMS,</para>
+    <programlisting>&prompt-user; <userinput>export VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db"</userinput></programlisting>
+    <para>The above line instructs the sqlalchamy interfacxe to datavabses to use sqlite and path "/var/lib/vmlisub/vmlisub.db" 
+    on a UNIX system. This is the only improtant file and stores the older signed image lists. SQL is used to enforce most of the rules 
+    such as unique nature of UUID's and the URLS for the subscriptions, this should be backed up. Other enviroment varables 
+    are documented later.</para>
     <para>To add a subscription,</para>
     <programlisting>&prompt-user;  <userinput>wget --no-check-certificate &blobUrl;</userinput></programlisting>
     <para>Now you can check the &vmil; by visiual inspection.</para>
@@ -148,34 +161,7 @@ cache/expired
 cache/expired/cache.index
 cache/&blobImageIdExampleSubscribed;
 cache/cache.index</programlisting>
-    <section>
-      <title>Set up for Production using Cron</title>
-      <para>Then the by hand configuration for your master DB</para>
-      <programlisting>&prompt-root;  <userinput>useradd vmlisub</userinput></programlisting>
-      <programlisting>&prompt-root;  <userinput>mkdir -p /var/lib/vmlisub /var/cache/vmimages/endorsed \
-      /var/cache/vmimages/partial /var/cache/vmimages/expired</userinput></programlisting>
-      <programlisting>&prompt-root;  <userinput>touch /var/log/vmlisub.log</userinput></programlisting>
-      <programlisting>&prompt-root;  <userinput>chown vmlisub:vmlisub /var/lib/vmlisub  /var/cache/vmimages/endorsed \
-      /var/cache/vmimages/partial /var/cache/vmimages/expired \
-      /var/log/vmlisub.log</userinput></programlisting>
-      <programlisting>&prompt-root;  <userinput>sudo -u vmlisub /usr/bin/vmlisub_sub \
-      -s &blobUrl; \
-      -d sqlite:////var/lib/vmlisub/vmlisub.db</userinput></programlisting>
-      <para>make a cron job</para>
-      <programlisting>&prompt-root; <userinput> cat   /etc/cron.d/vmlisub</userinput>
-export VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db"
-export VMILS_CACHE_DIR_CACHE="/var/cache/vmimages/endorsed/"
-export VMILS_CACHE_DIR_DOWNLOAD="/var/cache/vmimages/partial/"
-export VMILS_CACHE_DIR_EXPIRE="/var/cache/vmimages/expired/"
-export VMILS_CACHE_EVENT="python /usr/share/doc/hepixvmilsubscriber-0.1.17/vmlisub_eventHndlExpl  --output_file=/tmp/foo --datetime"
-
-50 */6 * * *	vmlisub	(/usr/bin/vmlisub_sub -U; /usr/bin/vmlisub_cache  ) >> /var/log/vmlisub.log 2>&amp;1</programlisting>      
-    <para>So the script is executed every 6 hours shortly after fetch CRL.</para>
-    <para>If a new &vmi; is downloaded, or an old &vmi; is expired the event will triggor "VMILS_CACHE_EVENT" and 
-    the application vmlisub_eventHndlExpl will append the data to /tmp/foo</para>
-    <para>Now at any time users with file permisions can get a list of valid images.</para>
-      <programlisting>&prompt-user; <userinput>VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db" vmlisub_image -l</userinput></programlisting>
-    </section>
+   
   </section>
 
 
@@ -557,15 +543,34 @@ UUID for &vmil; this allows updating the list, and uniqueness.</para>
   </section>
  </section> 
   <section id="imagetransfer-software-vmlisub-config">
-    <section id="imagetransfer-software-vmlisub-config-logging">
-    <title>Logging configuration</title>
-    <para>All scripts have a logging option. This is used to configure pythons logging 
-      library. An example is shown below.</para>
-    <programlisting>&prompt-user; <userinput> vmlisub_image -L /usr/share/doc/hepixvmilsubscriber/logger.conf -l</userinput></programlisting>
+    <section   id="imagetransfer-software-vmlisub-config-cron">
+      <title>Set up for Production using Cron</title>
+      <para>Then the by hand configuration for your master DB</para>
+      <programlisting>&prompt-root;  <userinput>useradd vmlisub</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>mkdir -p /var/lib/vmlisub /var/cache/vmimages/endorsed \
+      /var/cache/vmimages/partial /var/cache/vmimages/expired</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>touch /var/log/vmlisub.log</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>chown vmlisub:vmlisub /var/lib/vmlisub  /var/cache/vmimages/endorsed \
+      /var/cache/vmimages/partial /var/cache/vmimages/expired \
+      /var/log/vmlisub.log</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>sudo -u vmlisub /usr/bin/vmlisub_sub \
+      -s &blobUrl; \
+      -d sqlite:////var/lib/vmlisub/vmlisub.db</userinput></programlisting>
+      <para>make a cron job</para>
+      <programlisting>&prompt-root; <userinput> cat   /etc/cron.d/vmlisub</userinput>
+export VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db"
+export VMILS_CACHE_DIR_CACHE="/var/cache/vmimages/endorsed/"
+export VMILS_CACHE_DIR_DOWNLOAD="/var/cache/vmimages/partial/"
+export VMILS_CACHE_DIR_EXPIRE="/var/cache/vmimages/expired/"
+export VMILS_CACHE_EVENT="python /usr/share/doc/hepixvmilsubscriber-0.1.17/vmlisub_eventHndlExpl  --output_file=/tmp/foo --datetime"
 
-    <para>Logging can be independently set up for each object to multiple locations, and 
-      with different log levels.</para>
-  </section>
+50 */6 * * *	vmlisub	(/usr/bin/vmlisub_sub -U; /usr/bin/vmlisub_cache  ) >> /var/log/vmlisub.log 2>&amp;1</programlisting>      
+    <para>So the script is executed every 6 hours shortly after fetch CRL.</para>
+    <para>If a new &vmi; is downloaded, or an old &vmi; is expired the event will triggor "VMILS_CACHE_EVENT" and 
+    the application vmlisub_eventHndlExpl will append the data to /tmp/foo</para>
+    <para>Now at any time users with file permisions can get a list of valid images.</para>
+      <programlisting>&prompt-user; <userinput>VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db" vmlisub_image -l</userinput></programlisting>
+    </section>  
     <section  id="imagetransfer-software-vmlisub-config-env">
     <title>Environment Variables</title>
     <para>Environment variables can be used to set default values but the command line 
@@ -620,11 +625,23 @@ integrity.</para>
 endorsed.</para>
     </section>
   </section>
-      </section>
+      
+     
+    <section id="imagetransfer-software-vmlisub-config-logging">
+      <title>Logging configuration</title>
+      <para>All scripts have a logging option. This is used to configure pythons logging 
+      library. An example is shown below.</para>
+      <programlisting>&prompt-user; <userinput> vmlisub_image -L /usr/share/doc/hepixvmilsubscriber/logger.conf -l</userinput></programlisting>
+      <para>Logging can be independently set up for each object to multiple locations, and 
+      with different log levels.</para>
+    </section>
+  </section>
   <section id="imagetransfer-software-imagelist-consumer-status-todo">
       <title>To Do (16-05-2012)</title>
       <itemizedlist>
         <listitem>Only message authenticity is checked, does not yet check authenticity of transport.</listitem>
+	<listitem>PGP signatures.</listitem>
+	<listitem>Support encrypted messages.</listitem>
       </itemizedlist>
       <para>While it does check the authenticity of the message using X509, at the moment the 
         authenticity of the host is unchecked. For the programmability it would be far simpler to 
@@ -632,6 +649,4 @@ endorsed.</para>
         easier just to check any host key mechanism, as this is sufficient.</para>
     </section>
 </section>
-
-</chapter>
-
+</chapter >

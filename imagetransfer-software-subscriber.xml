@@ -21,8 +21,8 @@
 
 <section id="imagetransfer-software-vmlisub">
   <title>vmlisub</title>
-  <para>This virtual maschine &vmil; subscriber implementation is intended to be a production grade referance implementation.</para>
-  <section>
+  <para>This virtual machine &vmil; subscriber implementation is intended to be a production grade reference implementation.</para>
+  <section id="imagetransfer-software-vmlisub-introduction">
     <title>Introduction</title>
     <para>This application allows users to subscribe to virtual machine &vmil;s, cache
 the images referenced to in the &vmil;, validate the images list with x509 
@@ -48,7 +48,7 @@ images.</para>
         <listitem>Expire images to an archive when no longer endorsed or corrupt.</listitem>
       </itemizedlist>
     </section>
-<para> This set of applications are designed to provide a similar work flow
+    <para> This set of applications are designed to provide a similar work flow
 from each area of control to the &vmil; archive.</para>
     <itemizedlist>
       <listitem>&vmlisub_endorser; - Endorsers of &vmil; subscriptions.</listitem>
@@ -69,7 +69,7 @@ your local images are matching signatures in the &vmil;.</para>
 software application similar to Debian's 'aptitude' or Redhats 'yum', but rather
 for virtual machines, authenticated by the x509 signatures.</para>
   </section>
-  <section>
+  <section id="imagetransfer-software-vmlisub-quickstart">
     <title>Quick start use of hepixvmilsubscriber</title>
     <para>First make sure that all the Certificate Revocation Lists (CRL) are upto date.</para>
     <programlisting>&prompt-root;  <userinput>fetch-crl</userinput></programlisting>
@@ -180,7 +180,7 @@ export VMILS_CACHE_EVENT="python /usr/share/doc/hepixvmilsubscriber-0.1.17/vmlis
 
 
 
-  <section>
+  <section id="imagetransfer-software-vmlisub-installation">
     <title>Installation</title>
     <section id="imagetransfer-software-vmlisub-repo">
       <title>Package Repositories.</title>
@@ -198,7 +198,7 @@ export VMILS_CACHE_EVENT="python /usr/share/doc/hepixvmilsubscriber-0.1.17/vmlis
     
     
     
-    <section>
+    <section  id="imagetransfer-software-vmlisub-installation-rhel6">
       <title>Installation on Redhat Enterprise Linux 6</title>
       <para>Install EPEL for dependencies.</para>
       <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/6/x86_64/epel-release-6-5.noarch.rpm</userinput></programlisting>
@@ -225,7 +225,7 @@ enabled=1</programlisting>
       <para></para>
       <programlisting>&prompt-root; <userinput>yum install hepixvmilsubscriber</userinput></programlisting>
     </section>
-    <section>
+    <section id="imagetransfer-software-vmlisub-installation-rhel5">
       <title>Installation on Redhat Enterprise Linux 5</title>
       <para>Install EPEL for dependencies.</para>
       <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</userinput></programlisting>
@@ -260,12 +260,12 @@ problem please download the following</para>
     
     
     
-    <section>
+    <section id="imagetransfer-software-vmlisub-installation-debian-wheezy">
       <title>Installation on &wheezy; or later,</title>
-      <para>Do not install this on debian 6.0 as the included version of python-m2crypto is not stable.</para>
+      <para>Do not install this on Debian 6.0 as the included version of python-m2crypto is not stable.</para>
       <para>These instructions are for &wheezy; or later.</para>
-      <para>Unfortunatly at this moment the code is not packaged. but all the dependacies are available 
-      in the debian repository. </para>
+      <para>Unfortunately at this moment the code is not packaged. but all the dependencies are available 
+      in the Debian repository. </para>
       
       <para>For Grid scientific use you can get a trust store easily using the egi.eu repository.</para>
       <programlisting>&prompt-root; <userinput>wget -q -O - \
@@ -285,7 +285,7 @@ deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core</programl
 &prompt-root; <userinput>aptitude install fetch-crl</userinput>
 &prompt-root; <userinput>fetch-crl </userinput></programlisting>
 
-      <para>Now install the code froms git.</para>
+      <para>Now install the code from git.</para>
       <programlisting>http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/</programlisting>
       
       <para>The leatest version of hepixvmitrust-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
@@ -340,9 +340,9 @@ Saving to: `hepixvmilsubscriber-0.1.14.tar.gz'
 &prompt-root; <userinput>cd ..</userinput></programlisting>
     </section>
     
+  </section>  
     
-    
-  <section>
+  <section id="imagetransfer-software-vmlisub-vmlisub_endorser">
     <title>&vmlisub_endorser;</title>
     <para>This application is for managing who the subscriber trusts to update image 
 lists. Since individuals are identified with x509 certificates, Each certificate
@@ -375,9 +375,9 @@ The endorser_uuid could be a more human name:</para>
        --subject='&blobDn;' \
        --issuer='&blobIssuer;'</userinput></programlisting>
   </section>
-  <section>
+  <section id="imagetransfer-software-vmlisub-vmlisub_sub">
     <title>&vmlisub_sub;</title>    
-    <para>This application manages your subscriptions and thier update:</para>
+    <para>This application manages your subscriptions and their update:</para>
     <para>To add a subscription</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_sub  -s &blobUrl;</userinput></programlisting>
     <para>Or alternatively you can download a file visually insepect it and subscribe to the local file.</para>
@@ -419,7 +419,7 @@ imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     <para>To delete a subscription</para>
     <programlisting>&prompt-user;  <userinput>vmlisub_sub  -D  --uuid=&blobSubscriptionUuid;</userinput></programlisting>
   </section>
-  <section>
+  <section id="imagetransfer-software-vmlisub-vmlisub_image">
     <title> &vmlisub_image;</title>
     <para> This application manages images within your subscription. </para> 
     <para>List the available images</para>
@@ -442,7 +442,7 @@ available in the current &vmil;s. Now we will select an image for local caching.
       <programlisting>&prompt-user;  <userinput>vmlisub_image -r -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
     </section>
   </section>
-  <section>
+  <section id="imagetransfer-software-vmlisub-vmlisub_cache">
     <title>&vmlisub_cache;  </title>
     <para>  This application downloads images. By default it will download images, check the sha512
 hash of cached images and expire images from old &vmil;s.</para>
@@ -551,12 +551,13 @@ UUID for &vmil; this allows updating the list, and uniqueness.</para>
         <section>
           <title>VMILS_EVENT_FILENAME</title>
           <para>The Image file name.</para>
-        </section>
+        
       </section>
     </section>
   </section>
-
-  <section>
+ </section> 
+  <section id="imagetransfer-software-vmlisub-config">
+    <section id="imagetransfer-software-vmlisub-config-logging">
     <title>Logging configuration</title>
     <para>All scripts have a logging option. This is used to configure pythons logging 
       library. An example is shown below.</para>
@@ -565,7 +566,7 @@ UUID for &vmil; this allows updating the list, and uniqueness.</para>
     <para>Logging can be independently set up for each object to multiple locations, and 
       with different log levels.</para>
   </section>
-  <section>
+    <section  id="imagetransfer-software-vmlisub-config-env">
     <title>Environment Variables</title>
     <para>Environment variables can be used to set default values but the command line 
 options will override any set environment options.</para>
@@ -619,7 +620,7 @@ integrity.</para>
 endorsed.</para>
     </section>
   </section>
-  </section>
+      </section>
   <section id="imagetransfer-software-imagelist-consumer-status-todo">
       <title>To Do (16-05-2012)</title>
       <itemizedlist>
@@ -630,5 +631,7 @@ endorsed.</para>
         use x509 certificates to check the host server. In terms of deployment it would be far 
         easier just to check any host key mechanism, as this is sufficient.</para>
     </section>
-  </section>
+</section>
+
 </chapter>
+

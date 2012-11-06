@@ -15,7 +15,7 @@
   <title>Image transfer Specifications</title>
   <section id="imagetransfer-specs-intro">
     
-    <para>The HVWG tools are based on the concept of "image lists" which have a lifecycle. 
+    <para>The tools are based on the concept of "image lists" which have a lifecycle. 
     All image lists have a URI and a UUID, a creation and expiry date and Version number. 
     If image lists change either UUID or URI they are considered different image lists, 
     and when an image list is updated it is expected that the creation data is updated 
@@ -31,7 +31,7 @@
     is greater or equal to the previous version number. If image lists do not match any 
     of these conditions an image list is invalid. Subscribed image lists are referenced 
     by their UUID.</para>
-    <para>The HVWG tools have the concept of image life cycles, which are related to image 
+    <para>The tools have the concept of image life cycles, which are related to image 
     list life cycles. An image maybe available or unavailable, created, and updated. From 
     the subscribers perspective available images cannot exist without a valid image list 
     that includes them. Images are secured with a sha512 value in the image list that 

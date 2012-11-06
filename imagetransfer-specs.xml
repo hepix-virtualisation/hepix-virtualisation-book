@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<chapter id="imagetransfer-specs">
+  <info>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+  </info>
+  <title>Image transfer Specifications</title>
+  <section id="imagetransfer-specs-intro">
+    
+    <para>The HVWG tools are based on the concept of "image lists" which have a lifecycle. 
+    All image lists have a URI and a UUID, a creation and expiry date and Version number. 
+    If image lists change either UUID or URI they are considered different image lists, 
+    and when an image list is updated it is expected that the creation data is updated 
+    and best to update the version number. It is recommended that the expiry data of an 
+    image list is 1 month from the creation date.</para>
+    <para>Endorsers provide signed image lists, and accept the security responsibilities 
+    of producing images. Subscribers use image lists and run them confident they can 
+    identify the endorser, and decide if they will run the endorsers images.</para>
+    <para>Image lists can be valid or invalid from the perspective of the subscriber. 
+    Valid image lists are signed, with a valid certificate from a CA trusted by the 
+    subscriber, the current time is between the created and expiry date, and endorsers 
+    subject in the image list that matches the endorser, and the current version number 
+    is greater or equal to the previous version number. If image lists do not match any 
+    of these conditions an image list is invalid. Subscribed image lists are referenced 
+    by their UUID.</para>
+    <para>The HVWG tools have the concept of image life cycles, which are related to image 
+    list life cycles. An image maybe available or unavailable, created, and updated. From 
+    the subscribers perspective available images cannot exist without a valid image list 
+    that includes them. Images are secured with a sha512 value in the image list that 
+    matches the image.</para>
+    <para>An image is identified by its UUID and its version number. Its current state 
+    is defined by its presence or absence in a valid image list. Valid images always have 
+    greater or equal version numbers than previous versions.</para>
+    <para>UUID's of images and image lists cannot overlap, It is considered a hostile 
+    action if UUID uniqueness is violated by an endorser. Since image list UUID's are 
+    only added or removed by the subscriber displaying errors and rejecting image-lists 
+    with clashing UUID's with the subscribers tools is enough to alert the subscriber to 
+    such endorser actions. If two image lists provide images with the same UUID, the image 
+    from the second image list will be ignored and an error should be shown by the 
+    subscribers tools.</para>
+    <para>Updated image lists may contain new images referenced by new UUID's. These new 
+    images will be ignored and WARNINGS shown until the imagelist is re-subscribed. This 
+    behavior keeps the subscriber in control of the Image UUID's and thier association to 
+    imagelist UUID's. It is always well defined which image belongs to which image list 
+    and so the subscriber always knows the publisher of an image.</para>
+    <para>Images UUID's no longer present in an image list are no longer endorsed by the 
+    endorser and so the images are no longer available, and consequently such images are 
+    marked as "expired" an event is sent.</para>
+    <para>The subscriber is aware of the complete history of an image through the meta 
+    data of that image within the subscription tools, the date of expiry and renewal for 
+    each state change for an image in an imagelist.</para>
+  </section>
+</chapter> 
+

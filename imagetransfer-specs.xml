@@ -21,7 +21,7 @@
     and best to update the version number. It is recommended that the expiry data of an 
     &vmil; is 1 month from the creation date.</para>
     <para>Endorsers provide signed &vmil;, and accept the security responsibilities 
-    of producing images as stated in the Image trust section of thsi document. 
+    of producing images as stated in the Image trust section of this document. 
     Subscribers use &vmil; and run them confident they can identify the endorser, and 
     decide if they will run the endorsers images.</para>
     <para>&vmil; can be valid or invalid from the perspective of the subscriber. 

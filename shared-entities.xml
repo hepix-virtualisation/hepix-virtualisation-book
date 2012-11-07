@@ -59,8 +59,9 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY prompt-root  "<prompt>[root] #</prompt>">
 <!ENTITY prompt-one   "<prompt>[one] #</prompt>">
 
-<!-- blobcasts -->
-<!-- CERN VM
+
+<!-- CERN VM -->
+<!ENTITY blobEndorserName "Predrag Buncic">
 <!ENTITY blobDn   "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=buncic/CN=379010/CN=Predrag Buncic">
 <!ENTITY blobUrl "https://cernvm.cern.ch/releases/image.list">
 <!ENTITY blobIssuer   "/DC=ch/DC=cern/CN=CERN Trusted Certification Authority">
@@ -68,8 +69,9 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY blobSubscriptionDcdescription   "CERN Virtual Machine">
 <!ENTITY blobEndorserUuid   "e55c1afe-0a62-4d31-a8d7-fb8c825f92a2">
 <!ENTITY blobImageIdExampleSubscribed   "858a817e-0ca2-473f-89d3-d5bdfc51968e">
--->
-<!-- DISH -->
+<!-- blobcasts -->
+<!-- DISH 
+<!ENTITY blobEndorserName "Owen Synge">
 <!ENTITY blobUrl "https://dish.desy.de:2880/testing.smime">
 <!ENTITY blobDn   "/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge">
 <!ENTITY blobIssuer   "/C=DE/O=GermanGrid/CN=GridKa-CA">
@@ -77,6 +79,6 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY blobSubscriptionDcdescription   "DESY Image List SHaring service">
 <!ENTITY blobEndorserUuid   "e55c1afe-0a62-4d31-a8d7-fb8c825f92a2">
 <!ENTITY blobImageIdExampleSubscribed   "5f00fec3-4f2a-4fa0-a965-d52115606044">
-
+-->
 <!-- Misc -->
 <!-- <!ENTITY ndash "&#x2013;"> -->

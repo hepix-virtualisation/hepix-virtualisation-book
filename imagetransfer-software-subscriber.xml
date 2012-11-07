@@ -95,7 +95,7 @@ for virtual machines, authenticated by the x509 signatures.</para>
     <para>Now create this endorser. The endorser_uuid can be any string but its recommended this is a 
 short string possibly following the uuid standard:</para>
     <programlisting>&prompt-user;  <userinput>vmcatcher_endorser --create \
-       --endorser_uuid='Ian' \
+       --endorser_uuid='&blobEndorserName;' \
        --subject='&blobDn;' \
        --issuer='&blobIssuer;'</userinput></programlisting>
     <para>Now we can add the subscription, this will automatically link the endorser 

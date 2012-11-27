@@ -50,6 +50,7 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY ca          "<literal> Certification Authorities</literal>">
 <!ENTITY x509          "<literal>x.509</literal>">
 <!ENTITY uuid          "<literal>RFC 4122 UUID</literal>">
+<!ENTITY vo          "<literal>Virtual Organisation</literal>">
 
 <!-- When defining attributes, default values, etc. -->
 <!ENTITY true         "<emphasis>True</emphasis>">

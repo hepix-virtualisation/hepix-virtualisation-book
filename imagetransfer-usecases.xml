@@ -23,19 +23,19 @@
       <title>1: Endorser handling</title>
       <itemizedlist>
         <title>Each endorser runs his own VMIC.</title>
-        <listitem>Endorsers can be associated to a site (side endorser)</listitem>
-        <listitem>Endorsers can be associated to a VO (VO endorser)</listitem>
+        <listitem>Endorsers can be associated to a site (site endorser)</listitem>
+        <listitem>Endorsers can be associated to a &vo; (&vo; endorser)</listitem>
       </itemizedlist>
       <section>
-        <title>1.1: A new Endorser for VO XYZ enters</title>
+        <title>1.1: A new Endorser for &vo; XYZ enters</title>
         <itemizedlist>
           <listitem>The endorser sets up his VMIC</listitem>
-          <listitem>The endorser VMIC gets listed in the VOs list of endorsers</listitem>
+          <listitem>The endorser VMIC gets listed in the &vo;'s list of endorsers</listitem>
         </itemizedlist>
         <section>
           <title>1.1.1:</title>
           <itemizedlist>
-            <listitem>The change gets announced to the sites supporting this VO</listitem>
+            <listitem>The change gets announced to the sites supporting this &vo;.</listitem>
           </itemizedlist>
         </section>
         <section>
@@ -53,21 +53,21 @@
         </section>
       </section>
       <section>
-        <title>1.2: An Endorser leaves VO XYZ and is not replaced</title>
+        <title>1.2: An Endorser leaves &vo; XYZ and is not replaced</title>
         <section>
-          <title>1.2.1: The VO decides to revoke all his images</title>
+          <title>1.2.1: The &vo; decides to revoke all his images</title>
           <itemizedlist>
-            <listitem>The endorser is removed from the VOs list of endorsers</listitem>
+            <listitem>The endorser is removed from the &vo;'s list of endorsers</listitem>
             <listitem>The endorsers VMIC is destroyed</listitem>
-            <listitem>The sites supporting this VOs are informed of the change by the VO</listitem>
+            <listitem>The sites supporting this &vo;'s are informed of the change by the &vo;.</listitem>
             <listitem>The sites update their local list of endorsers</listitem>
             <listitem>The sites ensure that local copies of all affected images are revoked</listitem>
           </itemizedlist>
         </section>
         <section>
-          <title>1.2.2: The VO wants the sites to keep running  his images</title>
+          <title>1.2.2: The &vo; wants the sites to keep running  his images</title>
           <itemizedlist>
-            <listitem>in this case the VO must provide a new endorser who re-endorses the images, case 1.3</listitem>
+            <listitem>in this case the &vo; must provide a new endorser who re-endorses the images, case 1.3</listitem>
           </itemizedlist>
         </section>
         <section>
@@ -78,17 +78,17 @@
         </section>
       </section>  
       <section>
-        <title>1.3: An Endorser E1 of VO XYZ is replaced by Endorser E2</title>
+        <title>1.3: An Endorser E1 of &vo; XYZ is replaced by Endorser E2</title>
         <itemizedlist>
-          <listitem>The VO follows step 1.1 to support the new endorser, and  then 1.2 to revoke the old one</listitem>
+          <listitem>The &vo; follows step 1.1 to support the new endorser, and  then 1.2 to revoke the old one</listitem>
         </itemizedlist>
       </section>
       <section>
-        <title>1.4: VO A elects a new Endorsers E1. Site S1 supports VO A. Site S2 does not support VO A  </title>
+        <title>1.4: &vo; A elects a new Endorsers E1. Site S1 supports &vo; A. Site S2 does not support &vo; A  </title>
         <section>
           <title>1.4.1/2:</title>
           <itemizedlist>
-            <listitem>implicitly fulfilled as the VO only contacts those sites which support it</listitem>
+            <listitem>implicitly fulfilled as the &vo; only contacts those sites which support it</listitem>
           </itemizedlist>
         </section>
       </section>
@@ -102,7 +102,7 @@
         </itemizedlist>
         <orderedlist numeration="loweralpha">
           <listitem>sites regularly poll the VMICs of all endorsers in their local endorser list for updates</listitem>
-          <listitem>VOs can ask sites to perform this check outside the normal intervals</listitem>
+          <listitem>&vo;'s can ask sites to perform this check outside the normal intervals</listitem>
         </orderedlist>
         <itemizedlist>
           <listitem>sites start the local approval procedure to make the image available</listitem>
@@ -116,7 +116,7 @@
         <itemizedlist>
           <listitem>The endorser removes these images from his VMIC</listitem>
           <listitem>sites regularly poll the VMICs in their local endorser list</listitem>
-          <listitem>VOs can ask sites to poll outside the regular interval </listitem>
+          <listitem>&vo;'s can ask sites to poll outside the regular interval </listitem>
           <listitem> sites remove all images which are no longer in the VMICs from their local list of approved images</listitem>          
         </itemizedlist>
       </section>  
@@ -126,7 +126,7 @@
           <listitem>The endorser adds the new image to his VMIC</listitem>
           <listitem>The endorser removes the old image from his VMIC</listitem>
           <listitem>sites regularly poll the VMICs in their local endorser list, and revoke support for all images which may have disappeared from the VMICs</listitem>
-          <listitem>VOs can ask sites to poll outside the regular interval </listitem>
+          <listitem>&vo;'s can ask sites to poll outside the regular interval </listitem>
           <listitem>sites decide on the approval of the updated image, and add the image to their list of approved images</listitem>
           <listitem>sites remove all images which are no longer in the VMICs from their local list of approved images</listitem>
         </itemizedlist>
@@ -169,8 +169,8 @@
             <listitem>the site checks the meta data information of the images in their local list of approved images</listitem>
             <listitem>the site flags image for removal based on their meta data</listitem>
             <listitem>the site removes the affected images from their local list of approved images</listitem>
-            <listitem>in case of a VO, the affected VO is informed</listitem>
-            <listitem>the VO proceeds as described above for the revocation of the image</listitem>
+            <listitem>in case of a &vo;, the affected &vo; is informed</listitem>
+            <listitem>the &vo; proceeds as described above for the revocation of the image</listitem>
           </itemizedlist>
         </section>
         <section>
@@ -184,7 +184,7 @@
           <title>3.7: A site needs to make a new image available to their users</title>
           <itemizedlist>
             <listitem>The image has been added upstream and appears in one of the VMICs </listitem>
-            <listitem>At the next poll, or on request of the VO, the approval procedure is started</listitem>
+            <listitem>At the next poll, or on request of the &vo;, the approval procedure is started</listitem>
             <listitem>the image is added or not to the local list of approved images</listitem>
           </itemizedlist>
         </section>

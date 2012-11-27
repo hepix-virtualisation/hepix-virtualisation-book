@@ -43,7 +43,7 @@ designed to run on a given hypervisor. A successful contextualization strategy s
 the Virtual Appliance creation, by defining a set a conventions and pre-configurations that
 will allow the Virtual Appliance (also refer as master image) to be specialized at boot time.</para>
     <para> wo aspects of the contextualization process were introduced and discussed within the context
-of running a &vm; from the OSG VO: STAR. (Ref: https://twiki.grid.iu.edu/bin/view/
+of running a &vm; from the OSG &vo;: STAR. (Ref: https://twiki.grid.iu.edu/bin/view/
 CampusGrids/DeployingTheSTARVM); and can be refered to as image level contextualization
 and instance level contextualization.</para>
   </section>
@@ -78,7 +78,7 @@ other. There are two approaches:</para>
       <listitem>This may be better achieved by a context broker such as the one defined in &nimbus;
 (Ref: http://www.nimbusproject.org/docs/2.2/faq.html#ctxbroker). In practice, the context
 broker is a server that the instance contact to get their configuration parameters. This
-maybe a mechanisms that the VO could use for post instantiation configuration. As long
+maybe a mechanisms that the &vo; could use for post instantiation configuration. As long
 as it complies with the &hepix; security policies.</listitem>
       <listitem>Use of VM orchestration utilities, this approach could be more flexible as it also allows
 complete management of the VM group and it can include synchronization points

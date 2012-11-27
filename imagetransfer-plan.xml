@@ -43,8 +43,8 @@ distribution technology is not discussed in detail.</para>
 This provides a mechanism by which a virtual image can be checked for validity: expiry, revocation, 
 whether it has been tampered with etc, and traceability.</para>
     <para>The image is then distributed to a site using (for example) the software distribution mechanism by
-the responsible VO, or automatically by the local catalogue. Information about the image (the certificate public keys, VO responsible, a
-unique ID, a VO tag family and a URI, inital global validity, i.e., the metadata) is registered with a
+the responsible &vo;, or automatically by the local catalogue. Information about the image (the certificate public keys, &vo; responsible, a
+unique ID, a &vo; tag family and a URI, inital global validity, i.e., the metadata) is registered with a
 local catalogue. A local validity flag may also be set by the site.</para>
     <para>Requests for instantiation are made via the unique ID or the tag. When the local system receives an
 instantiation request for a particular image, the catalogue is checked for the location and global and

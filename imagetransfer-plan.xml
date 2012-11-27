@@ -72,7 +72,7 @@ or revoked images are refused.</para>
       <title>Local Catalogue</title>
       <para>A Site will have a Local Catalogue which will be a registry (database) of Images which may be
         considered for running at the Site. The Catalogue will contain metadata for each subscribed Image 
-        and &vmil;. This metadata will at least contain the &x509; certification data, the unique UUID, 
+        and &vmil;. This metadata will at least contain the &x509; certification data, the unique &uuid;, 
         a Tag, resource locator, a global validity flag field and a local validity flag field.</para>
       <para>The Local Catalogue will subscribe to the appropriate revocation service (CRLs) and flag Images 
       that have been revoked by setting the global validity flag.</para>
@@ -95,10 +95,10 @@ or revoked images are refused.</para>
     </section>
     <section id="imagetransfer-plan-distribution-metadata">
     <title>Image Metadata</title>
-    <para>Images will have &x509; signed metadata. Images will have a unique identifier (UUID).
+    <para>Images will have &x509; signed metadata. Images will have a unique identifier (&uuid;).
       Images will have a Tag name which may be non-unique such that a series of images may belong to a
-      tag family. Requests to run an image may be either via the UUID or the Tag. In the case of a Tag
-      having more than one UUID registered the latest dated image will be considered for instantiation.</para>
+      tag family. Requests to run an image may be either via the &uuid; or the Tag. In the case of a Tag
+      having more than one &uuid; registered the latest dated image will be considered for instantiation.</para>
     </section>
   </section>
 </chapter> 

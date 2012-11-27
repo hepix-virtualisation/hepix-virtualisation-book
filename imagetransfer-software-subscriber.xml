@@ -84,7 +84,7 @@ for virtual machines, authenticated by the &x509; signatures.</para>
     <programlisting>&prompt-user; <userinput>export VMCATCHER_RDBMS="sqlite:////var/lib/vmcatcher/vmcatcher.db"</userinput></programlisting>
     <para>The above line instructs the sqlalchamy interfacxe to datavabses to use sqlite and path "/var/lib/vmcatcher/vmcatcher.db" 
     on a UNIX system. This is the only improtant file and stores the older signed image lists. SQL is used to enforce most of the rules 
-    such as unique nature of UUID's and the URLS for the subscriptions, this should be backed up. Other enviroment varables 
+    such as unique nature of &uuid;'s and the URLS for the subscriptions, this should be backed up. Other enviroment varables 
     are documented later.</para>
     <para>To add a subscription,</para>
     <programlisting>&prompt-user;  <userinput>wget --no-check-certificate &blobUrl;</userinput></programlisting>
@@ -93,7 +93,7 @@ for virtual machines, authenticated by the &x509; signatures.</para>
                 "hv:ca": "&blobIssuer;", 
                 "hv:dn": "&blobDn;", </programlisting>
     <para>Now create this endorser. The endorser_uuid can be any string but its recommended this is a 
-short string possibly following the uuid standard:</para>
+short string possibly following the &uuid; standard:</para>
     <programlisting>&prompt-user;  <userinput>vmcatcher_endorser --create \
        --endorser_uuid='&blobEndorserName;' \
        --subject='&blobDn;' \
@@ -103,7 +103,7 @@ with this subscription.</para>
     <programlisting>&prompt-user;  <userinput>vmcatcher_endorser -l</userinput>
 Ian    '&blobDn;'        '&blobIssuer;'</programlisting>
     <para>The above command will show you the endorsers. Note the first column is the 
-identifier. In this case its shorter than a UUID. The second column is the 
+identifier. In this case its shorter than a &uuid;. The second column is the 
 users certificate subject (some times know as distinguished name) while the 
 third column is the subject of the issuing certificate authority.</para>
     <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe -s file:////`pwd`/hepix_signed_image_list</userinput>
@@ -121,8 +121,8 @@ INFO:vmcatcher_subscribe.main:Defaulting DB connection to 'sqlite:///vmcatcher.d
 327016b0-6508-41d2-bce0-c1724cb3d3e2    0       &blobSubscriptionUuid;
 &blobImageIdExampleSubscribed;    0       &blobSubscriptionUuid;
 da42ca85-179b-4873-b12e-32d549bf02b6    0       &blobSubscriptionUuid;</programlisting>
-    <para>The results show the UUID of the image, the availability state and the
-subscription UUID. The state value is a bitmap, 1 is subscribed, 2 means its
+    <para>The results show the &uuid; of the image, the availability state and the
+subscription &uuid;. The state value is a bitmap, 1 is subscribed, 2 means its
 available in the current &vmil;s. Now we will select an image for local caching.</para>
     <para>Next update the subscriptions.</para>
     <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe -U</userinput>
@@ -413,12 +413,12 @@ imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
 327016b0-6508-41d2-bce0-c1724cb3d3e2    2       &blobSubscriptionUuid;
 &blobImageIdExampleSubscribed;    3       &blobSubscriptionUuid;
 da42ca85-179b-4873-b12e-32d549bf02b6    2       &blobSubscriptionUuid;</programlisting>
-    <para>The results show the UUID of the image, the availability state and the
-subscription UUID. The state value is a bitmap, 1 is subscribed, 2 means its
+    <para>The results show the &uuid; of the image, the availability state and the
+subscription &uuid;. The state value is a bitmap, 1 is subscribed, 2 means its
 available in the current &vmil;s. Now we will select an image for local caching.</para>
     <section>
       <title>Selecting Images</title>
-      <para>Images can be selected by either UUID or Sha512 hash. This allows explicit
+      <para>Images can be selected by either &uuid; or Sha512 hash. This allows explicit
   selection of images or by the sha512 from an old image.</para>
       <para>Delete the subscription by image.</para>
       <programlisting>&prompt-user;  <userinput>vmcatcher_image -D -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
@@ -496,7 +496,7 @@ directory.</para></listitem>
         <section>
           <title>VMCATCHER_EVENT_DC_IDENTIFIER</title>
           <para>Unique identifier of the image. Its suggested that image producers use RFC 4122 
-UUID for &vmil; this allows updating the list, and uniqueness.</para>
+&uuid; for &vmil; this allows updating the list, and uniqueness.</para>
         </section>
         <section>
           <title>VMCATCHER_EVENT_DC_TITLE</title>

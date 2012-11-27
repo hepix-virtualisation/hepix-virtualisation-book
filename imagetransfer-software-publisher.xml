@@ -21,13 +21,13 @@
   given HEP name server setups, but to have confidence this is not occurring
   we need an authenticated connection with the web server and that means SSL.</para>
       <para>It is an &vmil; producers decision if they provide http, or https
-  authenticated or even X509 authenticated access, Since this tool is based
-  on X509 trust I would suggest deploying on an X509 based web server and
+  authenticated or even &x509; authenticated access, Since this tool is based
+  on &x509; trust I would suggest deploying on an &x509; based web server and
   not requiring client have an identify if possible, http(s) maybe enough
   security for many this is a discussion point.</para>
       <para>the client of the signed message from a web server we should know that it has 
       connected to the correct web server. I am bias to adding restrictions such as only 
-      supporting X509 https to some web servers. What do people think?</para>
+      supporting &x509; https to some web servers. What do people think?</para>
     </section>
 
 
@@ -40,7 +40,7 @@
   <section>
     <title>Introduction</title>
     <para>hepixvmitrust is a package that contains a CLI tool, and a minimal
-implementation, in its documentation for X509 signing lists of
+implementation, in its documentation for &x509; signing lists of
 virtual machine image metadata. The tools are generally reusable
 but were developed to satisfy the need to securely exchange virtual
 machine images between High Energy Physics sites, in a similar way
@@ -58,7 +58,7 @@ for Virtual Maschines.</para>
       <title>Features</title>
       <itemizedlist>
         <listitem>Command line application with library to support integration.</listitem>
-        <listitem>Adds X509 Signature to lists of images.</listitem>
+        <listitem>Adds &x509; Signature to lists of images.</listitem>
         <listitem>Ability to add and remove images to &vmil;.</listitem>
         <listitem>Automatic setting of some meta data fields.</listitem>
         <listitem>Supports optional data fields.</listitem>

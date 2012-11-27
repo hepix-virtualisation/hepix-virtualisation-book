@@ -28,7 +28,7 @@
             <title>Features</title>
             <itemizedlist>
               <listitem>Single web interface to manage image deployment as a site.</listitem>
-              <listitem>Uses X509 signed image list to communicate with worker nodes.</listitem>
+              <listitem>Uses &x509; signed image list to communicate with worker nodes.</listitem>
               <listitem>Allows multiple admins to manage site deployment.</listitem>
               <listitem>Provides the sites signed list of approved images to worker nodes.</listitem>
               <listitem>In production since October 2010 at CERN.</listitem>

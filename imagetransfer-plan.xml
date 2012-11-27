@@ -32,14 +32,14 @@ distribution technology is not discussed in detail.</para>
   <section id="imagetransfer-plan-summary">
     <title>Summary</title>
     <para>Images are referenced by an &vmil; which contains a secure hash (sha512) signed 
-    using x509 technology. These &vmil;s are published, and interested sites subscribe to the Lists
+    using &x509; technology. These &vmil;s are published, and interested sites subscribe to the Lists
      in a catalogue at the site. When an instantiation request for an image is received, the Image
      validity is checked.  If the &vmil; is valid, the Image is contextualised and then instantiated. 
      Images that do not pass validation are not instantiated.</para>
   </section>
   <section id="imagetransfer-plan-description">
     <title>Description</title>
-    <para>The idea is that a list of virtual images and the associated metadata is signed with a x509 certificates.
+    <para>The idea is that a list of virtual images and the associated metadata is signed with a &x509; certificates.
 This provides a mechanism by which a virtual image can be checked for validity: expiry, revocation, 
 whether it has been tampered with etc, and traceability.</para>
     <para>The image is then distributed to a site using (for example) the software distribution mechanism by
@@ -48,14 +48,14 @@ unique ID, a VO tag family and a URI, inital global validity, i.e., the metadata
 local catalogue. A local validity flag may also be set by the site.</para>
     <para>Requests for instantiation are made via the unique ID or the tag. When the local system receives an
 instantiation request for a particular image, the catalogue is checked for the location and global and
-local validity flags. If both are OK, the image is then checked for expiry and revocation using the x509
+local validity flags. If both are OK, the image is then checked for expiry and revocation using the &x509;
 credentials. If the the chek is passed then the image is contextualised and instantiated. Expired or
 or revoked images are refused.</para>
   </section>
   <section id="imagetransfer-plan-signing">
     <title>&vmil; Signing</title>
     <para>An Image will be created by a Creator and added to an &vmil; which is then signed by the 
-    Creator's x509 certificate. The &vmil; will have an appropriate expiry for the Image in the &vmil;. 
+    Creator's &x509; certificate. The &vmil; will have an appropriate expiry for the Image in the &vmil;. 
     The Image may then be distributed by an appropriate mechanism.</para>
     <para>Images may be revoked by not including the Image in the latest version of the &vmil;. The URI to establish the 
     latest version of the &vmil; will be contained in the &vmil; metadata.</para>
@@ -67,12 +67,12 @@ or revoked images are refused.</para>
     the existing software distribution mechanism, via a URI reference in the metadata. The transfer can be 
     validated using a secure hash which is expected to be sha512.</para>
     <para>While any check on the authenticity of the host, would safely prevent man in the middle 
-    attacks it may be easier to use X509 authentication for this function.</para>
+    attacks it may be easier to use &x509; authentication for this function.</para>
     <section id="imagetransfer-plan-distribution-localcat">
       <title>Local Catalogue</title>
       <para>A Site will have a Local Catalogue which will be a registry (database) of Images which may be
         considered for running at the Site. The Catalogue will contain metadata for each subscribed Image 
-        and &vmil;. This metadata will at least contain the x509 certification data, the unique UUID, 
+        and &vmil;. This metadata will at least contain the &x509; certification data, the unique UUID, 
         a Tag, resource locator, a global validity flag field and a local validity flag field.</para>
       <para>The Local Catalogue will subscribe to the appropriate revocation service (CRLs) and flag Images 
       that have been revoked by setting the global validity flag.</para>
@@ -90,12 +90,12 @@ or revoked images are refused.</para>
     <title>Instantiation</title>
     <para>A request to the instantiation system to run an Image will cause the instantiation system to 
     validate the Image against its global and local validity flags and metadata in the Local Catalogue, 
-    and to check for the expiry of the Image using its x509 certificate. If an image passes all the 
+    and to check for the expiry of the Image using its &x509; certificate. If an image passes all the 
     required checks, the Image may be contextualised and then run.</para>
     </section>
     <section id="imagetransfer-plan-distribution-metadata">
     <title>Image Metadata</title>
-    <para>Images will have x509 signed metadata. Images will have a unique identifier (UUID).
+    <para>Images will have &x509; signed metadata. Images will have a unique identifier (UUID).
       Images will have a Tag name which may be non-unique such that a series of images may belong to a
       tag family. Requests to run an image may be either via the UUID or the Tag. In the case of a Tag
       having more than one UUID registered the latest dated image will be considered for instantiation.</para>

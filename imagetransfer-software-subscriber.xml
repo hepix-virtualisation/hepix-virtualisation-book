@@ -25,11 +25,11 @@
   <para>The software makes use of a database to store subscriptions in a simplar way to a podcast reader or a linux package manager. 
   The tested Database is SqlLight, but it is based upon SQLalchamy so shoudl support many databases. Sdllight has proved more than 
   adiquate for the low transaction rate of a image list subscriber and so deployment issues are mearly backing up a databasefile.</para>
-  <para>Since the software is made with the Grid in mind it is only natural that the X509 certificate model is used. </para>
+  <para>Since the software is made with the Grid in mind it is only natural that the &x509; certificate model is used. </para>
   <section id="imagetransfer-software-vmcatcher-introduction">
     <title>Introduction</title>
     <para>This application allows users to subscribe to virtual machine &vmil;s, cache
-the images referenced to in the &vmil;, validate the images list with x509 
+the images referenced to in the &vmil;, validate the images list with &x509; 
 based public key cryptography, and validate the images against sha512 hashes in 
 the images lists and provide events for further applications to process updates 
 or expiries of virtual machine images without having to further validate the 
@@ -45,7 +45,7 @@ images.</para>
       <title>Features</title>
       <itemizedlist>
         <listitem>Add and delete multiple subscriptions to &vmil;s.</listitem>
-        <listitem>Update subscriptions checking authenticity of the message useng x509 based signatures.</listitem>
+        <listitem>Update subscriptions checking authenticity of the message using &x509; based signatures.</listitem>
         <listitem>Automation as a cron script.</listitem>
         <listitem>Subscribe and unsubscribe to images from &vmil;s.</listitem>
         <listitem>Download verify images into a local cache.</listitem>
@@ -71,7 +71,7 @@ install this application and subscribe to your current image.</para>
 your local images are matching signatures in the &vmil;.</para>
     <para>Anyone curious about this application should consider this application a
 software application similar to Debian's 'aptitude' or Redhats 'yum', but rather
-for virtual machines, authenticated by the x509 signatures.</para>
+for virtual machines, authenticated by the &x509; signatures.</para>
   </section>
   <section id="imagetransfer-software-vmcatcher-quickstart">
     <title>Quick start use of vmcatcher</title>
@@ -331,7 +331,7 @@ Saving to: `vmcatcher-0.1.14.tar.gz'
   <section id="imagetransfer-software-vmcatcher-vmcatcher_endorser">
     <title>&vmcatcher_endorser;</title>
     <para>This application is for managing who the subscriber trusts to update image 
-lists. Since individuals are identified with x509 certificates, Each certificate
+lists. Since individuals are identified with &x509; certificates, Each certificate
 has an issuing certificate and a unique string called a 'subject' to identify 
 the certificate. The 'subject' of a certificate and the 'subject' of the issuing 
 certificate combined are called 'credentials', and will be globally unique.</para>
@@ -643,9 +643,9 @@ endorsed.</para>
 	<listitem>PGP signatures.</listitem>
 	<listitem>Support encrypted messages.</listitem>
       </itemizedlist>
-      <para>While it does check the authenticity of the message using X509, at the moment the 
+      <para>While it does check the authenticity of the message using &x509;, at the moment the 
         authenticity of the host is unchecked. For the programmability it would be far simpler to 
-        use x509 certificates to check the host server. In terms of deployment it would be far 
+        use &x509; certificates to check the host server. In terms of deployment it would be far 
         easier just to check any host key mechanism, as this is sufficient.</para>
     </section>
 </section>

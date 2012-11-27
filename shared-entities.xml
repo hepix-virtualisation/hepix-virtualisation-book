@@ -48,6 +48,7 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY dubcore      "<literal>Dublin Core</literal>">
 <!ENTITY crl          "<literal>Certificate Revocation Lists</literal>">
 <!ENTITY ca          "<literal> Certification Authorities</literal>">
+<!ENTITY x509          "<literal>x.509</literal>">
 
 <!-- When defining attributes, default values, etc. -->
 <!ENTITY true         "<emphasis>True</emphasis>">

@@ -104,7 +104,7 @@ hv:imagelist
         </section>
         <section>
           <title>hv:imagelist/hv:endorser/hv:dn_x509</title>
-          <para>x509 DN of the endorser</para>
+          <para>&x509; DN of the endorser</para>
           <itemizedlist>
             <listitem><para>XML Rendering:</para><programlisting>&lt;hv:dn_x509&gt;/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge&lt;/hv:dn_x509&gt;</programlisting></listitem>
             <listitem><para>JSON Rendering:</para><programlisting>{ "hv:dn": "/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge" }</programlisting></listitem>

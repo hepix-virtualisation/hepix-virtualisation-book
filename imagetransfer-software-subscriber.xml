@@ -19,23 +19,23 @@
 
 
 
-<section id="imagetransfer-software-vmlisub">
-  <title>vmlisub</title>
+<section id="imagetransfer-software-vmcatcher">
+  <title>vmcatcher</title>
   <para>This virtual machine &vmil; subscriber implementation is intended to be a production grade reference implementation.</para>
   <para>The software makes use of a database to store subscriptions in a simplar way to a podcast reader or a linux package manager. 
   The tested Database is SqlLight, but it is based upon SQLalchamy so shoudl support many databases. Sdllight has proved more than 
   adiquate for the low transaction rate of a image list subscriber and so deployment issues are mearly backing up a databasefile.</para>
-  <para>Since the software is made with the Grid in mind it is only natural that the X509 certificate model is used. </para>
-  <section id="imagetransfer-software-vmlisub-introduction">
+  <para>Since the software is made with the Grid in mind it is only natural that the &x509; certificate model is used. </para>
+  <section id="imagetransfer-software-vmcatcher-introduction">
     <title>Introduction</title>
     <para>This application allows users to subscribe to virtual machine &vmil;s, cache
-the images referenced to in the &vmil;, validate the images list with x509 
+the images referenced to in the &vmil;, validate the images list with &x509; 
 based public key cryptography, and validate the images against sha512 hashes in 
 the images lists and provide events for further applications to process updates 
 or expiries of virtual machine images without having to further validate the 
 images.</para>
     <para>This software is available at:</para>
-    <code>https://github.com/hepix-virtualisation/hepixvmilsubscriber</code>
+    <code>https://github.com/hepix-virtualisation/vmcatcher</code>
     <para>The software is based upon a simple database that stores subscriptions to &vmil;s,
       who can sign the &vmil;, and which images belong to which subscriptions. It allows 
       images to selected for subscription.</para>
@@ -45,7 +45,7 @@ images.</para>
       <title>Features</title>
       <itemizedlist>
         <listitem>Add and delete multiple subscriptions to &vmil;s.</listitem>
-        <listitem>Update subscriptions checking authenticity of the message useng x509 based signatures.</listitem>
+        <listitem>Update subscriptions checking authenticity of the message using &x509; based signatures.</listitem>
         <listitem>Automation as a cron script.</listitem>
         <listitem>Subscribe and unsubscribe to images from &vmil;s.</listitem>
         <listitem>Download verify images into a local cache.</listitem>
@@ -55,10 +55,10 @@ images.</para>
     <para> This set of applications are designed to provide a similar work flow
 from each area of control to the &vmil; archive.</para>
     <itemizedlist>
-      <listitem>&vmlisub_endorser; - Endorsers of &vmil; subscriptions.</listitem>
-      <listitem>&vmlisub_sub;      - Subscription list details.</listitem>
-      <listitem>&vmlisub_image;    - Image details.</listitem>
-      <listitem>&vmlisub_cache;    - Cache images and update events.</listitem>
+      <listitem>&vmcatcher_endorser; - Endorsers of &vmil; subscriptions.</listitem>
+      <listitem>&vmcatcher_subscribe;      - Subscription list details.</listitem>
+      <listitem>&vmcatcher_image;    - Image details.</listitem>
+      <listitem>&vmcatcher_cache;    - Cache images and update events.</listitem>
     </itemizedlist>
     <para>They work in conjunction with a database to ease navigation, a local cache of
 &vmil; subscriptions. The database is message format agnostic, but it
@@ -71,20 +71,20 @@ install this application and subscribe to your current image.</para>
 your local images are matching signatures in the &vmil;.</para>
     <para>Anyone curious about this application should consider this application a
 software application similar to Debian's 'aptitude' or Redhats 'yum', but rather
-for virtual machines, authenticated by the x509 signatures.</para>
+for virtual machines, authenticated by the &x509; signatures.</para>
   </section>
-  <section id="imagetransfer-software-vmlisub-quickstart">
-    <title>Quick start use of hepixvmilsubscriber</title>
+  <section id="imagetransfer-software-vmcatcher-quickstart">
+    <title>Quick start use of vmcatcher</title>
     <para>First make sure that all the Certificate Revocation Lists (CRL) are upto date.</para>
     <programlisting>&prompt-root;  <userinput>fetch-crl</userinput></programlisting>
     <para>This suit of applications can use either enviroment variable or command line to set most parmaters.
     If neither enviroment variables or command line parameters are not set for critical variables the application 
     will provide defaults and show warnings.</para>
-    <para>The most important setting is the location of the database. This is read from VMILS_RDBMS,</para>
-    <programlisting>&prompt-user; <userinput>export VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db"</userinput></programlisting>
-    <para>The above line instructs the sqlalchamy interfacxe to datavabses to use sqlite and path "/var/lib/vmlisub/vmlisub.db" 
+    <para>The most important setting is the location of the database. This is read from VMCATCHER_RDBMS,</para>
+    <programlisting>&prompt-user; <userinput>export VMCATCHER_RDBMS="sqlite:////var/lib/vmcatcher/vmcatcher.db"</userinput></programlisting>
+    <para>The above line instructs the sqlalchamy interfacxe to datavabses to use sqlite and path "/var/lib/vmcatcher/vmcatcher.db" 
     on a UNIX system. This is the only improtant file and stores the older signed image lists. SQL is used to enforce most of the rules 
-    such as unique nature of UUID's and the URLS for the subscriptions, this should be backed up. Other enviroment varables 
+    such as unique nature of &uuid;'s and the URLS for the subscriptions, this should be backed up. Other enviroment varables 
     are documented later.</para>
     <para>To add a subscription,</para>
     <programlisting>&prompt-user;  <userinput>wget --no-check-certificate &blobUrl;</userinput></programlisting>
@@ -93,54 +93,54 @@ for virtual machines, authenticated by the x509 signatures.</para>
                 "hv:ca": "&blobIssuer;", 
                 "hv:dn": "&blobDn;", </programlisting>
     <para>Now create this endorser. The endorser_uuid can be any string but its recommended this is a 
-short string possibly following the uuid standard:</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --create \
-       --endorser_uuid='Ian' \
+short string possibly following the &uuid; standard:</para>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_endorser --create \
+       --endorser_uuid='&blobEndorserName;' \
        --subject='&blobDn;' \
        --issuer='&blobIssuer;'</userinput></programlisting>
     <para>Now we can add the subscription, this will automatically link the endorser 
 with this subscription.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_endorser -l</userinput>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_endorser -l</userinput>
 Ian    '&blobDn;'        '&blobIssuer;'</programlisting>
     <para>The above command will show you the endorsers. Note the first column is the 
-identifier. In this case its shorter than a UUID. The second column is the 
+identifier. In this case its shorter than a &uuid;. The second column is the 
 users certificate subject (some times know as distinguished name) while the 
 third column is the subject of the issuing certificate authority.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub -s file:////`pwd`/hepix_signed_image_list</userinput>
-INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe -s file:////`pwd`/hepix_signed_image_list</userinput>
+INFO:main:Defaulting DB connection to 'sqlite:///vmcatcher.db'
 WARNING:db_actions:list hv:uri does not match subscription uri</programlisting>
     <para>Although less secure it is also possible to add the option '--auto-endorse'
 to the command line so that the users, and issuer's certificates are auto added
 to the database when subscribing.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub  --auto-endorse -s file:////`pwd`/hepix_signed_image_list</userinput>
-INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe  --auto-endorse -s file:////`pwd`/hepix_signed_image_list</userinput>
+INFO:main:Defaulting DB connection to 'sqlite:///vmcatcher.db'
 WARNING:db_actions:list hv:uri does not match subscription uri</programlisting>
     <para>List the registered Images.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
-INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+    <programlisting>&prompt-user;  <userinput>vmcatcher_image -l</userinput>
+INFO:vmcatcher_subscribe.main:Defaulting DB connection to 'sqlite:///vmcatcher.db'
 327016b0-6508-41d2-bce0-c1724cb3d3e2    0       &blobSubscriptionUuid;
 &blobImageIdExampleSubscribed;    0       &blobSubscriptionUuid;
 da42ca85-179b-4873-b12e-32d549bf02b6    0       &blobSubscriptionUuid;</programlisting>
-    <para>The results show the UUID of the image, the availability state and the
-subscription UUID. The state value is a bitmap, 1 is subscribed, 2 means its
+    <para>The results show the &uuid; of the image, the availability state and the
+subscription &uuid;. The state value is a bitmap, 1 is subscribed, 2 means its
 available in the current &vmil;s. Now we will select an image for local caching.</para>
     <para>Next update the subscriptions.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub -U</userinput>
-INFO:main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe -U</userinput>
+INFO:main:Defaulting DB connection to 'sqlite:///vmcatcher.db'
 INFO:db_actions:Updating:&blobSubscriptionUuid;</programlisting>
     <para>Now the data base contains the latest version of the &vmil;. To query the
 available images they can be cached:</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
-INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+    <programlisting>&prompt-user;  <userinput>vmcatcher_image -l</userinput>
+INFO:vmcatcher_subscribe.main:Defaulting DB connection to 'sqlite:///vmcatcher.db'
 327016b0-6508-41d2-bce0-c1724cb3d3e2    2       &blobSubscriptionUuid;
 &blobImageIdExampleSubscribed;    2       &blobSubscriptionUuid;
 da42ca85-179b-4873-b12e-32d549bf02b6    2       &blobSubscriptionUuid;</programlisting>
     <para>Thsi now shows the images are available in the latest &vmil;.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_image -a -u &blobImageIdExampleSubscribed;</userinput>
-INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'</programlisting>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_image -a -u &blobImageIdExampleSubscribed;</userinput>
+INFO:vmcatcher_subscribe.main:Defaulting DB connection to 'sqlite:///vmcatcher.db'</programlisting>
     <para>The &vmil; state is now changed to</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
-INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+    <programlisting>&prompt-user;  <userinput>vmcatcher_image -l</userinput>
+INFO:vmcatcher_subscribe.main:Defaulting DB connection to 'sqlite:///vmcatcher.db'
 327016b0-6508-41d2-bce0-c1724cb3d3e2    2       &blobSubscriptionUuid;
 &blobImageIdExampleSubscribed;    3       &blobSubscriptionUuid;
 da42ca85-179b-4873-b12e-32d549bf02b6    2       &blobSubscriptionUuid;</programlisting>
@@ -148,8 +148,8 @@ da42ca85-179b-4873-b12e-32d549bf02b6    2       &blobSubscriptionUuid;</programl
     <para>Make the directories for caching the images.</para>
     <programlisting>&prompt-user;  <userinput>mkdir cache cache/partial cache/expired</userinput></programlisting>
     <para>Now cache the images.</para>
-    <programlisting>&prompt-user; <userinput> vmlisub_cache</userinput>
-INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
+    <programlisting>&prompt-user; <userinput> vmcatcher_cache</userinput>
+INFO:vmcatcher_subscribe.main:Defaulting DB connection to 'sqlite:///vmcatcher.db'
 INFO:DownloadDir:Downloading '&blobImageIdExampleSubscribed;'.
 INFO:CacheMan:moved file &blobImageIdExampleSubscribed;</programlisting>
     <para>Once this is complete the image from the &vmil; will be cached.</para>
@@ -166,9 +166,9 @@ cache/cache.index</programlisting>
 
 
 
-  <section id="imagetransfer-software-vmlisub-installation">
+  <section id="imagetransfer-software-vmcatcher-installation">
     <title>Installation</title>
-    <section id="imagetransfer-software-vmlisub-repo">
+    <section id="imagetransfer-software-vmcatcher-repo">
       <title>Package Repositories.</title>
       <para>The intra site tools are tested on every release for &rhel; 5 and 6 and are developed 
         on the &debian; platform. They are available as src and binary RPM packages in the following 
@@ -184,7 +184,7 @@ cache/cache.index</programlisting>
     
     
     
-    <section  id="imagetransfer-software-vmlisub-installation-rhel6">
+    <section  id="imagetransfer-software-vmcatcher-installation-rhel6">
       <title>Installation on Redhat Enterprise Linux 6</title>
       <para>Install EPEL for dependencies.</para>
       <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/6/x86_64/epel-release-6-5.noarch.rpm</userinput></programlisting>
@@ -209,9 +209,9 @@ enabled=1</programlisting>
       <para>install fetch-crl</para>
       <programlisting>&prompt-root; <userinput>yum install fetch-crl</userinput></programlisting>
       <para></para>
-      <programlisting>&prompt-root; <userinput>yum install hepixvmilsubscriber</userinput></programlisting>
+      <programlisting>&prompt-root; <userinput>yum install vmcatcher</userinput></programlisting>
     </section>
-    <section id="imagetransfer-software-vmlisub-installation-rhel5">
+    <section id="imagetransfer-software-vmcatcher-installation-rhel5">
       <title>Installation on Redhat Enterprise Linux 5</title>
       <para>Install EPEL for dependencies.</para>
       <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</userinput></programlisting>
@@ -236,7 +236,7 @@ enabled=1</programlisting>
       <para>install fetch-crl</para>
       <programlisting>&prompt-root; <userinput>yum install fetch-crl</userinput></programlisting>
       <para>Install the hepix &vmil; subscriber.</para>
-      <programlisting>&prompt-root; <userinput>yum install hepixvmilsubscriber</userinput></programlisting>
+      <programlisting>&prompt-root; <userinput>yum install vmcatcher</userinput></programlisting>
       <para>This may fail due to a dependency of m2crypto that cannot be satisfied. This is
 due to known bugs in m2crypto in the version shipped in RHEL5. If this is a
 problem please download the following</para>
@@ -246,7 +246,7 @@ problem please download the following</para>
     
     
     
-    <section id="imagetransfer-software-vmlisub-installation-debian-wheezy">
+    <section id="imagetransfer-software-vmcatcher-installation-debian-wheezy">
       <title>Installation on &wheezy; or later,</title>
       <para>Do not install this on Debian 6.0 as the included version of python-m2crypto is not stable.</para>
       <para>These instructions are for &wheezy; or later.</para>
@@ -307,20 +307,20 @@ Saving to: `smimeX509validation-0.0.7.tar.gz'
 &prompt-root; <userinput>python setup install</userinput>
 &prompt-root; <userinput>echo $?</userinput>
 &prompt-root; <userinput>cd ..</userinput></programlisting>
-      <para>The leatest version of hepixvmilsubscriber-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
+      <para>The leatest version of vmcatcher-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
        <programlisting>&prompt-root; <userinput></userinput>
-&prompt-root; <userinput>wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/hepixvmilsubscriber-0.1.14.tar.gz</userinput>
+&prompt-root; <userinput>wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/vmcatcher-0.1.14.tar.gz</userinput>
 Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
 Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 19922 (19K) [application/x-tar]
-Saving to: `hepixvmilsubscriber-0.1.14.tar.gz'
+Saving to: `vmcatcher-0.1.14.tar.gz'
 
 100%[======================================>] 19,922      --.-K/s   in 0.05s   
 
-2012-05-28 19:45:45 (413 KB/s) - `hepixvmilsubscriber-0.1.14.tar.gz' saved [19922/19922]
-&prompt-root; <userinput>tar -zxf hepixvmilsubscriber-0.1.14.tar.gz </userinput>
-&prompt-root; <userinput>cd hepixvmilsubscriber-0.1.14</userinput>
+2012-05-28 19:45:45 (413 KB/s) - `vmcatcher-0.1.14.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf vmcatcher-0.1.14.tar.gz </userinput>
+&prompt-root; <userinput>cd vmcatcher-0.1.14</userinput>
 &prompt-root; <userinput>python setup install</userinput>
 &prompt-root; <userinput>echo $?</userinput>
 &prompt-root; <userinput>cd ..</userinput></programlisting>
@@ -328,10 +328,10 @@ Saving to: `hepixvmilsubscriber-0.1.14.tar.gz'
     
   </section>  
     
-  <section id="imagetransfer-software-vmlisub-vmlisub_endorser">
-    <title>&vmlisub_endorser;</title>
+  <section id="imagetransfer-software-vmcatcher-vmcatcher_endorser">
+    <title>&vmcatcher_endorser;</title>
     <para>This application is for managing who the subscriber trusts to update image 
-lists. Since individuals are identified with x509 certificates, Each certificate
+lists. Since individuals are identified with &x509; certificates, Each certificate
 has an issuing certificate and a unique string called a 'subject' to identify 
 the certificate. The 'subject' of a certificate and the 'subject' of the issuing 
 certificate combined are called 'credentials', and will be globally unique.</para>
@@ -339,42 +339,42 @@ certificate combined are called 'credentials', and will be globally unique.</par
 reason they are given a unique identifier under this system and allowed to 
 have more than one set of credentials. </para>
     <para>Adding a individual to the vmli database.</para>
-        <programlisting>&prompt-user;  <userinput>vmlisub_endorser --create \
+        <programlisting>&prompt-user;  <userinput>vmcatcher_endorser --create \
        --endorser_uuid=&blobEndorserUuid; \
        --subject='&blobDn;' \
        --issuer='&blobIssuer;'</userinput></programlisting>
     <para>Deleting and individual from a vmli database.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --delete \
+    <programlisting>&prompt-user;  <userinput>vmcatcher_endorser --delete \
        --endorser_uuid=&blobEndorserUuid;</userinput></programlisting>
     <para>Allowing an individual to update a subscription.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --link \
+    <programlisting>&prompt-user;  <userinput>vmcatcher_endorser --link \
        --endorser_uuid=&blobEndorserUuid; \
        --subscription_uuid=&blobSubscriptionUuid;</userinput></programlisting>
     <para>Removing an individuals right to update a subscription.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --unlink \
+    <programlisting>&prompt-user;  <userinput>vmcatcher_endorser --unlink \
        --endorser_uuid=&blobEndorserUuid; \
        --subscription_uuid=&blobSubscriptionUuid;</userinput></programlisting>
     <para>Each endorser_uuid must be unique or they will be assumed to be the same item. 
 The endorser_uuid could be a more human name:</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_endorser --create \
+    <programlisting>&prompt-user;  <userinput>vmcatcher_endorser --create \
        --endorser_uuid='Ian Gable' \
        --subject='&blobDn;' \
        --issuer='&blobIssuer;'</userinput></programlisting>
   </section>
-  <section id="imagetransfer-software-vmlisub-vmlisub_sub">
-    <title>&vmlisub_sub;</title>    
+  <section id="imagetransfer-software-vmcatcher-vmcatcher_subscribe">
+    <title>&vmcatcher_subscribe;</title>    
     <para>This application manages your subscriptions and their update:</para>
     <para>To add a subscription</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -s &blobUrl;</userinput></programlisting>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe  -s &blobUrl;</userinput></programlisting>
     <para>Or alternatively you can download a file visually insepect it and subscribe to the local file.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -s file:////`pwd`/hepix_signed_image_list</userinput></programlisting>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe  -s file:////`pwd`/hepix_signed_image_list</userinput></programlisting>
     <para>To update your subscriptions</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -U</userinput></programlisting>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe  -U</userinput></programlisting>
     <para>To list subscriptions</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -l</userinput>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe  -l</userinput>
 &blobSubscriptionUuid;    True    &blobUrl;</programlisting>
     <para>Getting Information on a subscription:</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -i --uuid=&blobSubscriptionUuid;</userinput>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe  -i --uuid=&blobSubscriptionUuid;</userinput>
 dc:identifier=&blobSubscriptionUuid;
 subscription.dc:description=&blobSubscriptionDcdescription;
 subscription.sl:authorised=True
@@ -384,7 +384,7 @@ imagelist.dc:date:imported=2011-04-16T19:23:18Z
 imagelist.dc:date:created=2011-03-16T00:15:07Z
 imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     <para>you can also select on the basis of url:</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -i -r &blobUrl;</userinput>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe  -i -r &blobUrl;</userinput>
 dc:identifier=&blobSubscriptionUuid;
 subscription.dc:description=&blobSubscriptionDcdescription;
 subscription.sl:authorised=True
@@ -394,7 +394,7 @@ imagelist.dc:date:imported=2011-04-17T19:04:34Z
 imagelist.dc:date:created=2011-03-16T00:15:07Z
 imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     <para>Change the output format to get the original message without the security wraper, or in original form:</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -i --uuid=&blobSubscriptionUuid; -f message</userinput></programlisting>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe  -i --uuid=&blobSubscriptionUuid; -f message</userinput></programlisting>
     <para>Three formats exist SMIME, message, lines. </para>
     <itemizedlist>
       <listitem>SMIME for applications that wish to process the signature as if from the endorser directly.</listitem>
@@ -403,57 +403,57 @@ imagelist.dc:date:expires=2011-04-13T00:15:07Z</programlisting>
     </itemizedlist>
     
     <para>To delete a subscription</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_sub  -D  --uuid=&blobSubscriptionUuid;</userinput></programlisting>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_subscribe  -D  --uuid=&blobSubscriptionUuid;</userinput></programlisting>
   </section>
-  <section id="imagetransfer-software-vmlisub-vmlisub_image">
-    <title> &vmlisub_image;</title>
+  <section id="imagetransfer-software-vmcatcher-vmcatcher_image">
+    <title> &vmcatcher_image;</title>
     <para> This application manages images within your subscription. </para> 
     <para>List the available images</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_image -l</userinput>
+    <programlisting>&prompt-user;  <userinput>vmcatcher_image -l</userinput>
 327016b0-6508-41d2-bce0-c1724cb3d3e2    2       &blobSubscriptionUuid;
 &blobImageIdExampleSubscribed;    3       &blobSubscriptionUuid;
 da42ca85-179b-4873-b12e-32d549bf02b6    2       &blobSubscriptionUuid;</programlisting>
-    <para>The results show the UUID of the image, the availability state and the
-subscription UUID. The state value is a bitmap, 1 is subscribed, 2 means its
+    <para>The results show the &uuid; of the image, the availability state and the
+subscription &uuid;. The state value is a bitmap, 1 is subscribed, 2 means its
 available in the current &vmil;s. Now we will select an image for local caching.</para>
     <section>
       <title>Selecting Images</title>
-      <para>Images can be selected by either UUID or Sha512 hash. This allows explicit
+      <para>Images can be selected by either &uuid; or Sha512 hash. This allows explicit
   selection of images or by the sha512 from an old image.</para>
       <para>Delete the subscription by image.</para>
-      <programlisting>&prompt-user;  <userinput>vmlisub_image -D -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
+      <programlisting>&prompt-user;  <userinput>vmcatcher_image -D -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
       <para>Subscribe to an image.</para>
-      <programlisting>&prompt-user;  <userinput>vmlisub_image -a -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
+      <programlisting>&prompt-user;  <userinput>vmcatcher_image -a -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
       <para>Unsubscribe an image</para>
-      <programlisting>&prompt-user;  <userinput>vmlisub_image -r -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
+      <programlisting>&prompt-user;  <userinput>vmcatcher_image -r -u 327016b0-6508-41d2-bce0-c1724cb3d3e2</userinput></programlisting>
     </section>
   </section>
-  <section id="imagetransfer-software-vmlisub-vmlisub_cache">
-    <title>&vmlisub_cache;  </title>
+  <section id="imagetransfer-software-vmcatcher-vmcatcher_cache">
+    <title>&vmcatcher_cache;  </title>
     <para>  This application downloads images. By default it will download images, check the sha512
 hash of cached images and expire images from old &vmil;s.</para>
-    <programlisting>&prompt-user;  <userinput>vmlisub_cache</userinput>
-INFO:vmlisub_sub.main:Defaulting DB connection to 'sqlite:///vmilsubscriber.db'
-INFO:vmlisub_sub.main:Defaulting actions as 'expire', 'sha512' and 'download'.
-INFO:vmlisub_sub.main:Defaulting cache-dir to 'cache'.
-INFO:vmlisub_sub.main:Defaulting partial-dir to 'cache/partial'.
-INFO:vmlisub_sub.main:Defaulting expired-dir to 'cache/expired'.
+    <programlisting>&prompt-user;  <userinput>vmcatcher_cache</userinput>
+INFO:vmcatcher_subscribe.main:Defaulting DB connection to 'sqlite:///vmcatcher.db'
+INFO:vmcatcher_subscribe.main:Defaulting actions as 'expire', 'sha512' and 'download'.
+INFO:vmcatcher_subscribe.main:Defaulting cache-dir to 'cache'.
+INFO:vmcatcher_subscribe.main:Defaulting partial-dir to 'cache/partial'.
+INFO:vmcatcher_subscribe.main:Defaulting expired-dir to 'cache/expired'.
 INFO:DownloadDir:Downloading '&blobImageIdExampleSubscribed;'.
 INFO:CacheMan:moved file &blobImageIdExampleSubscribed;
 </programlisting>
     <section>
-      <title>&vmlisub_cache; Event interface</title>
+      <title>&vmcatcher_cache; Event interface</title>
       <para>Since this application suite is intended to be embedded in a larger application 
 and concerned with downloading and managing updates of VM images into a cloud
 infrastructure, it is some times beneficial to have an event interface so that 
 applicatyions may embed these applications in larger systems.</para>
-      <programlisting>&prompt-user;  <userinput>vmlisub_cache -x "/usr/bin/VmImageUpdateProcessor \$VMILS_EVENT_TYPE"</userinput></programlisting>
+      <programlisting>&prompt-user;  <userinput>vmcatcher_cache -x "/usr/bin/VmImageUpdateProcessor \$VMCATCHER_EVENT_TYPE"</userinput></programlisting>
       <para>The events interface launches a shell with a series of environment variables. The
 event must process its command within 10 seconds or else it will be sent a 
 termination signal. See the following example:</para>
-      <programlisting>&prompt-user;  <userinput>vmlisub_cache -x 'env  ; exit 1'</userinput></programlisting>
+      <programlisting>&prompt-user;  <userinput>vmcatcher_cache -x 'env  ; exit 1'</userinput></programlisting>
       <para>All Events have a type. This is given to the event handler by setting the 
-variable, VMILS_EVENT_TYPE with the following values "AvailablePrefix", 
+variable, VMCATCHER_EVENT_TYPE with the following values "AvailablePrefix", 
 "AvailablePostfix", "ExpirePrefix" and "ExpirePosfix".</para>
       <para>"Available" events happen when a new image is validated, while "Expire" events 
 occur when an image i no longer the validated image. The "Prefix" events occur 
@@ -461,26 +461,26 @@ before the file changes state, and the "Posfix" events occur after the state
 change.</para>
       <para>The following environment variables may be set by events:</para>
       <itemizedlist>
-        <listitem>VMILS_EVENT_TYPE</listitem>
-        <listitem>VMILS_EVENT_DC_DESCRIPTION</listitem>
-        <listitem>VMILS_EVENT_DC_IDENTIFIER</listitem>
-        <listitem>VMILS_EVENT_DC_TITLE</listitem>
-        <listitem>VMILS_EVENT_HV_HYPERVISOR</listitem>
-        <listitem>VMILS_EVENT_HV_SIZE</listitem>
-        <listitem>VMILS_EVENT_HV_URI</listitem>
-        <listitem>VMILS_EVENT_SL_ARCH</listitem>
-        <listitem>VMILS_EVENT_SL_CHECKSUM_SHA512</listitem>
-        <listitem>VMILS_EVENT_SL_COMMENTS</listitem>
-        <listitem>VMILS_EVENT_SL_OS</listitem>
-        <listitem>VMILS_EVENT_SL_OSVERSION</listitem>
-        <listitem>VMILS_EVENT_TYPE</listitem>
-        <listitem>VMILS_EVENT_FILENAME</listitem>
+        <listitem>VMCATCHER_EVENT_TYPE</listitem>
+        <listitem>VMCATCHER_EVENT_DC_DESCRIPTION</listitem>
+        <listitem>VMCATCHER_EVENT_DC_IDENTIFIER</listitem>
+        <listitem>VMCATCHER_EVENT_DC_TITLE</listitem>
+        <listitem>VMCATCHER_EVENT_HV_HYPERVISOR</listitem>
+        <listitem>VMCATCHER_EVENT_HV_SIZE</listitem>
+        <listitem>VMCATCHER_EVENT_HV_URI</listitem>
+        <listitem>VMCATCHER_EVENT_SL_ARCH</listitem>
+        <listitem>VMCATCHER_EVENT_SL_CHECKSUM_SHA512</listitem>
+        <listitem>VMCATCHER_EVENT_SL_COMMENTS</listitem>
+        <listitem>VMCATCHER_EVENT_SL_OS</listitem>
+        <listitem>VMCATCHER_EVENT_SL_OSVERSION</listitem>
+        <listitem>VMCATCHER_EVENT_TYPE</listitem>
+        <listitem>VMCATCHER_EVENT_FILENAME</listitem>
       </itemizedlist>
       <para>These correspond to the variables within the &vmil;.</para>
       <section>
-        <title>&vmlisub_cache; Event Environment variables</title>
+        <title>&vmcatcher_cache; Event Environment variables</title>
         <section>
-          <title>VMILS_EVENT_TYPE</title>
+          <title>VMCATCHER_EVENT_TYPE</title>
           <itemizedlist>
             <listitem>AvailablePrefix<para>An image will be available soon as it is being attempted to be retrieved.</para></listitem>
             <listitem>AvailablePostfix<para>An image was successfully validated as being available and placed in the cache 
@@ -490,148 +490,148 @@ directory.</para></listitem>
           </itemizedlist>
         </section>
         <section>
-          <title>VMILS_EVENT_DC_DESCRIPTION</title>
+          <title>VMCATCHER_EVENT_DC_DESCRIPTION</title>
           <para>The description text in the image.</para>
         </section>
         <section>
-          <title>VMILS_EVENT_DC_IDENTIFIER</title>
+          <title>VMCATCHER_EVENT_DC_IDENTIFIER</title>
           <para>Unique identifier of the image. Its suggested that image producers use RFC 4122 
-UUID for &vmil; this allows updating the list, and uniqueness.</para>
+&uuid; for &vmil; this allows updating the list, and uniqueness.</para>
         </section>
         <section>
-          <title>VMILS_EVENT_DC_TITLE</title>
+          <title>VMCATCHER_EVENT_DC_TITLE</title>
           <para>Image Title.</para>
         </section>
         <section>
-          <title>VMILS_EVENT_HV_HYPERVISOR</title>
+          <title>VMCATCHER_EVENT_HV_HYPERVISOR</title>
           <para>Typically set to reflect the Virtualization technology values such as "xen", "kvm".</para>
         </section>
         <section>
-          <title>VMILS_EVENT_HV_SIZE</title>
+          <title>VMCATCHER_EVENT_HV_SIZE</title>
           <para>The Image Size</para>
         </section>
         <section>
-          <title>VMILS_EVENT_HV_URI</title>
+          <title>VMCATCHER_EVENT_HV_URI</title>
           <para>The Original URI for the image</para>
         </section>
         <section>
-          <title>VMILS_EVENT_SL_ARCH</title>
+          <title>VMCATCHER_EVENT_SL_ARCH</title>
           <para>The images architecture.</para>
         </section>
         <section>
-          <title>VMILS_EVENT_SL_CHECKSUM_SHA512</title>
+          <title>VMCATCHER_EVENT_SL_CHECKSUM_SHA512</title>
           <para>The Images sha512 checksum.</para>
         </section>
         <section>
-          <title>VMILS_EVENT_SL_COMMENTS</title>
+          <title>VMCATCHER_EVENT_SL_COMMENTS</title>
           <para>Comments added by the image author</para>
         </section>
         <section>
-          <title>VMILS_EVENT_SL_OS</title>
+          <title>VMCATCHER_EVENT_SL_OS</title>
           <para>The Operating System the VM image contains</para>
         </section>
         <section>
-          <title>VMILS_EVENT_SL_OSVERSION</title>
+          <title>VMCATCHER_EVENT_SL_OSVERSION</title>
           <para>The Operating System version</para>
         </section>
         <section>
-          <title>VMILS_EVENT_FILENAME</title>
+          <title>VMCATCHER_EVENT_FILENAME</title>
           <para>The Image file name.</para>
         
       </section>
     </section>
   </section>
  </section> 
-  <section id="imagetransfer-software-vmlisub-config">
-    <section   id="imagetransfer-software-vmlisub-config-cron">
+  <section id="imagetransfer-software-vmcatcher-config">
+    <section   id="imagetransfer-software-vmcatcher-config-cron">
       <title>Set up for Production using Cron</title>
       <para>Then the by hand configuration for your master DB</para>
-      <programlisting>&prompt-root;  <userinput>useradd vmlisub</userinput></programlisting>
-      <programlisting>&prompt-root;  <userinput>mkdir -p /var/lib/vmlisub /var/cache/vmimages/endorsed \
+      <programlisting>&prompt-root;  <userinput>useradd vmcatcher</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>mkdir -p /var/lib/vmcatcher /var/cache/vmimages/endorsed \
       /var/cache/vmimages/partial /var/cache/vmimages/expired</userinput></programlisting>
-      <programlisting>&prompt-root;  <userinput>touch /var/log/vmlisub.log</userinput></programlisting>
-      <programlisting>&prompt-root;  <userinput>chown vmlisub:vmlisub /var/lib/vmlisub  /var/cache/vmimages/endorsed \
+      <programlisting>&prompt-root;  <userinput>touch /var/log/vmcatcher.log</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>chown vmcatcher:vmcatcher /var/lib/vmcatcher  /var/cache/vmimages/endorsed \
       /var/cache/vmimages/partial /var/cache/vmimages/expired \
-      /var/log/vmlisub.log</userinput></programlisting>
-      <programlisting>&prompt-root;  <userinput>sudo -u vmlisub /usr/bin/vmlisub_sub \
+      /var/log/vmcatcher.log</userinput></programlisting>
+      <programlisting>&prompt-root;  <userinput>sudo -u vmcatcher /usr/bin/vmcatcher_subscribe \
       -s &blobUrl; \
-      -d sqlite:////var/lib/vmlisub/vmlisub.db</userinput></programlisting>
+      -d sqlite:////var/lib/vmcatcher/vmcatcher.db</userinput></programlisting>
       <para>make a cron job</para>
-      <programlisting>&prompt-root; <userinput> cat   /etc/cron.d/vmlisub</userinput>
-export VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db"
-export VMILS_CACHE_DIR_CACHE="/var/cache/vmimages/endorsed/"
-export VMILS_CACHE_DIR_DOWNLOAD="/var/cache/vmimages/partial/"
-export VMILS_CACHE_DIR_EXPIRE="/var/cache/vmimages/expired/"
-export VMILS_CACHE_EVENT="python /usr/share/doc/hepixvmilsubscriber-0.1.17/vmlisub_eventHndlExpl  --output_file=/tmp/foo --datetime"
+      <programlisting>&prompt-root; <userinput> cat   /etc/cron.d/vmcatcher</userinput>
+export VMCATCHER_RDBMS="sqlite:////var/lib/vmcatcher/vmcatcher.db"
+export VMCATCHER_CACHE_DIR_CACHE="/var/cache/vmimages/endorsed/"
+export VMCATCHER_CACHE_DIR_DOWNLOAD="/var/cache/vmimages/partial/"
+export VMCATCHER_CACHE_DIR_EXPIRE="/var/cache/vmimages/expired/"
+export VMCATCHER_CACHE_EVENT="python /usr/share/doc/vmcatcher-0.1.17/vmcatcher_eventHndlExpl  --output_file=/tmp/foo --datetime"
 
-50 */6 * * *	vmlisub	(/usr/bin/vmlisub_sub -U; /usr/bin/vmlisub_cache  ) >> /var/log/vmlisub.log 2>&amp;1</programlisting>      
+50 */6 * * *	vmcatcher	(/usr/bin/vmcatcher_subscribe -U; /usr/bin/vmcatcher_cache  ) >> /var/log/vmcatcher.log 2>&amp;1</programlisting>      
     <para>So the script is executed every 6 hours shortly after fetch CRL.</para>
-    <para>If a new &vmi; is downloaded, or an old &vmi; is expired the event will triggor "VMILS_CACHE_EVENT" and 
-    the application vmlisub_eventHndlExpl will append the data to /tmp/foo</para>
+    <para>If a new &vmi; is downloaded, or an old &vmi; is expired the event will triggor "VMCATCHER_CACHE_EVENT" and 
+    the application vmcatcher_eventHndlExpl will append the data to /tmp/foo</para>
     <para>Now at any time users with file permisions can get a list of valid images.</para>
-      <programlisting>&prompt-user; <userinput>VMILS_RDBMS="sqlite:////var/lib/vmlisub/vmlisub.db" vmlisub_image -l</userinput></programlisting>
+      <programlisting>&prompt-user; <userinput>VMCATCHER_RDBMS="sqlite:////var/lib/vmcatcher/vmcatcher.db" vmcatcher_image -l</userinput></programlisting>
     </section>  
-    <section  id="imagetransfer-software-vmlisub-config-env">
+    <section  id="imagetransfer-software-vmcatcher-config-env">
     <title>Environment Variables</title>
     <para>Environment variables can be used to set default values but the command line 
 options will override any set environment options.</para>
     <section>
-      <title>VMILS_RDBMS </title>
-      <para>Sets the path to the database. For example "sqlite:///vmilsubscriber.db"</para>
+      <title>VMCATCHER_RDBMS </title>
+      <para>Sets the path to the database. For example "sqlite:///vmcatcher.db"</para>
     </section>
     <section>
-      <title>VMILS_CACHE_EVENT</title>
+      <title>VMCATCHER_CACHE_EVENT</title>
       <para>Sets the executions string. Command line options can be set as enviroment 
 variables just like the command line interface. Users of the "sh shell" must
 protect the envroment variables from being substituted by thier shell.</para>
-      <programlisting>&prompt-user; <userinput> export VMILS_CACHE_EVENT="./myEventProcessor \$VMILS_EVENT_TYPE"</userinput></programlisting>
+      <programlisting>&prompt-user; <userinput> export VMCATCHER_CACHE_EVENT="./myEventProcessor \$VMCATCHER_EVENT_TYPE"</userinput></programlisting>
       <para>An example of how to execute a command with an action command line.</para>
     </section>
     <section>
-      <title>VMILS_LOG_CONF</title>
+      <title>VMCATCHER_LOG_CONF</title>
       <para>Sets the path to the logging configuration file.</para>
     </section>
     <section>
-      <title>VMILS_DIR_CERT</title>
+      <title>VMCATCHER_DIR_CERT</title>
       <para>Sets the Path to the certificate authorities public keys, certificate revocation
 lists and certificate name spaces.</para>
     </section>
     <section>
-      <title>VMILS_CACHE_DIR_CACHE</title>
-      <para>Path used by '&vmlisub_endorser;' to store verified VM images.</para>
+      <title>VMCATCHER_CACHE_DIR_CACHE</title>
+      <para>Path used by '&vmcatcher_endorser;' to store verified VM images.</para>
     </section>
     <section>
-      <title>VMILS_CACHE_DIR_DOWNLOAD</title>
-      <para>Path used by '&vmlisub_endorser;' to download VM images before VM image integrity
+      <title>VMCATCHER_CACHE_DIR_DOWNLOAD</title>
+      <para>Path used by '&vmcatcher_endorser;' to download VM images before VM image integrity
 is checked.</para>
     </section>
     <section>
-      <title>VMILS_CACHE_DIR_EXPIRE</title>
-      <para>Path used by '&vmlisub_endorser;' to store VM images when they are no longer 
+      <title>VMCATCHER_CACHE_DIR_EXPIRE</title>
+      <para>Path used by '&vmcatcher_endorser;' to store VM images when they are no longer 
 endorsed.</para>
     </section>
     <section>
-      <title>VMILS_CACHE_ACTION_DOWNLOAD</title>
-      <para>Instructs '&vmlisub_endorser;' to download the latest VM images and check 
+      <title>VMCATCHER_CACHE_ACTION_DOWNLOAD</title>
+      <para>Instructs '&vmcatcher_endorser;' to download the latest VM images and check 
 integrity.</para>
     </section>
     <section>
-      <title>VMILS_CACHE_ACTION_CHECK</title>
-      <para>Instructs '&vmlisub_endorser;' check integrity for all currently stored VM images.</para>
+      <title>VMCATCHER_CACHE_ACTION_CHECK</title>
+      <para>Instructs '&vmcatcher_endorser;' check integrity for all currently stored VM images.</para>
     </section>
     <section>
-      <title>VMILS_CACHE_ACTION_EXPIRE</title>
-      <para>Instructs '&vmlisub_endorser;' to expire stored VM images that are no longer 
+      <title>VMCATCHER_CACHE_ACTION_EXPIRE</title>
+      <para>Instructs '&vmcatcher_endorser;' to expire stored VM images that are no longer 
 endorsed.</para>
     </section>
   </section>
       
      
-    <section id="imagetransfer-software-vmlisub-config-logging">
+    <section id="imagetransfer-software-vmcatcher-config-logging">
       <title>Logging configuration</title>
       <para>All scripts have a logging option. This is used to configure pythons logging 
       library. An example is shown below.</para>
-      <programlisting>&prompt-user; <userinput> vmlisub_image -L /usr/share/doc/hepixvmilsubscriber/logger.conf -l</userinput></programlisting>
+      <programlisting>&prompt-user; <userinput> vmcatcher_image -L /usr/share/doc/vmcatcher/logger.conf -l</userinput></programlisting>
       <para>Logging can be independently set up for each object to multiple locations, and 
       with different log levels.</para>
     </section>
@@ -643,9 +643,9 @@ endorsed.</para>
 	<listitem>PGP signatures.</listitem>
 	<listitem>Support encrypted messages.</listitem>
       </itemizedlist>
-      <para>While it does check the authenticity of the message using X509, at the moment the 
+      <para>While it does check the authenticity of the message using &x509;, at the moment the 
         authenticity of the host is unchecked. For the programmability it would be far simpler to 
-        use x509 certificates to check the host server. In terms of deployment it would be far 
+        use &x509; certificates to check the host server. In terms of deployment it would be far 
         easier just to check any host key mechanism, as this is sufficient.</para>
     </section>
 </section>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                         "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % sharedents SYSTEM "shared-entities.xml" >
+%sharedents;
+]>
+
+<chapter id="imagetransfer-specs">
+  <info>
+    <author>
+      <firstname>Owen</firstname>
+      <surname>Synge</surname>
+    </author>
+  </info>
+  <title>Image transfer Specifications</title>
+  <section id="imagetransfer-specs-intro">
+    <para>The work flow is based on the concept of &vmil; which have a lifecycle. 
+    All &vmil; have a URI and a &uuid;, a creation and expiry date and Version number. 
+    If &vmil; change either &uuid; or URI they are considered different &vmil;, 
+    and when a &vmil; is updated it is expected that the creation data is updated 
+    and best to update the version number. It is recommended that the expiry data of an 
+    &vmil; is 1 month from the creation date.</para>
+    <para>Endorsers provide signed &vmil;, and accept the security responsibilities 
+    of producing images as stated in the Image trust section of this document. 
+    Subscribers use &vmil; and run them confident they can identify the endorser, and 
+    decide if they will run the endorsers images.</para>
+    <para>&vmil; can be valid or invalid from the perspective of the subscriber. 
+    Valid &vmil; are signed, with a valid certificate from a CA trusted by the 
+    subscriber, the current time is between the created and expiry date, and endorsers 
+    subject in the &vmil; that matches the endorser, and the current version number 
+    is greater or equal to the previous version number. If &vmil; do not match any 
+    of these conditions the &vmil; is invalid. Subscribed &vmil; are referenced 
+    by their &uuid;.</para>
+    <para>The workflow also has the concept of image life cycles, which are related to image 
+    list life cycles. An image maybe available or unavailable, created, and updated. From 
+    the subscribers perspective available images cannot exist without a valid &vmil;
+    that includes them. Images are secured with a sha512 value in the &vmil; that 
+    matches the image.</para>
+    <para>An image is identified by its &uuid; and its version number. Its current state 
+    is defined by its presence or absence in a valid &vmil;. Valid images always have 
+    greater or equal version numbers than previous versions.</para>
+    <para>&uuid;'s of &vmil; cannot overlap, and in the same way the &uuid;'s of images cannot 
+    overlap. It is considered a hostile action if &uuid; uniqueness is violated by an endorser. 
+    Since &vmil; &uuid;'s are only added or removed by the subscriber displaying errors and 
+    rejecting &vmil; with clashing &uuid;'s with the subscribers tools is enough to alert the 
+    subscriber to such endorser actions. If two &vmil; provide images with the same &uuid;, 
+    the image from the second &vmil; will be ignored and an error should be shown by the 
+    subscribers tools.</para>
+    <para>Updated &vmil; may contain new images referenced by new &uuid;'s. These new 
+    images will be ignored and WARNINGS shown until the &vmil; is re-subscribed. This 
+    behavior keeps the subscriber in control of the Image &uuid;'s and thier association to 
+    &vmil; &uuid;'s. It is always well defined which image belongs to which &vmil;
+    and so the subscriber always knows the publisher of an image.</para>
+    <para>Images &uuid;'s no longer present in an &vmil; are no longer endorsed by the 
+    endorser and so the images are no longer available, and consequently such images are 
+    marked as "expired" an event is sent.</para>
+    <para>The subscriber is aware of the complete history of an image through the meta 
+    data of that image within the subscription tools, the date of expiry and renewal for 
+    each state change for an image in an &vmil;.</para>
+  </section>
+</chapter> 
+

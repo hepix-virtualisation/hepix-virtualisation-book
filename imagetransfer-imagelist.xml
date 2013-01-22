@@ -104,7 +104,7 @@ hv:imagelist
         </section>
         <section>
           <title>hv:imagelist/hv:endorser/hv:dn_x509</title>
-          <para>x509 DN of the endorser</para>
+          <para>&x509; DN of the endorser</para>
           <itemizedlist>
             <listitem><para>XML Rendering:</para><programlisting>&lt;hv:dn_x509&gt;/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge&lt;/hv:dn_x509&gt;</programlisting></listitem>
             <listitem><para>JSON Rendering:</para><programlisting>{ "hv:dn": "/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge" }</programlisting></listitem>
@@ -130,12 +130,12 @@ hv:imagelist
       </section>
       <section>
         <title>hv:imagelist/dc:identifier</title>
-        <para>RFC 4122 UUID for &vmil; this allows updating the list, and uniqueness.</para>
+        <para>&uuid; for &vmil; this allows updating the list, and uniqueness.</para>
         <itemizedlist>
           <listitem><para>XML Rendering:</para><programlisting>&lt;dc:identifier&gt;9ac60a74-c67f-457f-bd80-04c8ff6ecf3d&lt;/dc:identifier&gt;</programlisting></listitem>
           <listitem><para>JSON Rendering:</para><programlisting>{ "dc:identifier": "488dcdc4-9ab1-4fc8-a7ba-b7a5428ecb3d" }</programlisting></listitem>
         </itemizedlist>
-        <note>This UUID remains constant for a subscription, messages with different UUID's will be ignored.</note>
+        <note>This &uuid; remains constant for a subscription, messages with different &uuid;'s will be ignored.</note>
       </section>
       <section>
         <title>hv:imagelist/dc:description</title>
@@ -222,12 +222,12 @@ hv:imagelist
         </section>
         <section>
           <title>hv:imagelist/hv:images/hv:image/dc:identifier</title>
-          <para>RFC 4122 UUID for image this allows updating the image, and uniqueness.</para>
+          <para>&uuid; for image this allows updating the image, and uniqueness.</para>
           <itemizedlist>
             <listitem><para>XML Rendering:</para><programlisting>&lt;hv:uri&gt;185c9f57-f838-4ac6-8246-85ccd6d6d3f4&lt;/hv:uri&gt;</programlisting></listitem>
             <listitem><para>JSON Rendering:</para><programlisting>{ "dc:identifier": "488dcdc4-9ab1-4fc8-a7ba-b7a5428ecb3d" }</programlisting></listitem>
           </itemizedlist>
-          <note>This UUID remains constant for a subscription to an image, messages with different UUID's will be ignored.</note>
+          <note>This &uuid; remains constant for a subscription to an image, messages with different &uuid;'s will be ignored.</note>
         </section>
         <section>
           <title>hv:imagelist/hv:images/hv:image/sl:os</title>

@@ -33,10 +33,10 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY repoman      "<productname>Repoman</productname>">
 <!ENTITY vmic         "<productname>VMIC</productname>">
 <!ENTITY stratuslab   "<productname>StratusLab</productname>">
-<!ENTITY  vmlisub_endorser  "<productname>vmlisub_endorser</productname>">
-<!ENTITY  vmlisub_sub  "<productname>vmlisub_sub</productname>">
-<!ENTITY  vmlisub_image  "<productname>vmlisub_image</productname>">
-<!ENTITY  vmlisub_cache  "<productname>vmlisub_cache</productname>">
+<!ENTITY  vmcatcher_endorser  "<productname>vmcatcher_endorser</productname>">
+<!ENTITY  vmcatcher_subscribe  "<productname>vmcatcher_subscribe</productname>">
+<!ENTITY  vmcatcher_image  "<productname>vmcatcher_image</productname>">
+<!ENTITY  vmcatcher_cache  "<productname>vmcatcher_cache</productname>">
 <!ENTITY wheezy       "<productname>Debian Linux Codename Wheezy</productname>">
 
 <!-- Various literals -->
@@ -48,6 +48,9 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY dubcore      "<literal>Dublin Core</literal>">
 <!ENTITY crl          "<literal>Certificate Revocation Lists</literal>">
 <!ENTITY ca          "<literal> Certification Authorities</literal>">
+<!ENTITY x509          "<literal>x.509</literal>">
+<!ENTITY uuid          "<literal>RFC 4122 UUID</literal>">
+<!ENTITY vo          "<literal>Virtual Organisation</literal>">
 
 <!-- When defining attributes, default values, etc. -->
 <!ENTITY true         "<emphasis>True</emphasis>">
@@ -59,8 +62,9 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY prompt-root  "<prompt>[root] #</prompt>">
 <!ENTITY prompt-one   "<prompt>[one] #</prompt>">
 
-<!-- blobcasts -->
-<!-- CERN VM
+
+<!-- CERN VM -->
+<!ENTITY blobEndorserName "Predrag Buncic">
 <!ENTITY blobDn   "/DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=buncic/CN=379010/CN=Predrag Buncic">
 <!ENTITY blobUrl "https://cernvm.cern.ch/releases/image.list">
 <!ENTITY blobIssuer   "/DC=ch/DC=cern/CN=CERN Trusted Certification Authority">
@@ -68,8 +72,9 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY blobSubscriptionDcdescription   "CERN Virtual Machine">
 <!ENTITY blobEndorserUuid   "e55c1afe-0a62-4d31-a8d7-fb8c825f92a2">
 <!ENTITY blobImageIdExampleSubscribed   "858a817e-0ca2-473f-89d3-d5bdfc51968e">
--->
-<!-- DISH -->
+<!-- blobcasts -->
+<!-- DISH 
+<!ENTITY blobEndorserName "Owen Synge">
 <!ENTITY blobUrl "https://dish.desy.de:2880/testing.smime">
 <!ENTITY blobDn   "/C=DE/O=GermanGrid/OU=DESY/CN=Owen Synge">
 <!ENTITY blobIssuer   "/C=DE/O=GermanGrid/CN=GridKa-CA">
@@ -77,6 +82,6 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY blobSubscriptionDcdescription   "DESY Image List SHaring service">
 <!ENTITY blobEndorserUuid   "e55c1afe-0a62-4d31-a8d7-fb8c825f92a2">
 <!ENTITY blobImageIdExampleSubscribed   "5f00fec3-4f2a-4fa0-a965-d52115606044">
-
+-->
 <!-- Misc -->
 <!-- <!ENTITY ndash "&#x2013;"> -->

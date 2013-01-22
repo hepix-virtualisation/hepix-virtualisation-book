@@ -225,7 +225,7 @@ the image file and create a JSON text file containing that checksum.</para>
       <title>Add image metadata to the &vmil;</title>
       
       <para>Add your newly updated image metadata to the &vmil;</para>
-      <programlisting>&prompt-user; <userinput>vmilisttool  --template image_list_template.json  -add VMmetadata.json --json merged_image_list.json</userinput></programlisting>
+      <programlisting>&prompt-user; <userinput>vmilisttool  --template image_list_template.json  --add VMmetadata.json --json merged_image_list.json</userinput></programlisting>
     </section>
     <section>
       <title>Sign the &vmil;.</title>

@@ -33,10 +33,11 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY repoman      "<productname>Repoman</productname>">
 <!ENTITY vmic         "<productname>VMIC</productname>">
 <!ENTITY stratuslab   "<productname>StratusLab</productname>">
-<!ENTITY  vmcatcher_endorser  "<productname>vmcatcher_endorser</productname>">
-<!ENTITY  vmcatcher_subscribe  "<productname>vmcatcher_subscribe</productname>">
-<!ENTITY  vmcatcher_image  "<productname>vmcatcher_image</productname>">
-<!ENTITY  vmcatcher_cache  "<productname>vmcatcher_cache</productname>">
+<!ENTITY  vmcatcher_endorser  "<productname><literal>vmcatcher_endorser</literal></productname>">
+<!ENTITY  vmcatcher_subscribe  "<productname><literal>vmcatcher_subscribe</literal></productname>">
+<!ENTITY  vmcatcher_image  "<productname><literal>vmcatcher_image</literal></productname>">
+<!ENTITY  vmcatcher_cache  "<productname><literal>vmcatcher_cache</literal></productname>">
+<!ENTITY  vmcatcher_eventHndlExplscript  "<productname><literal>vmcatcher_eventHndlExplscript</literal></productname>">
 <!ENTITY wheezy       "<productname>Debian Linux Codename Wheezy</productname>">
 
 <!-- Various literals -->
@@ -61,6 +62,33 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY prompt-user  "<prompt>[user] $</prompt>">
 <!ENTITY prompt-root  "<prompt>[root] #</prompt>">
 <!ENTITY prompt-one   "<prompt>[one] #</prompt>">
+
+
+<!-- Enviroment variables -->
+<!ENTITY VMCATCHER_CACHE_ACTION_CHECK           "<literal>VMCATCHER_CACHE_ACTION_CHECK</literal>">
+<!ENTITY VMCATCHER_CACHE_ACTION_DOWNLOAD        "<literal>VMCATCHER_CACHE_ACTION_DOWNLOAD</literal>">
+<!ENTITY VMCATCHER_CACHE_ACTION_EXPIRE          "<literal>VMCATCHER_CACHE_ACTION_EXPIRE</literal>">
+<!ENTITY VMCATCHER_CACHE_DIR_CACHE              "<literal>VMCATCHER_CACHE_DIR_CACHE</literal>">
+<!ENTITY VMCATCHER_CACHE_DIR_DOWNLOAD           "<literal>VMCATCHER_CACHE_DIR_DOWNLOAD</literal>">
+<!ENTITY VMCATCHER_CACHE_DIR_EXPIRE             "<literal>VMCATCHER_CACHE_DIR_EXPIRE</literal>">
+<!ENTITY VMCATCHER_CACHE_EVENT                  "<literal>VMCATCHER_CACHE_EVENT</literal>">
+<!ENTITY VMCATCHER_DIR_CERT                     "<literal>VMCATCHER_DIR_CERT</literal>">
+<!ENTITY VMCATCHER_EVENT_DC_DESCRIPTION         "<literal>VMCATCHER_EVENT_DC_DESCRIPTION</literal>">
+<!ENTITY VMCATCHER_EVENT_DC_IDENTIFIER          "<literal>VMCATCHER_EVENT_DC_IDENTIFIER</literal>">
+<!ENTITY VMCATCHER_EVENT_DC_TITLE               "<literal>VMCATCHER_EVENT_DC_TITLE</literal>">
+<!ENTITY VMCATCHER_EVENT_FILENAME               "<literal>VMCATCHER_EVENT_FILENAME</literal>">
+<!ENTITY VMCATCHER_EVENT_HV_HYPERVISOR          "<literal>VMCATCHER_EVENT_HV_HYPERVISOR</literal>">
+<!ENTITY VMCATCHER_EVENT_HV_SIZE                "<literal>VMCATCHER_EVENT_HV_SIZE</literal>">
+<!ENTITY VMCATCHER_EVENT_HV_URI                 "<literal>VMCATCHER_EVENT_HV_URI</literal>">
+<!ENTITY VMCATCHER_EVENT_SL_ARCH                "<literal>VMCATCHER_EVENT_SL_ARCH</literal>">
+<!ENTITY VMCATCHER_EVENT_SL_CHECKSUM_SHA512     "<literal>VMCATCHER_EVENT_SL_CHECKSUM_SHA512</literal>">
+<!ENTITY VMCATCHER_EVENT_SL_COMMENTS            "<literal>VMCATCHER_EVENT_SL_COMMENTS</literal>">
+<!ENTITY VMCATCHER_EVENT_SL_OS                  "<literal>VMCATCHER_EVENT_SL_OS</literal>">
+<!ENTITY VMCATCHER_EVENT_SL_OSVERSION           "<literal>VMCATCHER_EVENT_SL_OSVERSION</literal>">
+<!ENTITY VMCATCHER_EVENT_TYPE                   "<literal>VMCATCHER_EVENT_TYPE</literal>">
+<!ENTITY VMCATCHER_EVENT_TYPE                   "<literal>VMCATCHER_EVENT_TYPE</literal>">
+<!ENTITY VMCATCHER_LOG_CONF                     "<literal>VMCATCHER_LOG_CONF</literal>">
+<!ENTITY VMCATCHER_RDBMS                        "<literal>VMCATCHER_RDBMS</literal>">
 
 
 <!-- CERN VM -->

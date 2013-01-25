@@ -453,7 +453,7 @@ event must process its command within 10 seconds or else it will be sent a
 termination signal. See the following example:</para>
       <programlisting>&prompt-user;  <userinput>vmcatcher_cache -x 'env  ; exit 1'</userinput></programlisting>
       <para>All Events have a type. This is given to the event handler by setting the 
-variable, VMCATCHER_EVENT_TYPE with the following values "AvailablePrefix", 
+variable, &VMCATCHER_EVENT_TYPE; with the following values "AvailablePrefix", 
 "AvailablePostfix", "ExpirePrefix" and "ExpirePosfix".</para>
       <para>"Available" events happen when a new image is validated, while "Expire" events 
 occur when an image i no longer the validated image. The "Prefix" events occur 
@@ -566,11 +566,41 @@ export VMCATCHER_CACHE_EVENT="python /usr/share/doc/vmcatcher-0.1.17/vmcatcher_e
 
 50 */6 * * *	vmcatcher	(/usr/bin/vmcatcher_subscribe -U; /usr/bin/vmcatcher_cache  ) >> /var/log/vmcatcher.log 2>&amp;1</programlisting>      
     <para>So the script is executed every 6 hours shortly after fetch CRL.</para>
-    <para>If a new &vmi; is downloaded, or an old &vmi; is expired the event will triggor "VMCATCHER_CACHE_EVENT" and 
-    the application vmcatcher_eventHndlExpl will append the data to /tmp/foo</para>
+    <para>If a new &vmi; is downloaded, or an old &vmi; is expired the event will triggor &VMCATCHER_CACHE_EVENT; and 
+    the application &vmcatcher_eventHndlExplscript; will append the data to /tmp/foo</para>
     <para>Now at any time users with file permisions can get a list of valid images.</para>
       <programlisting>&prompt-user; <userinput>VMCATCHER_RDBMS="sqlite:////var/lib/vmcatcher/vmcatcher.db" vmcatcher_image -l</userinput></programlisting>
-    </section>  
+    </section>
+    <section  id="imagetransfer-software-vmcatcher-events">
+    <title>Replacing the event handler</title>
+    <para>&vmcatcher_cache; produces "events" in the form of launching an application when 
+    a new image is downloaded or expired, this application is then launched with 
+    enviroment variables that include the image ID,date, etc etc. Since all the 
+    information about current images is available from other vmcatcher commands 
+    you don't need to handle events but it does make it simpler for some setups.</para>
+    <para>So with a cron job like:</para>
+    <programlisting>&prompt-root; <userinput> cat   /etc/cron.d/vmcatcher</userinput>
+export VMCATCHER_RDBMS="sqlite:////var/lib/vmcatcher/vmcatcher.db"
+export VMCATCHER_CACHE_DIR_CACHE="/var/cache/vmimages/endorsed/"
+export VMCATCHER_CACHE_DIR_DOWNLOAD="/var/cache/vmimages/partial/"
+export VMCATCHER_CACHE_DIR_EXPIRE="/var/cache/vmimages/expired/"
+export VMCATCHER_CACHE_EVENT="python /usr/share/doc/vmcatcher-0.1.17/vmcatcher_eventHndlExpl  --output_file=/tmp/foo --datetime"
+
+50 */6 * * *	vmcatcher	(/usr/bin/vmcatcher_subscribe -U; /usr/bin/vmcatcher_cache  ) >> /var/log/vmcatcher.log 2>&amp;1</programlisting>
+    <para>The &VMCATCHER_CACHE_EVENT; environment variable specifies the even handler.</para>
+    <para>It is expected that &vmcatcher_eventHndlExplscript; will be replaced by sites wanting to 
+    load images into image catalogs of popular clouds. "vmcatcher_eventHndlExplscript" is an example 
+    "event" handler, which takes a path parameter. It reads the enviroment variables generates a 
+    simple JSON output line, and appends it to the file described in the path parameter.</para>
+    <para>It is recomended the replacement &vmcatcher_eventHndlExplscript; copies the images 
+    from the &VMCATCHER_CACHE_DIR_CACHE; directory to the cloud, as &vmcatcher_cache; assumes 
+    it can delete and update its local cache. A second recommendation for site replacement 
+    is that &vmcatcher_eventHndlExplscript; should do very little and end quickly as then 
+    &vmcatcher_cache; can process the next download without blocking. Since events are not 
+    resent so error handling is more complex, it may be wise to use a message queue, or 
+    storing the event and processing after, rather than just using a simple fork.</para>
+
+    </section>
     <section  id="imagetransfer-software-vmcatcher-config-env">
     <title>Environment Variables</title>
     <para>Environment variables can be used to set default values but the command line 
@@ -624,6 +654,7 @@ integrity.</para>
       <para>Instructs '&vmcatcher_endorser;' to expire stored VM images that are no longer 
 endorsed.</para>
     </section>
+    
   </section>
       
      

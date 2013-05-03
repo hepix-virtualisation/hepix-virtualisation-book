@@ -89,8 +89,8 @@ for Virtual Maschines.</para>
         on the &debian; platform. They are available as src and binary RPM packages in the following 
         repository sporting.</para>
       <itemizedlist>
-        <listitem>http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/</listitem>
-        <listitem>http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/</listitem>
+        <listitem>&repoUriRpmYokel_stable_SL6;</listitem>
+        <listitem>&repoUriRpmYokel_stable_SL5;</listitem>
       </itemizedlist>
       <para>Deployment instructions are provided in the README included in the source code and 
         the RPM.</para>
@@ -101,12 +101,12 @@ for Virtual Maschines.</para>
       <title>Installation on Redhat Enterprise Linux 6</title>
       <para>Install EPEL for dependencies.</para>
       <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/6/x86_64/epel-release-6-5.noarch.rpm</userinput></programlisting>
-      <para>Install DESY yum repository.</para>
+      <para>Install yum repository.</para>
       
-      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/desyvirt.repo</userinput>
+      <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/yokel.repo</userinput>
 [desyvirt]
 name=desyvirt
-baseurl=http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/
+baseurl=&repoUriRpmYokel_stable_SL6;
 enabled=1
 gpgcheck=0</programlisting>
       <para>Install the Grid &ca; repository for details please see https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
@@ -126,13 +126,14 @@ enabled=1</programlisting>
     </section>
     <section>
       <title>Installation on Redhat Enterprise Linux 5</title>
+      <para>Redhat Enterprise Linux 5 is no longer updated please report a bug if you still need this platform.</para>
       <para>Install EPEL for dependencies.</para>
       <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</userinput></programlisting>
       <para>Install DESY yum repository.</para>
       <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/desyvirt.repo</userinput>
 [desyvirt]
 name=desyvirt
-baseurl=http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/
+baseurl=&repoUriRpmYokel_stable_SL5;
 enabled=1
 gpgcheck=0</programlisting>
       <para>Install the Grid &ca; repository for details please see
@@ -175,21 +176,21 @@ deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core</programl
 &prompt-root; <userinput>fetch-crl </userinput></programlisting>
 
       <para>Now install the code from source.</para>
-      <programlisting>http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/</programlisting>
+      <programlisting>&repoUriTarYokel_stable_SL6;</programlisting>
       
-      <para>The leatest version of hepixvmitrust-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
-       <programlisting>&prompt-root; <userinput>$wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/hepixvmitrust-0.0.14.tar.gz</userinput>
+      <para>The leatest version of hepixvmitrust-X.X.XX.tar.gz should be downloaded extracted and installed.</para>
+       <programlisting>&prompt-root; <userinput>$wget &repoUriTarYokel_stable_SL6;&hepixvmitrust-latest;.tar.gz</userinput>
 Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
 Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 19922 (19K) [application/x-tar]
-Saving to: `hepixvmitrust-0.0.14.tar.gz'
+Saving to: `&hepixvmitrust-latest;.tar.gz'
 
 100%[======================================>] 19,922      --.-K/s   in 0.05s   
 
-2012-05-28 19:45:45 (413 KB/s) - `hepixvmitrust-0.0.14.tar.gz' saved [19922/19922]
-&prompt-root; <userinput>tar -zxf hepixvmitrust-0.0.14.tar.gz </userinput>
-&prompt-root; <userinput>cd hepixvmitrust-0.0.14</userinput>
+2012-05-28 19:45:45 (413 KB/s) - `&hepixvmitrust-latest;.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf &hepixvmitrust-latest;.tar.gz </userinput>
+&prompt-root; <userinput>cd &hepixvmitrust-latest;</userinput>
 &prompt-root; <userinput>python setup install</userinput>
 &prompt-root; <userinput>echo $?</userinput>
 &prompt-root; <userinput>cd ..</userinput></programlisting>

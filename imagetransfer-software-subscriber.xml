@@ -23,7 +23,7 @@
   <title>vmcatcher</title>
   <para>This virtual machine &vmil; subscriber implementation is intended to be a production grade reference implementation.</para>
   <para>The software makes use of a database to store subscriptions in a simplar way to a podcast reader or a linux package manager. 
-  The tested Database is SqlLight, but it is based upon SQLalchamy so shoudl support many databases. Sdllight has proved more than 
+  The tested Database is SqlLight, but it is based upon SQLalchamy so should support many databases. Sdllight has proved more than 
   adiquate for the low transaction rate of a image list subscriber and so deployment issues are mearly backing up a databasefile.</para>
   <para>Since the software is made with the Grid in mind it is only natural that the &x509; certificate model is used. </para>
   <section id="imagetransfer-software-vmcatcher-introduction">
@@ -174,8 +174,8 @@ cache/cache.index</programlisting>
         on the &debian; platform. They are available as src and binary RPM packages in the following 
         repository sporting.</para>
       <itemizedlist>
-        <listitem>http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/</listitem>
-        <listitem>http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/</listitem>
+        <listitem>&repoUriRpmYokel_stable_SL6;</listitem>
+        <listitem>&repoUriRpmYokel_stable_SL5;</listitem>
       </itemizedlist>
       <para>Deployment instructions are provided in the README included in the source code and 
         the RPM.</para>
@@ -193,7 +193,7 @@ cache/cache.index</programlisting>
       <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/desyvirt.repo</userinput>
 [desyvirt]
 name=desyvirt
-baseurl=http://grid.desy.de/vm/repo/yum/sl6/noarch/RPMS.stable/
+baseurl=&repoUriRpmYokel_stable_SL6;
 enabled=1
 gpgcheck=0</programlisting>
       <para>Install the Grid CA repository for details please see https://wiki.egi.eu/wiki/EGI_IGTF_Release</para>
@@ -213,13 +213,14 @@ enabled=1</programlisting>
     </section>
     <section id="imagetransfer-software-vmcatcher-installation-rhel5">
       <title>Installation on Redhat Enterprise Linux 5</title>
+      <para>Redhat Enterprise Linux 5 is no longer updated please report a bug if you still need this platform.</para>
       <para>Install EPEL for dependencies.</para>
       <programlisting>&prompt-root; <userinput>rpm -i http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</userinput></programlisting>
       <para>Install DESY yum repository.</para>
       <programlisting>&prompt-root; <userinput>cat /etc/yum.repos.d/desyvirt.repo</userinput>
 [desyvirt]
 name=desyvirt
-baseurl=http://grid.desy.de/vm/repo/yum/sl5/noarch/RPMS.stable/
+baseurl=&repoUriRpmYokel_stable_SL5;
 enabled=1
 gpgcheck=0</programlisting>
       <para>Install the Grid CA repository for details please see
@@ -272,55 +273,55 @@ deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core</programl
 &prompt-root; <userinput>fetch-crl </userinput></programlisting>
 
       <para>Now install the code from git.</para>
-      <programlisting>http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/</programlisting>
+      <programlisting>&repoUriTarYokel_stable_SL6;</programlisting>
       
-      <para>The leatest version of hepixvmitrust-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
-       <programlisting>&prompt-root; <userinput>wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/hepixvmitrust-0.0.14.tar.gz</userinput>
+      <para>The leatest version of hepixvmitrust-X.X.XX.tar.gz should be downloaded extracted and installed.</para>
+       <programlisting>&prompt-root; <userinput>wget &repoUriTarYokel_stable_SL6;&hepixvmitrust-latest;.tar.gz</userinput>
 Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
 Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 19922 (19K) [application/x-tar]
-Saving to: `hepixvmitrust-0.0.14.tar.gz'
+Saving to: `&hepixvmitrust-latest;.tar.gz'
 
 100%[======================================>] 19,922      --.-K/s   in 0.05s   
 
-2012-05-28 19:45:45 (413 KB/s) - `hepixvmitrust-0.0.14.tar.gz' saved [19922/19922]
-&prompt-root; <userinput>tar -zxf hepixvmitrust-0.0.14.tar.gz </userinput>
-&prompt-root; <userinput>cd hepixvmitrust-0.0.14</userinput>
+2012-05-28 19:45:45 (413 KB/s) - `&hepixvmitrust-latest;.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf &hepixvmitrust-latest;.tar.gz </userinput>
+&prompt-root; <userinput>cd &hepixvmitrust-latest;</userinput>
 &prompt-root; <userinput>python setup install</userinput>
 &prompt-root; <userinput>echo $?</userinput>
 &prompt-root; <userinput>cd ..</userinput></programlisting>
-      <para>The leatest version ofsmimeX509validation-0.0.7.tar.gz  -X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
+      <para>The leatest version of&smimeX509validation-latest;.tar.gz  -X.X.XX.tar.gz should be downloaded extracted and installed.</para>
        <programlisting>&prompt-root; <userinput></userinput>
-&prompt-root; <userinput>wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/smimeX509validation-0.0.7.tar.gz</userinput>
+&prompt-root; <userinput>wget &repoUriTarYokel_stable_SL6;&smimeX509validation-latest;.tar.gz</userinput>
 Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
 Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 19922 (19K) [application/x-tar]
-Saving to: `smimeX509validation-0.0.7.tar.gz'
+Saving to: `&smimeX509validation-latest;.tar.gz'
 
 100%[======================================>] 19,922      --.-K/s   in 0.05s   
 
-2012-05-28 19:45:45 (413 KB/s) - `smimeX509validation-0.0.7.tar.gz' saved [19922/19922]
-&prompt-root; <userinput>tar -zxf smimeX509validation-0.0.7.tar.gz </userinput>
-&prompt-root; <userinput>cd smimeX509validation-0.0.7</userinput>
+2012-05-28 19:45:45 (413 KB/s) - `&smimeX509validation-latest;.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf &smimeX509validation-latest;.tar.gz </userinput>
+&prompt-root; <userinput>cd &smimeX509validation-latest;</userinput>
 &prompt-root; <userinput>python setup install</userinput>
 &prompt-root; <userinput>echo $?</userinput>
 &prompt-root; <userinput>cd ..</userinput></programlisting>
-      <para>The leatest version of vmcatcher-X.X.XX.tar.gz shoudl be downloaded extracted and installed.</para>
+      <para>The leatest version of vmcatcher-X.X.XX.tar.gz should be downloaded extracted and installed.</para>
        <programlisting>&prompt-root; <userinput></userinput>
-&prompt-root; <userinput>wget http://grid.desy.de/vm/repo/yum/sl5/noarch/tgz/vmcatcher-0.1.14.tar.gz</userinput>
+&prompt-root; <userinput>wget &repoUriTarYokel_stable_SL6;&vmcatcher-latest;.tar.gz</userinput>
 Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
 Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 19922 (19K) [application/x-tar]
-Saving to: `vmcatcher-0.1.14.tar.gz'
+Saving to: `&vmcatcher-latest;.tar.gz'
 
 100%[======================================>] 19,922      --.-K/s   in 0.05s   
 
-2012-05-28 19:45:45 (413 KB/s) - `vmcatcher-0.1.14.tar.gz' saved [19922/19922]
-&prompt-root; <userinput>tar -zxf vmcatcher-0.1.14.tar.gz </userinput>
-&prompt-root; <userinput>cd vmcatcher-0.1.14</userinput>
+2012-05-28 19:45:45 (413 KB/s) - `&vmcatcher-latest;.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf &vmcatcher-latest;.tar.gz </userinput>
+&prompt-root; <userinput>cd &vmcatcher-latest;</userinput>
 &prompt-root; <userinput>python setup install</userinput>
 &prompt-root; <userinput>echo $?</userinput>
 &prompt-root; <userinput>cd ..</userinput></programlisting>
@@ -562,7 +563,7 @@ export VMCATCHER_RDBMS="sqlite:////var/lib/vmcatcher/vmcatcher.db"
 export VMCATCHER_CACHE_DIR_CACHE="/var/cache/vmimages/endorsed/"
 export VMCATCHER_CACHE_DIR_DOWNLOAD="/var/cache/vmimages/partial/"
 export VMCATCHER_CACHE_DIR_EXPIRE="/var/cache/vmimages/expired/"
-export VMCATCHER_CACHE_EVENT="python /usr/share/doc/vmcatcher-0.1.17/vmcatcher_eventHndlExpl  --output_file=/tmp/foo --datetime"
+export VMCATCHER_CACHE_EVENT="python /usr/share/doc/&vmcatcher-latest;/vmcatcher_eventHndlExpl  --output_file=/tmp/foo --datetime"
 
 50 */6 * * *	vmcatcher	(/usr/bin/vmcatcher_subscribe -U; /usr/bin/vmcatcher_cache  ) >> /var/log/vmcatcher.log 2>&amp;1</programlisting>      
     <para>So the script is executed every 6 hours shortly after fetch CRL.</para>
@@ -584,7 +585,7 @@ export VMCATCHER_RDBMS="sqlite:////var/lib/vmcatcher/vmcatcher.db"
 export VMCATCHER_CACHE_DIR_CACHE="/var/cache/vmimages/endorsed/"
 export VMCATCHER_CACHE_DIR_DOWNLOAD="/var/cache/vmimages/partial/"
 export VMCATCHER_CACHE_DIR_EXPIRE="/var/cache/vmimages/expired/"
-export VMCATCHER_CACHE_EVENT="python /usr/share/doc/vmcatcher-0.1.17/vmcatcher_eventHndlExpl  --output_file=/tmp/foo --datetime"
+export VMCATCHER_CACHE_EVENT="python /usr/share/doc/&vmcatcher-latest;/vmcatcher_eventHndlExpl  --output_file=/tmp/foo --datetime"
 
 50 */6 * * *	vmcatcher	(/usr/bin/vmcatcher_subscribe -U; /usr/bin/vmcatcher_cache  ) >> /var/log/vmcatcher.log 2>&amp;1</programlisting>
     <para>The &VMCATCHER_CACHE_EVENT; environment variable specifies the even handler.</para>

@@ -275,52 +275,52 @@ deb http://repository.egi.eu/sw/production/cas/1/current egi-igtf core</programl
       <para>Now install the code from git.</para>
       <programlisting>&repoUriTarYokel_stable_SL6;</programlisting>
       
-      <para>The leatest version of hepixvmitrust-X.X.XX.tar.gz should be downloaded extracted and installed.</para>
-       <programlisting>&prompt-root; <userinput>wget &repoUriTarYokel_stable_SL6;&hepixvmitrust-latest;.tar.gz</userinput>
+      <para>The leatest version of hepixvmitrust-X.X.XX.src.tar.gz should be downloaded extracted and installed.</para>
+       <programlisting>&prompt-root; <userinput>wget &repoUriTarYokel_stable_SL6;&hepixvmitrust-latest;.src.tar.gz</userinput>
 Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
 Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 19922 (19K) [application/x-tar]
-Saving to: `&hepixvmitrust-latest;.tar.gz'
+Saving to: `&hepixvmitrust-latest;.src.tar.gz'
 
 100%[======================================>] 19,922      --.-K/s   in 0.05s   
 
-2012-05-28 19:45:45 (413 KB/s) - `&hepixvmitrust-latest;.tar.gz' saved [19922/19922]
-&prompt-root; <userinput>tar -zxf &hepixvmitrust-latest;.tar.gz </userinput>
+2012-05-28 19:45:45 (413 KB/s) - `&hepixvmitrust-latest;.src.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf &hepixvmitrust-latest;.src.tar.gz </userinput>
 &prompt-root; <userinput>cd &hepixvmitrust-latest;</userinput>
 &prompt-root; <userinput>python setup install</userinput>
 &prompt-root; <userinput>echo $?</userinput>
 &prompt-root; <userinput>cd ..</userinput></programlisting>
-      <para>The leatest version of&smimeX509validation-latest;.tar.gz  -X.X.XX.tar.gz should be downloaded extracted and installed.</para>
+      <para>The leatest version of&smimeX509validation-latest;.src.tar.gz  -X.X.XX.src.tar.gz should be downloaded extracted and installed.</para>
        <programlisting>&prompt-root; <userinput></userinput>
-&prompt-root; <userinput>wget &repoUriTarYokel_stable_SL6;&smimeX509validation-latest;.tar.gz</userinput>
+&prompt-root; <userinput>wget &repoUriTarYokel_stable_SL6;&smimeX509validation-latest;.src.tar.gz</userinput>
 Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
 Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 19922 (19K) [application/x-tar]
-Saving to: `&smimeX509validation-latest;.tar.gz'
+Saving to: `&smimeX509validation-latest;.src.tar.gz'
 
 100%[======================================>] 19,922      --.-K/s   in 0.05s   
 
-2012-05-28 19:45:45 (413 KB/s) - `&smimeX509validation-latest;.tar.gz' saved [19922/19922]
-&prompt-root; <userinput>tar -zxf &smimeX509validation-latest;.tar.gz </userinput>
+2012-05-28 19:45:45 (413 KB/s) - `&smimeX509validation-latest;.src.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf &smimeX509validation-latest;.src.tar.gz </userinput>
 &prompt-root; <userinput>cd &smimeX509validation-latest;</userinput>
 &prompt-root; <userinput>python setup install</userinput>
 &prompt-root; <userinput>echo $?</userinput>
 &prompt-root; <userinput>cd ..</userinput></programlisting>
-      <para>The leatest version of vmcatcher-X.X.XX.tar.gz should be downloaded extracted and installed.</para>
+      <para>The leatest version of vmcatcher-X.X.XX.src.tar.gz should be downloaded extracted and installed.</para>
        <programlisting>&prompt-root; <userinput></userinput>
-&prompt-root; <userinput>wget &repoUriTarYokel_stable_SL6;&vmcatcher-latest;.tar.gz</userinput>
+&prompt-root; <userinput>wget &repoUriTarYokel_stable_SL6;&vmcatcher-latest;.src.tar.gz</userinput>
 Resolving grid.desy.de (grid.desy.de)... 131.169.180.46
 Connecting to grid.desy.de (grid.desy.de)|131.169.180.46|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 19922 (19K) [application/x-tar]
-Saving to: `&vmcatcher-latest;.tar.gz'
+Saving to: `&vmcatcher-latest;.src.tar.gz'
 
 100%[======================================>] 19,922      --.-K/s   in 0.05s   
 
-2012-05-28 19:45:45 (413 KB/s) - `&vmcatcher-latest;.tar.gz' saved [19922/19922]
-&prompt-root; <userinput>tar -zxf &vmcatcher-latest;.tar.gz </userinput>
+2012-05-28 19:45:45 (413 KB/s) - `&vmcatcher-latest;.src.tar.gz' saved [19922/19922]
+&prompt-root; <userinput>tar -zxf &vmcatcher-latest;.src.tar.gz </userinput>
 &prompt-root; <userinput>cd &vmcatcher-latest;</userinput>
 &prompt-root; <userinput>python setup install</userinput>
 &prompt-root; <userinput>echo $?</userinput>

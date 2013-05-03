@@ -33,6 +33,7 @@ Rules / Guidelines / Suggestions for adding new entities:
 <!ENTITY repoman      "<productname>Repoman</productname>">
 <!ENTITY vmic         "<productname>VMIC</productname>">
 <!ENTITY stratuslab   "<productname>StratusLab</productname>">
+<!ENTITY  vmcatcher  "<productname><literal>vmcatcher</literal></productname>">
 <!ENTITY  vmcatcher_endorser  "<productname><literal>vmcatcher_endorser</literal></productname>">
 <!ENTITY  vmcatcher_subscribe  "<productname><literal>vmcatcher_subscribe</literal></productname>">
 <!ENTITY  vmcatcher_image  "<productname><literal>vmcatcher_image</literal></productname>">

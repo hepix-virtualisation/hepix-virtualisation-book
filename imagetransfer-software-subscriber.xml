@@ -50,6 +50,8 @@ images.</para>
         <listitem>Subscribe and unsubscribe to images from &vmil;s.</listitem>
         <listitem>Download verify images into a local cache.</listitem>
         <listitem>Expire images to an archive when no longer endorsed or corrupt.</listitem>
+        <listitem>Open Stack intgration by Mattieu Puel CC-IN2P3.fr.</listitem>
+        <listitem>OpenNebula intgration by Roberto Rosende Dopazo CESGA.es.</listitem>
       </itemizedlist>
     </section>
     <para> This set of applications are designed to provide a similar work flow
@@ -72,6 +74,55 @@ your local images are matching signatures in the &vmil;.</para>
     <para>Anyone curious about this application should consider this application a
 software application similar to Debian's 'aptitude' or Redhats 'yum', but rather
 for virtual machines, authenticated by the &x509; signatures.</para>
+    <para>Like yum and apt this tool can be extended. The following handlers have been developed</para>
+ 
+    
+    <table frame='all'><title>Sample Table</title>
+    <tgroup cols='5' align='left' colsep='1' rowsep='1'>
+    <colspec colname='c1'/>
+    <colspec colname='c2'/>
+    <colspec colname='c3'/>
+    <colspec colname='c4'/>
+
+    <colspec colname='c5'/>
+    <thead>
+    <row>
+        <entry>Cloud</entry>
+        <entry>Name</entry>
+        <entry>Author</entry>
+        <entry>Employer</entry>
+        <entry>URI</entry>
+    </row>
+    </thead>
+
+    <tbody>
+    <row>
+        <entry>Open Stack</entry>
+        <entry>glancepush-vmcatcher</entry>
+        <entry>Mattieu Puel</entry>
+        <entry>CC-IN2P3.fr</entry>
+        <entry>https://github.com/EGI-FCTF/glancepush-vmcatcher</entry>
+    </row>
+    <row>
+        <entry>Open Stack</entry>
+        <entry>glancepush</entry>
+        <entry>Mattieu Puel</entry>
+        <entry>CC-IN2P3.fr</entry>
+        <entry>https://github.com/EGI-FCTF/glancepush</entry>
+    </row>
+    <row>
+        <entry>OpenNebula</entry>
+        <entry>Cesga cloud tools</entry>
+        <entry>Roberto Rosende Dopazo</entry>
+        <entry>Cesga.es</entry>
+        <entry>https://github.com/grid-admin/cloud</entry>
+    </row>
+    </tbody>
+    </tgroup>
+    </table>
+    
+    
+    
   </section>
   <section id="imagetransfer-software-vmcatcher-quickstart">
     <title>Quick start use of vmcatcher</title>

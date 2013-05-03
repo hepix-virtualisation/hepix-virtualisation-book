@@ -333,9 +333,62 @@ Saving to: `&vmcatcher-latest;.src.tar.gz'
 &prompt-root; <userinput>echo $?</userinput>
 &prompt-root; <userinput>cd ..</userinput></programlisting>
     </section>
+  </section>
+  <section  id="imagetransfer-software-vmcatcher-config-env">
+    <title>Environment Variables</title>
+    <para>Environment variables can be used to set default values but the command line 
+options will override any set environment options.</para>
+    <section>
+      <title>VMCATCHER_RDBMS </title>
+      <para>Sets the path to the database. For example "sqlite:///vmcatcher.db"</para>
+    </section>
+    <section>
+      <title>VMCATCHER_CACHE_EVENT</title>
+      <para>Sets the executions string. Command line options can be set as environment 
+variables just like the command line interface. Users of the "sh shell" must
+protect the environment variables from being substituted by their shell.</para>
+      <programlisting>&prompt-user; <userinput> export VMCATCHER_CACHE_EVENT="./myEventProcessor \$VMCATCHER_EVENT_TYPE"</userinput></programlisting>
+      <para>An example of how to execute a command with an action command line.</para>
+    </section>
+    <section>
+      <title>VMCATCHER_LOG_CONF</title>
+      <para>Sets the path to the logging configuration file.</para>
+    </section>
+    <section>
+      <title>VMCATCHER_DIR_CERT</title>
+      <para>Sets the Path to the certificate authorities public keys, certificate revocation
+lists and certificate name spaces.</para>
+    </section>
+    <section>
+      <title>VMCATCHER_CACHE_DIR_CACHE</title>
+      <para>Path used by '&vmcatcher_endorser;' to store verified VM images.</para>
+    </section>
+    <section>
+      <title>VMCATCHER_CACHE_DIR_DOWNLOAD</title>
+      <para>Path used by '&vmcatcher_endorser;' to download VM images before VM image integrity
+is checked.</para>
+    </section>
+    <section>
+      <title>VMCATCHER_CACHE_DIR_EXPIRE</title>
+      <para>Path used by '&vmcatcher_endorser;' to store VM images when they are no longer 
+endorsed.</para>
+    </section>
+    <section>
+      <title>VMCATCHER_CACHE_ACTION_DOWNLOAD</title>
+      <para>Instructs '&vmcatcher_endorser;' to download the latest VM images and check 
+integrity.</para>
+    </section>
+    <section>
+      <title>VMCATCHER_CACHE_ACTION_CHECK</title>
+      <para>Instructs '&vmcatcher_endorser;' check integrity for all currently stored VM images.</para>
+    </section>
+    <section>
+      <title>VMCATCHER_CACHE_ACTION_EXPIRE</title>
+      <para>Instructs '&vmcatcher_endorser;' to expire stored VM images that are no longer 
+endorsed.</para>
+    </section>
     
-  </section>  
-    
+  </section>
   <section id="imagetransfer-software-vmcatcher-vmcatcher_endorser">
     <title>&vmcatcher_endorser;</title>
     <para>This application is for managing who the subscriber trusts to update image 
@@ -617,63 +670,6 @@ export VMCATCHER_CACHE_EVENT="python /usr/share/doc/&vmcatcher-latest;/vmcatcher
     storing the event and processing after, rather than just using a simple fork.</para>
 
     </section>
-    <section  id="imagetransfer-software-vmcatcher-config-env">
-    <title>Environment Variables</title>
-    <para>Environment variables can be used to set default values but the command line 
-options will override any set environment options.</para>
-    <section>
-      <title>VMCATCHER_RDBMS </title>
-      <para>Sets the path to the database. For example "sqlite:///vmcatcher.db"</para>
-    </section>
-    <section>
-      <title>VMCATCHER_CACHE_EVENT</title>
-      <para>Sets the executions string. Command line options can be set as environment 
-variables just like the command line interface. Users of the "sh shell" must
-protect the environment variables from being substituted by their shell.</para>
-      <programlisting>&prompt-user; <userinput> export VMCATCHER_CACHE_EVENT="./myEventProcessor \$VMCATCHER_EVENT_TYPE"</userinput></programlisting>
-      <para>An example of how to execute a command with an action command line.</para>
-    </section>
-    <section>
-      <title>VMCATCHER_LOG_CONF</title>
-      <para>Sets the path to the logging configuration file.</para>
-    </section>
-    <section>
-      <title>VMCATCHER_DIR_CERT</title>
-      <para>Sets the Path to the certificate authorities public keys, certificate revocation
-lists and certificate name spaces.</para>
-    </section>
-    <section>
-      <title>VMCATCHER_CACHE_DIR_CACHE</title>
-      <para>Path used by '&vmcatcher_endorser;' to store verified VM images.</para>
-    </section>
-    <section>
-      <title>VMCATCHER_CACHE_DIR_DOWNLOAD</title>
-      <para>Path used by '&vmcatcher_endorser;' to download VM images before VM image integrity
-is checked.</para>
-    </section>
-    <section>
-      <title>VMCATCHER_CACHE_DIR_EXPIRE</title>
-      <para>Path used by '&vmcatcher_endorser;' to store VM images when they are no longer 
-endorsed.</para>
-    </section>
-    <section>
-      <title>VMCATCHER_CACHE_ACTION_DOWNLOAD</title>
-      <para>Instructs '&vmcatcher_endorser;' to download the latest VM images and check 
-integrity.</para>
-    </section>
-    <section>
-      <title>VMCATCHER_CACHE_ACTION_CHECK</title>
-      <para>Instructs '&vmcatcher_endorser;' check integrity for all currently stored VM images.</para>
-    </section>
-    <section>
-      <title>VMCATCHER_CACHE_ACTION_EXPIRE</title>
-      <para>Instructs '&vmcatcher_endorser;' to expire stored VM images that are no longer 
-endorsed.</para>
-    </section>
-    
-  </section>
-      
-     
     <section id="imagetransfer-software-vmcatcher-config-logging">
       <title>Logging configuration</title>
       <para>All scripts have a logging option. This is used to configure pythons logging 

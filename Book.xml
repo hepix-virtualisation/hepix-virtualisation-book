@@ -5,8 +5,7 @@
 %sharedents;
 ]>
 
-<book id="HEPIXvwgBook"
-      xmlns:xi="http://www.w3.org/2001/XInclude">
+<book id="HEPIXvwgBook" xmlns:xi="http://www.w3.org/2001/XInclude">
 
   <title>HEPIX Virtualisation Working Group</title>
   <subtitle>2012-08-26</subtitle>

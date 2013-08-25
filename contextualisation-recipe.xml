@@ -18,7 +18,7 @@
     shows an end to end mechanism for a &vm; produced at INFN to start at CERN.</para>
 
   <para>We can add the VMIC checks to bridge the two properly.</para>
-  <section id="contextualisation-recipe-in parts">
+  <section id="contextualisation-recipe-in-parts">
   <title>contextualisation recipe in 2 parts</title>
     <section id="contextualisation-recipe-part1">
       <title>Download image from Andrea</title>

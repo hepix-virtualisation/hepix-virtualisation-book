@@ -77,7 +77,7 @@ for virtual machines, authenticated by the &x509; signatures.</para>
     <para>Like yum and apt this tool can be extended. The following handlers have been developed</para>
  
     
-    <table frame='all'><title>Sample Table</title>
+    <table frame='all'><title>Cloud Integration with vmcatcher</title>
     <tgroup cols='5' align='left' colsep='1' rowsep='1'>
     <colspec colname='c1'/>
     <colspec colname='c2'/>

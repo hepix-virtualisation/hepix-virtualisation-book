@@ -35,18 +35,20 @@ hv:imagelist
   dc:title
   hv:images
     hv:image
-      dc:title
       dc:description
-      hv:size
-      sl:checksum:sha512
-      sl:arch
-      hv:uri
       dc:identifier
+      dc:title
+      hv:format
+      hv:hypervisor
+      hv:size
+      hv:uri
+      hv:version
+      sl:arch
+      sl:checksum:sha512
+      sl:comments
       sl:os
       sl:osversion
-      sl:comments
-      hv:hypervisor
-      hv:version
+
   dc:source
   hv:version
   hv:uri
@@ -185,6 +187,28 @@ hv:imagelist
             <listitem><para>XML Rendering:</para><programlisting>&lt;dc:description&gt;Desy generated generic sl5 image&lt;/dc:description&gt;</programlisting></listitem>
             <listitem><para>JSON Rendering:</para><programlisting>{ "dc:description": "This is an README example VM" }</programlisting></listitem>
           </itemizedlist>
+        </section>
+        <section>
+          <title>hv:imagelist/hv:images/hv:image/hv:format</title>
+          <para>Series of enumerated values.</para>
+          <itemizedlist>
+            <listitem><para>XML Rendering:</para><programlisting>&lt;hv:format&gt;cpio.bz2&lt;/hv:format&gt;</programlisting></listitem>
+            <listitem><para>JSON Rendering:</para><programlisting>{ "hv:format": "cpio.bz2" }</programlisting></listitem>
+          </itemizedlist>
+          <section>
+            <title>Enumerated values</title>
+            <itemizedlist>
+                <listitem><programlisting>QCOW2</programlisting></listitem>
+                <listitem><programlisting>vdi.gz</programlisting></listitem>
+                <listitem><programlisting>vhd.gz</programlisting></listitem>
+                <listitem><programlisting>tar.gz</programlisting></listitem>
+                <listitem><programlisting>cpio.bz2</programlisting></listitem>
+                <listitem><programlisting>vpc.gz</programlisting></listitem>
+                <listitem><programlisting>ext3.gz</programlisting></listitem>
+                <listitem><programlisting>raw.gz</programlisting></listitem>
+            </itemizedlist>
+            <para>This list is not exhaustive and other values may exist.</para>
+          </section>
         </section>
         <section>
           <title>hv:imagelist/hv:images/hv:image/hv:size</title>
